@@ -87,3 +87,17 @@ footer {
     transition: none;
   }
 }
+
+.results{
+  display: block;
+}
+
+.wide-btn{
+  width: 60%;
+}
+
+input{
+  width: 60%;
+  border-radius: 10px;
+  border-color: #485162;
+}

@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h2>My profile</h2>
+  <form class="parent"
+        [formGroup]="registerUserForm"
+        (ngSubmit)="add()">
+    <div class="row">
+      <div class="col img1">
+        <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
+             alt="Avatar" />
+        <input type="file" id="avatar" name="imageFile" formControlName="imageFile" class="form-control" accept="image/png, image/jpeg" placeholder="Picture">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="First name">
+      </div>
+      <div class="col">
+        <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Last name">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="address" formControlName="address" placeholder="Address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="telephone" class="form-control" name="telephoneNumber" formControlName="telephoneNumber" placeholder="Telephone number">
+      </div>
+      <div class="col">
+        <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password">
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn">Register</button>
+    </div>
+  </form>
+</div>

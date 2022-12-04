@@ -1,0 +1,51 @@
+.form-container {
+  background: #EBE8D7;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.7rem;
+  color: #485162;
+  margin: 3rem;
+  padding: 1rem;
+
+}
+form{
+  background: #485162;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.7rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+.parent{
+  display: grid;
+  place-items: center;
+}
+
+input{
+  display: block;
+  border-radius: 10px;
+  border-color: #485162;
+  position: center;
+  width: 35rem;
+  margin: 1rem;
+  text-align: center;
+}
+h2{
+  text-align: left;
+}
+
+.greenBtn {
+  background: #BFDC36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  position: center;
+  border-radius: 5px;
+  width: 35rem;
+  margin: 1rem;
+}
+img{
+  margin: 1rem;
+}
+
+.img1{
+  display: grid;
+  place-items: center;
+}

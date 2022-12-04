@@ -46,6 +46,14 @@ h2{
   border-radius: 5px;
   width: 80%;
 }
+.redBtn{
+  background: #DC7C36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  position: center;
+  border-radius: 5px;
+  width: 80%;
+}
 .search{
   display: inline-flex;
   width: 100%;

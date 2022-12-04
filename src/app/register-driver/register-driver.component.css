@@ -50,4 +50,10 @@ img{
   margin: 1rem;
 }
 
+.img1{
+  display: grid;
+  place-items: center;
+}
+
+
 

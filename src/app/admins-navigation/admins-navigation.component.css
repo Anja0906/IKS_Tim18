@@ -1,0 +1,50 @@
+.admin-nav-container{
+  border: 3px solid #485162;
+  background: url("src/assets/img/mapaFigma.webp");
+}
+
+.navigation{
+  width: 70vh;
+  height: 45vh;
+  position: absolute;
+  top: 15rem;
+  left: 10rem;
+  background: white;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+}
+img{
+  width: 50px;
+  height: 50px;
+}
+.my-col a{
+  display: grid;
+  place-items: center;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+a{
+  color: #485162;
+}
+a:link {
+  color: #485162;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #485162;
+  background-color: transparent;
+  font-size: 120%;
+}
+
+a:active {
+  color: #BFDC36;
+  background-color: transparent;
+  text-decoration: none;
+}
+hr{
+  margin-top: 1rem;
+  position: center;
+}

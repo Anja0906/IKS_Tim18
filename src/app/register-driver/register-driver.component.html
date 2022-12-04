@@ -1,8 +1,14 @@
 <div class="form-container">
   <h2>Register driver</h2>
   <form class="parent">
-    <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
-         alt="Avatar" />
+    <div class="row">
+      <div class="col img1">
+        <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
+             alt="Avatar" />
+        <input type="file" id="avatar" name="avatar" class="form-control" accept="image/png, image/jpeg" placeholder="Picture">
+      </div>
+    </div>
+
     <div class="row">
       <div class="col">
         <input type="text" class="form-control" placeholder="First name">
@@ -36,7 +42,7 @@
       </div>
     </div>
     <div class="row">
-      <button type="submit" class="btn greenBtn text-uppercase wide-btn">Check price</button>
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn">Register</button>
     </div>
   </form>
 </div>

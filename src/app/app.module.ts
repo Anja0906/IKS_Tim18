@@ -14,6 +14,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { MyProfileInfoComponent } from './my-profile-info/my-profile-info.component';
 import { PanicsComponent } from './panics/panics.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { AdminsNavigationComponent } from './admins-navigation/admins-navigation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ReportsComponent,
     MyProfileInfoComponent,
     PanicsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    AdminsNavigationComponent
   ],
   imports: [
     BrowserModule

@@ -1,0 +1,24 @@
+.chart {
+  border: 3px solid #485162;
+}
+
+.form-container {
+  background: #EBE8D7;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.7rem;
+  color: #485162;
+  margin: 3rem;
+  padding: 1rem;
+
+}
+
+.charts{
+  background: #485162;
+  margin: 5rem;
+  border-radius: 15px;
+}
+
+.chart-container{
+  background: #EBE8D7;
+  border-radius: 15px;
+}

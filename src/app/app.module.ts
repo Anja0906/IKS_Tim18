@@ -18,6 +18,8 @@ import { AdminsNavigationComponent } from './admins-navigation/admins-navigation
 import { RegistrationComponent } from './registration/registration.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { HttpClientModule } from '@angular/common/http';
     PanicsComponent,
     AboutUsComponent,
     AdminsNavigationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

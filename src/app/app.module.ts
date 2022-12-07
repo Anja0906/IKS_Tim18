@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
+import { LoginSecondWindowComponent } from './login-second-window/login-second-window.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
     AboutUsComponent,
     AdminsNavigationComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    LoginSecondWindowComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,8 @@ input {
     right: 14px;
     font-size: 35px;
     transform: rotate(45deg);
+    background: none;
+    border: none;
 }
 
 .forget_password{

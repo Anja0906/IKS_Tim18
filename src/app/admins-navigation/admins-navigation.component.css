@@ -1,6 +1,5 @@
 .admin-nav-container{
-  border: 3px solid #485162;
-  background: url("src/assets/img/mapaFigma.webp");
+  background: #EBE8D7;
 }
 
 .navigation{
@@ -12,6 +11,12 @@
   background: white;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1rem;
+}
+div h1{
+  color: black;
+  position: absolute;
+  top: 33rem;
+  left: 47rem;
 }
 img{
   width: 50px;

@@ -31,7 +31,7 @@ export class RegisterDriverComponent implements OnInit {
         .add(this.createDriverForm.value)
         .subscribe((res: any) => {
           console.log(res);
-          this.router.navigate(['']);
+          this.router.navigate([""])
         });
     }
   }

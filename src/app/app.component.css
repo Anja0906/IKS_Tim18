@@ -5,6 +5,10 @@
     --bs-font-monospace: monospace;
 }
 
+html {
+  background-color: #485162;
+}
+
 header {
     background: #485162;
     font-family: Arial, Helvetica, sans-serif;

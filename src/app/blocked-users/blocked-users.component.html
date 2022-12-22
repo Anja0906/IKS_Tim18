@@ -5,104 +5,22 @@
     <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Sort</button>
     <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Filter</button>
   </div>
-  <div class="row text-center">
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="Maria Smantha">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn redBtn text-uppercase wide-btn">Block</button>
-        </div>
-      </div>
+  <div class="card testimonial-card text-center" *ngFor="let user of users; let i = index">
+    <div class="card-up"></div>
+    <div class="avatar mx-auto bg-white">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+           class="rounded-circle img-fluid" />
     </div>
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="Lisa Cudrow">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn greenBtn text-uppercase wide-btn">Unblock</button>
-        </div>
-      </div>
+    <div class="card-body">
+      <hr />
+      <input type="text" class="form-control" placeholder="{{user.name + ' ' + user.surname}}">
     </div>
-    <div class="col-md-4 mb-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="John Smith">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn redBtn text-uppercase wide-btn">Block</button>
-        </div>
-      </div>
+    <div class="card-footer bg-transparent">
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" *ngIf="user.blocked===true; else blocked" [ngClass]="{redBtn: true}" (click)="block(user.id)">Block</button>
     </div>
-  </div>
-  <div class="row text-center">
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="Maria Smantha">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn greenBtn text-uppercase wide-btn">Unblock</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="Lisa Cudrow">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn redBtn text-uppercase wide-btn">Block</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-0">
-      <div class="card testimonial-card">
-        <div class="card-up"></div>
-        <div class="avatar mx-auto bg-white">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-               class="rounded-circle img-fluid" />
-        </div>
-        <div class="card-body">
-          <hr />
-          <input type="text" class="form-control" placeholder="John Smith">
-        </div>
-        <div class="card-footer bg-transparent">
-          <button type="submit" class="btn redBtn text-uppercase wide-btn">Block</button>
-        </div>
-      </div>
-    </div>
+
+    <ng-template #blocked>
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" [ngClass]="{greenBtn: true}" (click)="unblock(user.id)">Unblock</button>
+    </ng-template>
   </div>
 </div>

@@ -20,7 +20,6 @@
   color: #485162;
   margin: 3rem;
   padding: 1rem;
-
 }
 
 h2{
@@ -32,6 +31,9 @@ h2{
   color: #EBE8D7;
   border-radius: 10px;
   margin: 1rem;
+  width: 31%;
+  height: 10rem;
+  display: inline-flex;
 }
 
 .greenBtn {
@@ -45,7 +47,9 @@ h2{
 .search{
   display: inline-flex;
   width: 100%;
-  margin: 3rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
+  margin-bottom: 3rem;
 }
 
 .transparentBtn {
@@ -97,6 +101,10 @@ input{
 }
 
 .card-up{
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.row{
+  display: inline-block;
 }
 

@@ -1,44 +1,50 @@
 <div class="form-container">
   <h2>Register driver</h2>
-  <form class="parent">
+  <form class="parent"
+        [formGroup]="createDriverForm"
+        (ngSubmit)="add()"
+  >
     <div class="row">
       <div class="col img1">
         <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
              alt="Avatar" />
-        <input type="file" id="avatar" name="avatar" class="form-control" accept="image/png, image/jpeg" placeholder="Picture">
+        <input type="file" id="avatar" name="avatar" formControlName="profilePicture" class="form-control" accept="image/png, image/jpeg" placeholder="Picture">
       </div>
     </div>
 
+<!--    <div class="row">-->
+<!--      <div class="col">-->
+<!--        <input type="text"  class="form-control" name="name" formControlName="name" placeholder="First name">-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="col">&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" class="form-control" name="licence" formControlName="licence" placeholder="Drivers licence">&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
+        <input type="text"  class="form-control" name="name" formControlName="name" placeholder="First name">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Drivers licence">
+        <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="Last name">
+      </div>
+<!--      <div class="col">-->
+<!--        <input type="text" class="form-control" name="vehicleRegistration" formControlName="vehicleRegistration"  placeholder="Vehicle registration">-->
+<!--      </div>-->
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="telephone" formControlName="telephoneNumber"   placeholder="Telephone number">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="address" formControlName="address"   placeholder="Address">
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" class="form-control" name="email" formControlName="email"   placeholder="Email address">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Vehicle registration">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Telephone number">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Email address">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" name="password" formControlName="password"   placeholder="Password">
       </div>
     </div>
     <div class="row">

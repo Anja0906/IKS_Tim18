@@ -5,75 +5,13 @@
     <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Sort</button>
     <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Filter</button>
   </div>
-  <div class="row text-center">
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active1"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-
-      </div>
+  <div class="card" *ngFor="let driver of drivers; let i = index">
+    <div class="card-up">
+      <div class="dot active1"></div>
     </div>
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active2"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active1"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row text-center">
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active2"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5 mb-md-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active1"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-0">
-      <div class="card">
-        <div class="card-up">
-          <div class="dot active2"></div>
-        </div>
-        <div class="card-body">
-          <h3>Username</h3>
-          <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-        </div>
-      </div>
+    <div class="card-body">
+      <h3>{{driver.email}}</h3>
+      <p>{{driver.name + driver.surname}}</p>
     </div>
   </div>
 </div>

@@ -21,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
 import { LoginSecondWindowComponent } from './login-second-window/login-second-window.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -42,12 +44,14 @@ import { LoginSecondWindowComponent } from './login-second-window/login-second-w
     LoginComponent,
     LoginSecondWindowComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

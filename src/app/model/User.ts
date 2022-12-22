@@ -9,4 +9,6 @@ export interface User {
   password: string;
   blocked : boolean;
   active : boolean;
+
+
 }

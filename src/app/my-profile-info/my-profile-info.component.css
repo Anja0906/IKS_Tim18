@@ -1,6 +1,6 @@
-/*.form{*/
-/*  background: #485162;*/
-/*}*/
+html{
+  background-color: #485162;
+}
 
 
 .form-container {
@@ -49,5 +49,11 @@ h2{
 img{
   margin: 1rem;
 }
+
+.img1{
+  display: grid;
+  place-items: center;
+}
+
 
 

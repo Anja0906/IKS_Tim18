@@ -4,9 +4,11 @@
     <div class="modal-content">
       <button type="button" [routerLink]="['..']" class="close">+</button>  
       <img src="assets/img/UberLogo.png" class="img_logo_login">
-      <form action="">
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Password">
+      <form [formGroup]="loginForm" class="was-validated"> 
+        <div class="form-group">
+          <input id="email" type="email" class="form-control" placeholder="Email address" name="email" required>
+        </div>
+        <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
         <button [routerLink]="['change_password']" type="button" class="forget_password">Forgot password?</button>
         <button type="submit" class="btn greenBtn text-uppercase wide-btn">Log in</button>
       </form>

@@ -9,25 +9,27 @@ import {environment} from "../environments/environment";
 export class UserService {
   private apiServerUrl = environment.apiHost;
   constructor(private http: HttpClient) { }
+  ngOnInit(): void {}
+
 
   getAll(request: { page?: string; size?: string }): Observable<any[]> {
     return this.http.get<any[]>(environment.apiHost + 'api/user?page=' + request['page'] + '&size=' + request['size']);
   }
 
   public getUser(userId: number): Observable<User> {
-    return this.http.get<User>(`${this.apiServerUrl}/user/get/${userId}`);
+    return this.http.get<User>(`${this.apiServerUrl}api/user/${userId}`);
   }
 
   public addUser(user: any): Observable<any> {
     const options: any = {
       responseType: 'text',
     };
-    return this.http.post<string>(`${this.apiServerUrl}/user/add`, user, options);
+    return this.http.post<string>(`${this.apiServerUrl}api/user/add`, user, options);
 
   }
 
-  public updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiServerUrl}/user/update`, user);
+  public updateUser(id: number, user: User) {
+    return this.http.put<User>(`${this.apiServerUrl}api/user/${id}`, user);
   }
 
   public deleteUser(userId: number): Observable<void> {

@@ -1,14 +1,12 @@
 export interface User {
   id: number;
-  firstName: string;
-  lastName : string;
-  imageLink : string;
-  telephone : string;
+  name: string;
+  surname : string;
+  profilePicture : string;
+  telephoneNumber : string;
   email: string;
   address: string;
   password: string;
   blocked : boolean;
   active : boolean;
-
-
 }

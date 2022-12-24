@@ -25,6 +25,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/custom-theme.scss",
               "src/styles.css"
             ],

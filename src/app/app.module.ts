@@ -45,12 +45,12 @@ import {MatCardModule} from "@angular/material/card";
     LoginSecondWindowComponent
   ],
     imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatCardModule
+      BrowserModule,
+      ReactiveFormsModule,
+      HttpClientModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      MatCardModule
     ],
   providers: [],
   bootstrap: [AppComponent]

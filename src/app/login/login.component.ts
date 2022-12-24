@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,12 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  display = false;
-  onPress() {
-    this.display = true;
+  loginForm!:FormGroup;
+  submitted = false;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email:["", Validators.required]
+    })
   }
 
-   /*if you want the component to show and hide on click pressed, use 
-   use this line
-   this.display = !this.display;*/
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    alert("Successful");
+  }
  }

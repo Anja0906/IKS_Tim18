@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css",
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
               "node_modules/leaflet/dist/leaflet.css",
               "src/custom-theme.scss",

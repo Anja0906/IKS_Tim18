@@ -1,24 +1,51 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import 'leaflet-control-geocoder';
 import {MapService} from "../service/map/map.service";
+import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import {LatLng} from "leaflet";
 
 @Component({
   selector: 'app-app-map',
   templateUrl: './app-map.component.html',
   styleUrls: ['./app-map.component.css']
 })
-export class AppMapComponent implements AfterViewInit {
-  private map: any;
+export class AppMapComponent implements AfterViewInit, OnInit {
+  map!: any;
+  result!: any;
+  dep!: LatLng;
+  dest!: LatLng;
 
-  constructor(private mapService: MapService) {}
+  priceForm = new FormGroup({
+    departure: new FormControl(),
+    destination: new FormControl(),
+    price: new FormControl(),
+  });
+  constructor(private mapService: MapService, private router: Router) {}
+  ngOnInit(): void {
+  }
 
+  async check() {
+    if(this.dest!=undefined){
+      this.refreshMap();
+    }
+    if (this.priceForm.valid) {
+      const dep1 = await this.search(this.priceForm.value.departure);
+      this.dep = new LatLng(Number(dep1[0].lat), Number(dep1[0].lon));
+      console.log(this.dep);
+      const dest1 = await this.search(this.priceForm.value.destination);
+      this.dest = new LatLng(Number(dest1[0].lat), Number(dest1[0].lon));
+      console.log(this.dest);
+      this.route(this.dep, this.dest);
+    }
+  }
   private initMap(): void {
     this.map = L.map('map', {
-      center: [45.2396, 19.8227],
-      zoom: 13,
+      center: [45.2493, 19.8148],
+      zoom: 15,
     });
-
     const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
@@ -29,23 +56,29 @@ export class AppMapComponent implements AfterViewInit {
       }
     );
     tiles.addTo(this.map);
-
-    // this.search();
-    // this.addMarker();
-    // this.registerOnClick();
-    // this.route();
+    this.registerOnClick();
   }
 
-  search(): void {
-    this.mapService.search('Strazilovska 19').subscribe({
-      next: (result) => {
-        console.log(result);
-        L.marker([result[0].lat, result[0].lon])
-          .addTo(this.map)
-          .bindPopup('Pozdrav iz Strazilovske 19.')
-          .openPopup();
-      },
-      error: () => {},
+  private refreshMap(): void{
+    this.map.remove();
+    this.initMap();
+  }
+
+  async search(input: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.mapService.search(input).subscribe({
+        next: (result) => {
+          console.log(result);
+          L.marker([result[0].lat, result[0].lon])
+            .addTo(this.map)
+            .bindPopup(result[0].display_name)
+            .openPopup();
+          resolve(result);
+        },
+        error: (error) => {
+          reject(error);
+        },
+      });
     });
   }
 
@@ -56,37 +89,33 @@ export class AppMapComponent implements AfterViewInit {
       const lng = coord.lng;
       this.mapService.reverseSearch(lat, lng).subscribe((res) => {
         console.log(res.display_name);
+        const mp = new L.Marker([lat, lng]).addTo(this.map).bindPopup(res.display_name)
+          .openPopup();
+        alert(mp.getLatLng());
       });
       console.log(
         'You clicked the map at latitude: ' + lat + ' and longitude: ' + lng
       );
-      const mp = new L.Marker([lat, lng]).addTo(this.map);
-      alert(mp.getLatLng());
+
     });
   }
 
-  route(): void {
+  route(r1: any, r2: any): void {
     L.Routing.control({
-      waypoints: [L.latLng(57.74, 11.94), L.latLng(57.6792, 11.949)],
+      waypoints: [
+        r1, r2
+      ]
     }).addTo(this.map);
   }
 
-  private addMarker(): void {
-    const lat: number = 45.25;
-    const lon: number = 19.8228;
-
-    L.marker([lat, lon])
-      .addTo(this.map)
-      .bindPopup('Trenutno se nalazite ovde.')
-      .openPopup();
-  }
 
   ngAfterViewInit(): void {
-    let DefaultIcon = L.icon({
-      iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
+    L.Marker.prototype.options.icon = L.icon({
+      iconSize: [40, 40],
+      iconAnchor: [13, 41],
+      iconUrl: 'https://img.icons8.com/fluency/512/map-pin.png',
     });
-
-    L.Marker.prototype.options.icon = DefaultIcon;
     this.initMap();
   }
+
 }

@@ -10,6 +10,8 @@ import {ReportsComponent} from "../app/reports/reports.component";
 import {MyProfileInfoComponent} from "../app/my-profile-info/my-profile-info.component";
 import {BlockedUsersComponent} from "../app/blocked-users/blocked-users.component";
 import {PanicsComponent} from "../app/panics/panics.component";
+import {AppModule} from "../app/app.module";
+import {AppMapComponent} from "../app/app-map/app-map.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,7 +24,8 @@ const routes: Routes = [
   { path:'my-account', component: MyProfileInfoComponent},
   { path:'block-users', component: BlockedUsersComponent},
   { path:'panic-notifications', component: PanicsComponent},
-  { path:'**', component: AdminPageComponent},
+  { path:'admin', component: AdminPageComponent},
+  { path:'', component: AppMapComponent},
 
 ];
 

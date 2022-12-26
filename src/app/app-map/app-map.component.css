@@ -1,17 +1,64 @@
 .map-container {
+  background-color: #485162;
   position: absolute;
   top: 3rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 30px;
+  width: 100%;
+  height: 100%;
 }
 
 .map-frame {
-  border: 2px solid black;
+  border: 2px solid #485162;
   height: 100%;
+  width: 100%;
 }
 
 #map {
   height: 100%;
+}
+
+
+.form-container {
+  z-index: 1000;
+  top: 50%;
+  background: #485162;
+  box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  color: #485162;
+  margin-left: 3rem;
+  padding: 1rem;
+  position: relative;
+  width: 25%;
+  font-family: Cambria, serif;
+}
+
+input{
+  border-radius: 3rem;
+  width: 90%;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+.cent{
+  display: grid;
+  align-items: center;
+}
+
+h2{
+  text-align: center;
+  color: #BFDC36;
+
+}
+img{
+  width: 20%;
+  height: 20%;
+}
+
+.greenBtn {
+  background: #BFDC36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  border-radius: 3rem;
+  width: 20%;
+  margin: 1rem;
 }

@@ -3,3 +3,23 @@
     <div id="map"></div>
   </div>
 </div>
+<div class="form-container" #form>
+  <h2>Search:</h2>
+  <form [formGroup]="priceForm" (ngSubmit)="check()">
+    <div class="col">
+      <div class="row">
+        <input type="text" name="departure" formControlName="departure" placeholder="Departure"/>
+      </div>
+      <div class="row">
+        <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
+      </div>
+      <div class="row">
+        <img src="assets/icons8-us-dollar-64.png">
+      </div>
+      <div class="row cent">
+        <button type="submit" class="btn greenBtn text-uppercase">Go</button>
+      </div>
+    </div>
+
+  </form>
+</div>

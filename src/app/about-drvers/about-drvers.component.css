@@ -107,4 +107,8 @@ input{
 .row{
   display: inline-block;
 }
+html{
+  background-color: #485162;
+}
+
 

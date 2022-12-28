@@ -23,10 +23,16 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     destination: new FormControl(),
     price: new FormControl(),
   });
+
+
+  constructor(private mapService: MapService, private router: Router) {}
+
+  ngOnInit(): void {}
+
+  //getting the inputs from the form
   constructor(private mapService: MapService, private router: Router) {}
   ngOnInit(): void {
   }
-
   async check() {
     if(this.dest!=undefined){
       this.refreshMap();
@@ -41,6 +47,8 @@ export class AppMapComponent implements AfterViewInit, OnInit {
       this.route(this.dep, this.dest);
     }
   }
+
+  //map initialisation
   private initMap(): void {
     this.map = L.map('map', {
       center: [45.2493, 19.8148],
@@ -59,10 +67,13 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     this.registerOnClick();
   }
 
+  //refreshing the map
+
   private refreshMap(): void{
     this.map.remove();
     this.initMap();
   }
+  //searching the address on map from input string
 
   async search(input: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -82,6 +93,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     });
   }
 
+  //inverse search (from click to location)
   registerOnClick(): void {
     this.map.on('click', (e: any) => {
       const coord = e.latlng;
@@ -100,6 +112,8 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     });
   }
 
+  //drawing a route
+
   route(r1: any, r2: any): void {
     L.Routing.control({
       waypoints: [
@@ -109,6 +123,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   }
 
 
+  //setting the map pin icon
   ngAfterViewInit(): void {
     L.Marker.prototype.options.icon = L.icon({
       iconSize: [40, 40],

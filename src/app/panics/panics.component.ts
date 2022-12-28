@@ -15,11 +15,11 @@ export class PanicsComponent {
   constructor(private panicService: PanicService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getDrivers({ page: "0", size: "10" });
+    this.getPanics({ page: "0", size: "10" });
   }
 
-
-  private getDrivers(request: { page?: string; size?: string; }) {
+  //getting all panic notifications from the backend side
+  private getPanics(request: { page?: string; size?: string; }) {
     this.panicService.getAll(request)
       .subscribe(data => {
           // @ts-ignore
@@ -33,13 +33,14 @@ export class PanicsComponent {
       );
   }
 
+  //changing page
   nextPage(event: PageEvent) {
     const request = {};
     // @ts-ignore
     request['page'] = event.pageIndex.toString();
     // @ts-ignore
     request['size'] = event.pageSize.toString();
-    this.getDrivers(request);
+    this.getPanics(request);
   }
 
 }

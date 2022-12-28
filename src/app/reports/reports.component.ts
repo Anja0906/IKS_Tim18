@@ -11,6 +11,8 @@ export class ReportsComponent {
   ngOnInit(): void {
     this.createChart();
   }
+
+  //creating a chart with hardcoded values
   createChart(){
 
     this.chart = new Chart("MyChart", {

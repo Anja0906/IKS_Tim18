@@ -25,13 +25,14 @@ export class RegisterDriverComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //submitting form and adding driver on the backend side
   add() {
     if (this.createDriverForm.valid) {
       this.driverService
         .add(this.createDriverForm.value)
         .subscribe((res: any) => {
           console.log(res);
-          this.router.navigate(["all-drivers"])
+          alert("You have successfully added a new driver")
         });
     }
   }

@@ -1,9 +1,9 @@
 <!--Navigacioni meni-->
 <app-app-navbar></app-app-navbar>
 <!--Navigacioni meni za administratora-->
-<app-admins-navigation></app-admins-navigation>
+<app-admins-navigation (templateChange)="renderTemplate($event)"></app-admins-navigation>
 <!--Komponenta za rutiranje-->
-<router-outlet></router-outlet>
+<ng-template #container></ng-template>
 <!--About us-->
 <app-about-us></app-about-us>
 <!--Footer-->

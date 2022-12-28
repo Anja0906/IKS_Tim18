@@ -29,10 +29,6 @@ export class AppMapComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {}
 
-  //getting the inputs from the form
-  constructor(private mapService: MapService, private router: Router) {}
-  ngOnInit(): void {
-  }
   async check() {
     if(this.dest!=undefined){
       this.refreshMap();

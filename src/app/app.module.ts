@@ -22,6 +22,11 @@ import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
 import { LoginSecondWindowComponent } from './login-second-window/login-second-window.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
+import { DriverPageComponent } from './driver-page/driver-page.component';
+import { AboutRideComponent } from './about-ride/about-ride.component';
+import { PendingRidesComponent } from './pending-rides/pending-rides.component';
+import { RideHistoryComponent } from './ride-history/ride-history.component';
+import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,12 @@ import {MatCardModule} from "@angular/material/card";
     AdminsNavigationComponent,
     RegistrationComponent,
     LoginComponent,
-    LoginSecondWindowComponent
+    LoginSecondWindowComponent,
+    DriverPageComponent,
+    AboutRideComponent,
+    PendingRidesComponent,
+    RideHistoryComponent,
+    DriverNavbarComponent
   ],
     imports: [
       BrowserModule,

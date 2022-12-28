@@ -5,10 +5,11 @@
   background: #EBE8D7;
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0.7rem;
+  margin-left: 0.7vh;
+  margin-right: 0.7vh;
   color: #485162;
-  margin: 3rem;
-  padding: 1rem;
-
+  position:relative;
+  margin-top: 0.5vh;
 }
 
 .text-container{

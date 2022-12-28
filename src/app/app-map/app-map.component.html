@@ -1,8 +1,11 @@
+<!--Map-->
 <div class="map-container" #map>
   <div class="map-frame">
     <div id="map"></div>
   </div>
 </div>
+
+<!--Input form-->
 <div class="form-container" #form>
   <h2>Search:</h2>
   <form [formGroup]="priceForm" (ngSubmit)="check()">
@@ -14,7 +17,7 @@
         <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
       </div>
       <div class="row">
-        <img src="assets/icons8-us-dollar-64.png">
+        <img src="assets/icons8-us-dollar-64.png" alt="price">
       </div>
       <div class="row cent">
         <button type="submit" class="btn greenBtn text-uppercase">Go</button>

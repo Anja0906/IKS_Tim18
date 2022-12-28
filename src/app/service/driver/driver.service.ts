@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Driver} from "../../register-driver/register-driver.component";
 import {User} from "../../model/User";
 
 @Injectable({
@@ -23,3 +22,4 @@ export class DriverService {
     return this.http.get<any[]>(environment.apiHost + 'api/driver?page='+request['page']+'&size='+request['size']);
   }
 }
+

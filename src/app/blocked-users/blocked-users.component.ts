@@ -20,7 +20,7 @@ export class BlockedUsersComponent {
     this.getUsers({ page: "0", size: "30" });
   }
 
-
+  //getting all users from backend
   private getUsers(request: { page?: string; size?: string; }) {
     this.userService.getAll(request)
       .subscribe(data => {
@@ -35,6 +35,7 @@ export class BlockedUsersComponent {
       );
   }
 
+  //changing page
   nextPage(event: PageEvent) {
     const request = {};
     // @ts-ignore
@@ -43,6 +44,8 @@ export class BlockedUsersComponent {
     request['size'] = event.pageSize.toString();
     this.getUsers(request);
   }
+
+  //blocking user
   block(id: number){
     this.userService
       .block(id)
@@ -50,6 +53,8 @@ export class BlockedUsersComponent {
         console.log(res);
       });
   }
+
+  //unblocking user
   unblock(id: number){
     this.userService
       .unblock(id)

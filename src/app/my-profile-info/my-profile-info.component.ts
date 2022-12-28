@@ -30,6 +30,7 @@ export class MyProfileInfoComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
+  //setting the form and user information
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: [''],
@@ -48,13 +49,14 @@ export class MyProfileInfoComponent implements OnInit {
     this.form.patchValue(this.user);
   }
 
+  //submitting the form and updating user on the backend side
   update() {
     if (this.form.valid) {
       this.userService
         .updateUser(1, this.form.value)
         .subscribe((res: any) => {
           console.log(res);
-          this.router.navigate(["my-account"])
+          this.router.navigate([this])
         });
       this.userService.getUser(1).subscribe((res) => {
         this.user = res;

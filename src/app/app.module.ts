@@ -22,6 +22,14 @@ import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
 import { LoginSecondWindowComponent } from './login-second-window/login-second-window.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from "@angular/material/card";
+import { DriverPageComponent } from './driver-page/driver-page.component';
+import { AboutRideComponent } from './about-ride/about-ride.component';
+import { PendingRidesComponent } from './pending-rides/pending-rides.component';
+import { RideHistoryComponent } from './ride-history/ride-history.component';
+import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
+import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatLegacyButtonModule} from "@angular/material/legacy-button";
 
 @NgModule({
   declarations: [
@@ -40,16 +48,25 @@ import {MatCardModule} from "@angular/material/card";
     AdminsNavigationComponent,
     RegistrationComponent,
     LoginComponent,
-    LoginSecondWindowComponent
+    LoginSecondWindowComponent,
+    DriverPageComponent,
+    AboutRideComponent,
+    PendingRidesComponent,
+    RideHistoryComponent,
+    DriverNavbarComponent,
+    ReasonDialogComponent
   ],
-    imports: [
-      BrowserModule,
-      ReactiveFormsModule,
-      HttpClientModule,
-      AppRoutingModule,
-      BrowserAnimationsModule,
-      MatCardModule
-    ],
+  entryComponents: [ReasonDialogComponent],
+  imports: [
+    MatDialogModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatLegacyButtonModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

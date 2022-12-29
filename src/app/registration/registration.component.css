@@ -5,8 +5,49 @@
   color: #485162;
   margin: 3rem;
   padding: 1rem;
-
+  position: relative;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  height: 90%;
 }
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(72,81,98, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.close{
+  position: absolute;
+  top:0;
+  color: black;
+  right: 14px;
+  font-size: 35px;
+  transform: rotate(45deg);
+  background: none;
+  border: none;
+}
+
+.modal-content {
+  width: 90%;
+  height: 87%;
+  background-color: #EBE8D7;
+  border-radius: 4px;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin: 4rem;
+  padding: 1rem;
+  margin-top: 6rem;
+}
+
 form{
   background: #485162;
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -17,6 +58,10 @@ form{
 .parent{
   display: grid;
   place-items: center;
+  width: 89%;
+  height: 89%;
+  align-items: center;
+  text-align: center;
 }
 
 input{
@@ -24,8 +69,8 @@ input{
   border-radius: 10px;
   border-color: #485162;
   position: center;
-  width: 35rem;
-  margin: 1rem;
+  width: 30rem;
+  margin: 0.5rem;
   text-align: center;
 }
 h2{

@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@fontsource/carter-one": "^4.5.9",
+    "@fontsource/crete-round": "^4.5.9",
     "@types/leaflet-routing-machine": "^3.2.4",
     "@types/mapbox-gl-leaflet": "^0.0.1",
     "bootstrap": "^5.2.2",

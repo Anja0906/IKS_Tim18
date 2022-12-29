@@ -31,6 +31,7 @@ import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.comp
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatLegacyButtonModule} from "@angular/material/legacy-button";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,9 @@ import {MatLegacyButtonModule} from "@angular/material/legacy-button";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatLegacyButtonModule
+    MatLegacyButtonModule,
+    DriverNavbarComponent
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,67 @@
+<div class="form-container">
+  <div class="innerClass">
+    <form *ngIf="ride" [formGroup]="form">
+      <h2>About ride</h2>
+      <div class="majmun">
+      <div class="row">
+        <div class="col">
+          <label>ID: </label>
+          <input type="text" [formControl]="form.controls.id" class="form-control" readonly >
+        </div>
+        <div class="col">
+          <label>Estimated Time in Minutes: </label>
+          <input type="text" [formControl]="form.controls.estimatedTimeInMinutes" class="form-control"readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Start time: </label>
+          <input type="text" [formControl]="form.controls.startTime" class="form-control"readonly>
+        </div>
+        <div class="col">
+          <label>End time: </label>
+          <input type="text" [formControl]="form.controls.endTime" class="form-control"readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Total cost: </label>
+          <input type="text" [formControl]="form.controls.totalCost" class="form-control"readonly>
+        </div>
+        <div class="col">
+          <label>Baby transport: </label>
+          <input type="text" [formControl]="form.controls.babyTransport" class="form-control"readonly>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col">
+          <label>Pet transport: </label>
+          <input type="text" [formControl]="form.controls.petTransport" class="form-control"readonly>
+        </div>
+        <div class="col">
+          <label>Split fare: </label>
+          <input type="text" [formControl]="form.controls.splitFare" class="form-control"readonly>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Status: </label>
+          <input type="text" [formControl]="form.controls.status" class="form-control"readonly>
+        </div>
+        <div class="col">
+          <label>Name: </label>
+          <p *ngFor="let pass of ride.passengers; let i = index">
+            Passenger {{pass.email}}</p>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="row">
+          <button type="" class="btn panic">PANIC!</button>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>

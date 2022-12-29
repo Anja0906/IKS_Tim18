@@ -1,50 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('leaflet/dist/leaflet.css');
 
-:root {
-  --bs-nav-link-color: #EBE8D7;
-  --bs-font-monospace: monospace;
+
+.map-container {
+  background-color: #485162;
+  position: relative;
+  top: 3rem;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  height: 93.5%;
 }
 
-body {
+
+.map-frame {
+  border: 2px solid #485162;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+
+.form-container {
+  z-index: 1000;
+  top: 50%;
   background: #485162;
-  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  color: #485162;
+  margin-left: 3rem;
+  padding: 1rem;
+  position: absolute;
+  width: 25%;
+  font-family: Cambria, serif;
 }
 
-footer {
-  background: #485162;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.container-fluid {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.back1 {
-  margin-top: 5rem;
-  background: #000000;
-}
-
-.btn {
-  border-radius: 15px;
-}
-
-.logo {
-  padding: 5px;
-}
-
-.back {
-  background: #485162;
-}
-
-.navbar {
-  background: #485162;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-
-.map-container-2 {
+input{
+  border-radius: 3rem;
+  width: 90%;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.5rem;
   text-align: center;
-  color: #000;
-  position: center;
+}
+.cent{
+  display: grid;
+  align-items: center;
 }
 
+h2{
+  text-align: center;
+  color: #BFDC36;
 
+}
+img{
+  width: 20%;
+  height: 20%;
+}
+
+.greenBtn {
+  background: #BFDC36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  border-radius: 3rem;
+  width: 20%;
+  margin: 1rem;
+}

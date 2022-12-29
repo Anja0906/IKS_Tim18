@@ -1,34 +1,40 @@
 <div class="form-container">
   <h2>My profile</h2>
-  <form class="parent">
-    <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
-         alt="Avatar" />
+  <form *ngIf="user" [formGroup]="form" (ngSubmit)="update()" class="img1">
     <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Email address">
+      <div class="col img1">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" class="rounded-circle" style="width: 150px;"
+             alt="Avatar"/>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" [formControl]="form.controls.name" class="form-control">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Address">
+        <input type="text" [formControl]="form.controls.surname" class="form-control">
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Telephone number">
+        <input type="text" [formControl]="form.controls.telephoneNumber" class="form-control">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Password">
+        <input type="text" [formControl]="form.controls.address" class="form-control">
       </div>
     </div>
     <div class="row">
-      <button type="submit" class="btn greenBtn text-uppercase wide-btn">Submit changes</button>
+      <div class="col">
+        <input type="text" [formControl]="form.controls.email" class="form-control">
+      </div>
+      <div class="col">
+        <input type="file" [formControl]="form.controls.profilePicture" class="form-control"
+               accept="image/png, image/jpeg">
+      </div>
+    </div>
+    <div class="row img1">
+        <button type="submit" class="btn greenBtn text-uppercase wide-btn">Submit changes</button>
     </div>
   </form>
 </div>
+

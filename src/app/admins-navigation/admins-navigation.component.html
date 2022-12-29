@@ -1,42 +1,42 @@
 <div class="admin-nav-container" style="width: 100%; height: 100vh">
   <div class="navigation container-fluid">
     <div class="row">
-      <div class="col-sm my-col">
-        <a routerLink="register-driver">
-          <img src="assets/driver.png">
+      <div class="col-sm my-col" (click)="addDriver()">
+        <a>
+          <img src="../../assets/driver.png">
           <p>New driver</p>
         </a>
       </div>
-      <div class="col-sm my-col">
-        <a routerLink="all-drivers">
-          <img src="assets/all_drivers.png">
+      <div class="col-sm my-col" (click)="allDrivers()">
+        <a>
+          <img src="../../assets/all_drivers.png">
           <p>All drivers</p>
         </a>
       </div>
-      <div class="col-sm my-col">
-        <a routerLink="stats">
-          <img src="assets/chart.png">
+      <div class="col-sm my-col" (click)="stats()">
+        <a>
+          <img src="../../assets/chart.png">
           <p>Stats</p>
         </a>
       </div>
     </div>
     <hr>
     <div class="row">
-      <div class="col-sm my-col">
-        <a routerLink="my-account">
-          <img src="assets/acc.png">
+      <div class="col-sm my-col" (click)="myAccount()">
+        <a>
+          <img src="../../assets/acc.png">
           <p>My account</p>
         </a>
       </div>
-      <div class="col-sm my-col">
-        <a routerLink="block-users">
-          <img src="assets/block2.png">
+      <div class="col-sm my-col" (click)="blockUsers()">
+        <a>
+          <img src="../../assets/block2.png">
           <p>Block users</p>
         </a>
       </div>
-      <div class="col-sm my-col">
-        <a routerLink="panic-notifications">
-          <img src="assets/panic2.png">
+      <div class="col-sm my-col" (click)="panics()">
+        <a>
+          <img src="../../assets/panic2.png">
           <p>Panic notifications</p>
         </a>
       </div>
@@ -46,3 +46,21 @@
     <h1>Thank you for being part of our team!</h1>
   </div>
 </div>
+<ng-template #newDriver id="newDriver">
+  <app-register-driver></app-register-driver>
+</ng-template>
+<ng-template #aboutDrivers id="aboutDrivers">
+  <app-about-drvers></app-about-drvers>
+</ng-template>
+<ng-template #charts id="charts">
+  <app-reports></app-reports>
+</ng-template>
+<ng-template #profileInfos id="profileInfos">
+  <app-my-profile-info></app-my-profile-info>
+</ng-template>
+<ng-template #usersBlocking id="usersBlocking">
+  <app-blocked-users></app-blocked-users>
+</ng-template>
+<ng-template #panic id="panic">
+  <app-panics></app-panics>
+</ng-template>

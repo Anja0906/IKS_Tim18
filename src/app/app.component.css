@@ -1,12 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-    --bs-nav-link-color: #EBE8D7;
-    --bs-font-monospace: monospace;
+  --bs-nav-link-color: #EBE8D7;
+  --bs-font-monospace: monospace;
 }
 
 html {
-  background-color: #485162;
+  background-color: #EBE8D7;
 }
 
 header {
@@ -26,6 +26,7 @@ footer {
 
 .container-fluid {
     font-family: Arial, Helvetica, sans-serif;
+    background: #485162;
 }
 
 .back1 {

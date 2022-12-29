@@ -27,6 +27,10 @@ import { AboutRideComponent } from './about-ride/about-ride.component';
 import { PendingRidesComponent } from './pending-rides/pending-rides.component';
 import { RideHistoryComponent } from './ride-history/ride-history.component';
 import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
+import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatLegacyButtonModule} from "@angular/material/legacy-button";
+
 
 @NgModule({
   declarations: [
@@ -50,16 +54,21 @@ import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
     AboutRideComponent,
     PendingRidesComponent,
     RideHistoryComponent,
+    DriverNavbarComponent,
+    ReasonDialogComponent
+  ],
+  entryComponents: [ReasonDialogComponent],
+  imports: [
+    MatDialogModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatLegacyButtonModule
     DriverNavbarComponent
   ],
-    imports: [
-      BrowserModule,
-      ReactiveFormsModule,
-      HttpClientModule,
-      AppRoutingModule,
-      BrowserAnimationsModule,
-      MatCardModule
-    ],
   providers: [],
   bootstrap: [AppComponent]
 })

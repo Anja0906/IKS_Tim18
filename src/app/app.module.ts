@@ -66,9 +66,12 @@ import {MatLegacyButtonModule} from "@angular/material/legacy-button";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
+
+    MatLegacyButtonModule,
+    DriverNavbarComponent,
+
     MatLegacyButtonModule,
     DriverNavbarComponent
-
   ],
   providers: [],
   bootstrap: [AppComponent]

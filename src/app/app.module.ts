@@ -15,7 +15,6 @@ import { PanicsComponent } from './panics/panics.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminsNavigationComponent } from "./admins-navigation/admins-navigation.component";
 import { RegistrationComponent } from './registration/registration.component';
-import {ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from 'src/infrastructure/app-routing.module';
@@ -30,6 +29,8 @@ import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
 import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatLegacyButtonModule} from "@angular/material/legacy-button";
+import { httpInterceptorProviders } from './interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -62,6 +63,8 @@ import {MatLegacyButtonModule} from "@angular/material/legacy-button";
     MatDialogModule,
     BrowserModule,
     ReactiveFormsModule,
+    
+    FormsModule, 
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -70,7 +73,7 @@ import {MatLegacyButtonModule} from "@angular/material/legacy-button";
     // DriverNavbarComponent,
 
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

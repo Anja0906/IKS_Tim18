@@ -37,15 +37,11 @@ export class UserService {
   }
 
   unblock(id: number) {
-    const body = { title: 'Unblocking' };
-    // @ts-ignore
-    return this.http.put<string>(`${this.apiServerUrl}api/user/${id}/unblock`);
+    return this.http.put(`${this.apiServerUrl}api/user/${id}/unblock`, {});
   }
 
   block(id: number){
-    const body = { title: 'Blocking' };
-    // @ts-ignore
-    return this.http.put<string>(`${this.apiServerUrl}api/user/${id}/block`);
+    return this.http.put(`${this.apiServerUrl}api/user/${id}/block`, {});
   }
 
 }

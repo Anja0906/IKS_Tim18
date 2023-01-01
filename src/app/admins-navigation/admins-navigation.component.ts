@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {AdminPageComponent} from "../admin-page/admin-page.component";
 import {RegisterDriverComponent} from "../register-driver/register-driver.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admins-navigation',
@@ -23,23 +24,26 @@ export class AdminsNavigationComponent {
   @ViewChild('usersBlocking') usersBlocking!: TemplateRef<any>;
   @ViewChild('panic') panicNotifications!: TemplateRef<any>;
   @Output() templateChange = new EventEmitter<TemplateRef<any>>();
+  constructor(private router: Router) {
+  }
 
   addDriver() {
-    this.templateChange.emit(this.newDriver);
+    this.router.navigate(['admin/register-driver']);
   }
+
   allDrivers(){
-    this.templateChange.emit(this.aboutDrivers);
+    this.router.navigate(['admin/all-drivers']);
   }
   stats(){
-    this.templateChange.emit(this.charts);
+    this.router.navigate(['admin/stats']);
   }
   myAccount(){
-    this.templateChange.emit(this.profileInfos);
+    this.router.navigate(['admin/my-account']);
   }
   blockUsers(){
-    this.templateChange.emit(this.usersBlocking);
+    this.router.navigate(['admin/block-users']);
   }
   panics(){
-    this.templateChange.emit(this.panicNotifications);
+    this.router.navigate(['admin/panic-notifications']);
   }
 }

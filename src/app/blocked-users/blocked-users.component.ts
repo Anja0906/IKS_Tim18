@@ -4,6 +4,9 @@ import {Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {Panic, UserSimple} from "../panics/panics.component";
 import {UserService} from "../user.service";
+import {ReasonDialogComponent} from "../panics/reason-dialog/reason-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {NoteComponent} from "./note/note.component";
 
 @Component({
   selector: 'app-blocked-users',
@@ -14,7 +17,7 @@ export class BlockedUsersComponent {
   users: UserSimple[] = [];
   totalElements: number = 0;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getUsers({ page: "0", size: "30" });
@@ -61,6 +64,14 @@ export class BlockedUsersComponent {
       .subscribe((res: any) => {
         console.log(res);
       });
+  }
+
+  openDialog(id: number) {
+    let dialogRef = this.dialog.open(NoteComponent, {
+      data: id,
+      panelClass: 'my-dialog-container-class',
+    });
+
   }
 
 }

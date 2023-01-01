@@ -16,7 +16,10 @@
       <input type="text" class="form-control" placeholder="{{user.name + ' ' + user.surname}}">
     </div>
     <div class="card-footer bg-transparent">
-      <button type="submit" class="btn greenBtn text-uppercase wide-btn" *ngIf="user.blocked===true; else blocked" [ngClass]="{redBtn: true}" (click)="block(user.id)">Block</button>
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" (click)="openDialog(user.id)">Leave note</button>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" *ngIf="user.blocked===false; else blocked" [ngClass]="{redBtn: true}" (click)="block(user.id)">Block</button>
     </div>
 
     <ng-template #blocked>

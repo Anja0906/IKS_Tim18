@@ -1,6 +1,17 @@
-import {Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {NoteService} from "../../service/note/note.service";
+import {Note} from "../../model/Note";
 
 @Component({
   selector: 'app-reason-dialog',
@@ -9,6 +20,7 @@ import {NoteService} from "../../service/note/note.service";
   encapsulation: ViewEncapsulation.None
 })
 export class NoteComponent implements OnInit, OnDestroy{
+  @ViewChild('note') noteInput!: ElementRef;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private noteService: NoteService, public matDialogRef: MatDialogRef<NoteComponent>) {
   }
 
@@ -21,9 +33,10 @@ export class NoteComponent implements OnInit, OnDestroy{
 
 
   onCloseDialog() {
+    const textarea = this.noteInput.nativeElement;
+    const text = textarea.value;
+    this.noteService.addNote(text, this.data);
     this.matDialogRef.close();
   }
-  submit(){
 
-  }
 }

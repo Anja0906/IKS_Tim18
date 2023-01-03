@@ -10,6 +10,8 @@
     <div class="avatar mx-auto bg-white">
       <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
            class="rounded-circle img-fluid" />
+<!--      <img src="{{user.profilePicture}}"-->
+<!--           class="rounded-circle img-fluid" />-->
     </div>
     <div class="card-body">
       <hr />
@@ -17,6 +19,9 @@
     </div>
     <div class="card-footer bg-transparent">
       <button type="submit" class="btn greenBtn text-uppercase wide-btn" (click)="openDialog(user.id)">Leave note</button>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" (click)="openMessages(user.id)">Notes</button>
     </div>
     <div class="card-footer bg-transparent">
       <button type="submit" class="btn greenBtn text-uppercase wide-btn" *ngIf="user.blocked===false; else blocked" [ngClass]="{redBtn: true}" (click)="block(user.id)">Block</button>

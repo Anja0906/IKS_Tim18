@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import {PanicService} from "../service/panic/panic.service";
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
-import {Panic, UserSimple} from "../panics/panics.component";
+import {UserSimple} from "../panics/panics.component";
 import {UserService} from "../user.service";
-import {ReasonDialogComponent} from "../panics/reason-dialog/reason-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NoteComponent} from "./note/note.component";
+import {MessageComponent} from "./messages/messages/messages.component";
+import {Note} from "../model/Note";
 
 @Component({
   selector: 'app-blocked-users',
@@ -14,8 +14,10 @@ import {NoteComponent} from "./note/note.component";
   styleUrls: ['./blocked-users.component.css']
 })
 export class BlockedUsersComponent {
+  notes: Note[] = [];
   users: UserSimple[] = [];
   totalElements: number = 0;
+  result: any;
 
   constructor(private userService: UserService, private router: Router, private dialog: MatDialog) {}
 
@@ -36,6 +38,19 @@ export class BlockedUsersComponent {
           console.log(error.error.message);
         }
       );
+  }
+
+  //getting all notes for some id from backend
+  private getNotes(id:number) {
+    this.userService.getMessages(id, { page: '0', size: '10' }).subscribe(
+      (data) => {
+        // @ts-ignore
+        this.notes = data['results'];
+      },
+      (error) => {
+        console.log(error.error.message);
+      }
+    );
   }
 
   //changing page
@@ -66,10 +81,27 @@ export class BlockedUsersComponent {
       });
   }
 
+  //mat dialog to leave note
   openDialog(id: number) {
-    let dialogRef = this.dialog.open(NoteComponent, {
+    const dialogRef = this.dialog.open(NoteComponent, {
       data: id,
       panelClass: 'my-dialog-container-class',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.result = result;
+    });
+
+  }
+
+  //mat dialog to open notes from back
+  openMessages(id: number) {
+    this.getNotes(id);
+    const dialogRef = this.dialog.open(MessageComponent, {
+      data: this.notes,
+      panelClass: 'my-dialog-container-class',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.result = result;
     });
 
   }

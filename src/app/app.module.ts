@@ -31,6 +31,7 @@ import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.comp
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatLegacyButtonModule} from "@angular/material/legacy-button";
 import { NoteComponent } from './blocked-users/note/note.component';
+import {MessageComponent} from './blocked-users/messages/messages/messages.component';
 
 
 @NgModule({
@@ -57,9 +58,10 @@ import { NoteComponent } from './blocked-users/note/note.component';
     RideHistoryComponent,
     DriverNavbarComponent,
     ReasonDialogComponent,
-    NoteComponent
+    NoteComponent,
+    MessageComponent
   ],
-  entryComponents: [ReasonDialogComponent, NoteComponent],
+  entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [
     MatDialogModule,
     BrowserModule,

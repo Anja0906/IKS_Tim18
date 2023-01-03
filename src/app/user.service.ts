@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/User';
 import {environment} from "../environments/environment";
+import {Note} from "./model/Note";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +15,10 @@ export class UserService {
 
   getAll(request: { page?: string; size?: string }): Observable<any[]> {
     return this.http.get<any[]>(environment.apiHost + 'api/user?page=' + request['page'] + '&size=' + request['size']);
+  }
+
+  getMessages(id:number, request: { page?: string; size?: string }): Observable<any[]> {
+    return this.http.get<any[]>(environment.apiHost + `api/user/${id}/note?page=` + request['page'] + '&size=' + request['size']);
   }
 
   public getUser(userId: number): Observable<User> {

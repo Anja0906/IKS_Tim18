@@ -13,6 +13,8 @@ import {LatLng} from "leaflet";
   styleUrls: ['./app-map.component.css']
 })
 export class AppMapComponent implements AfterViewInit, OnInit {
+  //za showForm flag je neophodno u zavisnosti od korisnika promeniti da li se forma prikazuje ili ne
+  showForm = true;
   map!: any;
   result!: any;
   dep!: LatLng;
@@ -28,6 +30,14 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   constructor(private mapService: MapService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  hide() {
+    this.showForm = false;
+  }
+
+  show() {
+    this.showForm = true;
+  }
 
   async check() {
     if(this.dest!=undefined){

@@ -5,7 +5,7 @@
   </div>
 </div>
 <!--Input form-->
-<div class="form-container" #form>
+<div class="form-container" #form *ngIf="showForm">
   <h2>Search:</h2>
   <form [formGroup]="priceForm" (ngSubmit)="check()">
     <div class="col">

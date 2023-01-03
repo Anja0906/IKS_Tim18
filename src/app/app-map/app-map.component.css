@@ -23,7 +23,7 @@
 
 
 .form-container {
-  z-index: 1000;
+  z-index: 5000;
   top: 50%;
   background: #485162;
   box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.25);
@@ -38,6 +38,7 @@
 
 input{
   border-radius: 3rem;
+  border-style: none;
   width: 90%;
   margin-bottom: 0.5rem;
   margin-left: 1rem;
@@ -49,14 +50,10 @@ input{
   align-items: center;
 }
 
-h2{
+h2 {
   text-align: center;
   color: #BFDC36;
 
-}
-img{
-  width: 20%;
-  height: 20%;
 }
 
 .greenBtn {

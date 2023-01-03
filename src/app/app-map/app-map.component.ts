@@ -13,6 +13,8 @@ import {LatLng} from "leaflet";
   styleUrls: ['./app-map.component.css']
 })
 export class AppMapComponent implements AfterViewInit, OnInit {
+  //za showForm flag je neophodno u zavisnosti od korisnika promeniti da li se forma prikazuje ili ne
+  showForm = true;
   map!: any;
   result!: any;
   dep!: LatLng;
@@ -29,20 +31,33 @@ export class AppMapComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {}
 
+  hide() {
+    this.showForm = false;
+  }
+
+  show() {
+    this.showForm = true;
+  }
+
   async check() {
     if(this.dest!=undefined){
       this.refreshMap();
     }
     if (this.priceForm.valid) {
-      const dep1 = await this.search(this.priceForm.value.departure);
-      this.dep = new LatLng(Number(dep1[0].lat), Number(dep1[0].lon));
-      console.log(this.dep);
-      const dest1 = await this.search(this.priceForm.value.destination);
-      this.dest = new LatLng(Number(dest1[0].lat), Number(dest1[0].lon));
-      console.log(this.dest);
+      await this.initLocations();
       this.route(this.dep, this.dest);
     }
   }
+
+  private async initLocations() {
+    const dep1 = await this.search(this.priceForm.value.departure);
+    this.dep = new LatLng(Number(dep1[0].lat), Number(dep1[0].lon));
+    console.log(this.dep);
+    const dest1 = await this.search(this.priceForm.value.destination);
+    this.dest = new LatLng(Number(dest1[0].lat), Number(dest1[0].lon));
+    console.log(this.dest);
+  }
+
 
   //map initialisation
   private initMap(): void {
@@ -95,27 +110,36 @@ export class AppMapComponent implements AfterViewInit, OnInit {
       const coord = e.latlng;
       const lat = coord.lat;
       const lng = coord.lng;
-      this.mapService.reverseSearch(lat, lng).subscribe((res) => {
-        console.log(res.display_name);
-        const mp = new L.Marker([lat, lng]).addTo(this.map).bindPopup(res.display_name)
+      let address = coord.display_name;
+      this.mapService.reverseSearch(lat, lng).subscribe( async (res) => {
+        address = res.display_name;
+        this.priceForm.controls.destination.setValue(address);
+        new L.Marker([lat, lng]).addTo(this.map).bindPopup(res.display_name)
           .openPopup();
-        alert(mp.getLatLng());
       });
-      console.log(
-        'You clicked the map at latitude: ' + lat + ' and longitude: ' + lng
-      );
+      if (this.dep === undefined && this.dest === undefined) {
+        this.dest = new LatLng(lat, lng);
+        this.dep = new LatLng( 45.2453708, 19.8477573);
+        this.priceForm.controls.departure.setValue("Vasa trenutna lokacija");
+      }
+      else {
+        this.dest = new LatLng(lat, lng);
+      }
+      this.refreshMap();
+      this.route(this.dep, this.dest);
 
     });
   }
 
   //drawing a route
-
   route(r1: any, r2: any): void {
     L.Routing.control({
       waypoints: [
         r1, r2
       ]
     }).addTo(this.map);
+    console.log(r1);
+    console.log(r2);
   }
 
 

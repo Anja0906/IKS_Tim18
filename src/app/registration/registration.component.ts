@@ -1,36 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
+
+import { AuthService } from '../service/auth/auth.service';
+import { StorageService } from '../service/storage/storage.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
-  registerUserForm = new FormGroup({
-    imageFile: new FormControl(),
-    firstName: new FormControl(),
-    email: new FormControl('', [Validators.required]),
-    lastName: new FormControl(),
-    address: new FormControl(),
-    telephoneNumber: new FormControl(),
-    password: new FormControl('', [Validators.required]),
-  });
+export class RegistrationComponent implements OnInit {
+  registerUserForm!:FormGroup;
+  submitted = false;
+  form: any = {
+    firstName: null,
+    picture: null,
+    email: null,
+    lastName: null,
+    address: null,
+    telephoneNumber: null,
+    password: null
+  };
+  errorMessage = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService) {}
 
-  ngOnInit(): void {}
-
-  add() {
-    if (this.registerUserForm.valid) {
-      this.userService
-        .addUser(this.registerUserForm.value)
-        .subscribe((res: any) => {
-          console.log(res);
-          this.router.navigate(['user']);
-        });
-    }
+  ngOnInit() {
+    this.registerUserForm = this.formBuilder.group({
+      email:["", Validators.required],
+      password:["", Validators.required]
+    })
   }
+
+  onSubmit() {
+    const { firstName, picture, email, lastName, address, telephoneNumber, password } = this.form;
+    this.authService.signUpPassenger(firstName, picture, email, lastName, address, telephoneNumber, password).subscribe({
+      next: data => {
+        console.log("hi");
+        //this.storageService.saveUser(data);
+
+        alert("successful");
+
+        //this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+      }
+    });
+  }
+  reloadPage(): void {
+    window.location.reload();
+  }
+  
 }

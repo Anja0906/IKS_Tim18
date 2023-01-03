@@ -16,9 +16,11 @@ import {AboutRideComponent} from "../app/about-ride/about-ride.component";
 import {PendingRidesComponent} from "../app/pending-rides/pending-rides.component";
 import {RideHistoryComponent} from "../app/ride-history/ride-history.component";
 
+import {RegistrationComponent} from 'src/app/registration/registration.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'registration', component: LoginComponent},
+  { path: 'registration', component: RegistrationComponent},
   { path: 'login/change_password', component: LoginSecondWindowComponent},
   { path: 'login', component: LoginComponent},
   { path: 'driver',
@@ -43,6 +45,7 @@ const routes: Routes = [
     ],
   },
   { path:'', component: AppMapComponent},
+
 
 ];
 

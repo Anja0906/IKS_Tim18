@@ -13,9 +13,11 @@ import {AppModule} from "../app/app.module";
 import {AppMapComponent} from "../app/app-map/app-map.component";
 import {DriverPageComponent} from "../app/driver-page/driver-page.component";
 
+import {RegistrationComponent} from 'src/app/registration/registration.component';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'registration', component: LoginComponent},
+  { path: 'registration', component: RegistrationComponent},
   { path: 'login/change_password', component: LoginSecondWindowComponent},
   { path: 'login', component: LoginComponent},
   { path: 'driver', component: DriverPageComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
     ],
   },
   { path:'', component: AppMapComponent},
+
 
 ];
 

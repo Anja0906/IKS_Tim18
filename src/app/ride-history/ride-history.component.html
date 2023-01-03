@@ -1,1 +1,28 @@
-<p>ride-history works!</p>
+<div class="form-container">
+  <h2 class="mb-4">Ride History</h2>
+  <div class="search">
+    <input type="text" class="input1" placeholder="From">
+    <input type="text" class="input1" placeholder="To">
+    <button type="submit" class="btn sort">Sort</button>
+  </div>
+  <div class="card" *ngFor="let ride of rides; let i = index">
+    <div class="card-body">
+      <h3>Ride {{i+1}}</h3>
+      <label>ID: </label>
+      <p>{{ride.id}}</p>
+
+<!--      <div class="col">-->
+<!--        <label>Departure: </label>-->
+<!--        <p *ngFor="let location of ride.locations;" > {{location.departure.address}}</p>-->
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <label>Destination: </label>-->
+<!--        <p *ngFor="let location of ride.locations;" > {{location.destination.address}}</p>-->
+<!--      </div>-->
+<!--      <div class="col">-->
+<!--        <label>Status: </label>-->
+<!--        <p>{{ride.status}}</p>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>

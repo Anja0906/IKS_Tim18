@@ -12,13 +12,25 @@ import {PanicsComponent} from "../app/panics/panics.component";
 import {AppModule} from "../app/app.module";
 import {AppMapComponent} from "../app/app-map/app-map.component";
 import {DriverPageComponent} from "../app/driver-page/driver-page.component";
+import {AboutRideComponent} from "../app/about-ride/about-ride.component";
+import {PendingRidesComponent} from "../app/pending-rides/pending-rides.component";
+import {RideHistoryComponent} from "../app/ride-history/ride-history.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: LoginComponent},
   { path: 'login/change_password', component: LoginSecondWindowComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'driver', component: DriverPageComponent},
+  { path: 'driver',
+    component: DriverPageComponent,
+    children:[
+      { path:'', component: AppMapComponent},
+      { path:'about-ride', component: AboutRideComponent},
+      { path:'pending-rides', component: PendingRidesComponent},
+      { path:'ride-history',component: RideHistoryComponent},
+      { path:'my-account', component: MyProfileInfoComponent},
+    ],
+  },
   { path:'admin',
     component: AdminPageComponent,
     children: [

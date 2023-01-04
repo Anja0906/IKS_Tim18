@@ -19,7 +19,10 @@
                     <span>Log in</span>
                 </button>
                 <button [routerLink]="['registration']" id="button-registration" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign up</button>
-            </div>
+            
+                <button id="button-activity" class="btn {{btnCall}}"  type="button" [ngSwitch]="" (click)="changeActivity()">{{btnVal}}</button>
+                <button id="button-logout" class="btn logoutButton" (click)="logout()" type="button" [routerLink]="['..']">Log out</button>
+              </div>
         </div>
     </nav>
 </div>

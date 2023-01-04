@@ -83,6 +83,61 @@ footer {
     width: 100%;
 }
 
+.activeButtonOnline{
+    box-sizing: border-box;
+    position: relative;
+    width: 4rem;
+    height: 2rem;
+    font-family: Crete-round;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    margin-right: 0.1rem;
+    align-items: center;
+    text-align: center;
+    color: #485162;
+    background: #BFDC36;
+    border: 1px solid #485162;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+  .activeButtonOffline{
+    box-sizing: border-box;
+    position: relative;
+    width: 4rem;
+    height: 2rem;
+    font-family: Crete-round;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    margin-right: 0.1rem;
+    color: #485162;
+    background: #DC7C36;
+    border: 1px solid #485162;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+  .logoutButton{
+    box-sizing: border-box;
+    position: relative;
+    width: 5rem;
+    height: 2rem;
+    font-family: Crete-round;
+    font-style: normal;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    color: #485162;
+    background: #EBE8D7;
+    border: 1px solid #485162;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+
 @media (min-width: 768px) {
     .btn {
         transition: none;

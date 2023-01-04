@@ -1,20 +1,42 @@
 .form-container {
   background: #485162;
   color: #485162;
-  width: 100%;
+  margin: 2rem;
   padding: 1rem;
-  position:relative;
-  margin-top: 3rem;
+  margin-top: 5rem;
+
 }
+.parent {
+  display: grid;
+  place-items: center;
+  align-content: center;
+}
+
+.buttondiv {
+  display: inline-flex;
+  place-items: center;
+  align-content: center;
+  margin:auto;
+  justify-items: center;
+  width: 100%;
+}
+
+label{
+  width: 15rem;
+  font-weight: bold;
+  padding: 0.6rem;
+}
+
 .innerClass{
   border-radius: 0.7rem;
   background-color: #EBE8D7;
-  width: 100%;
-  height: 97%;
   position: relative;
-  margin-top:0.5rem;
-  display: flex;
+  padding: 0.5rem;
 
+}
+
+.col{
+  display: inline-flex;
 }
 
 .card-text{
@@ -33,38 +55,32 @@ h2{
   box-sizing: border-box;
   font-weight: bolder;
   font-family: "Carter One";
-  position: relative;
-
+  margin: auto;
+  margin-bottom: 0.5rem;
   background: #DC7C36;
   border: 1px solid #485162;
   border-radius: 5px;
-  width: 35vh;
-  alignment: right;
+  width: 50%;
+  justify-items: center;
 
 }
 input:read-only{
-  width: 35rem;
+  width: 20rem;
   background-color: #EBE8D7;
   color: #485162;
-  font-family: Crete-round;
+  font-family: "Carter One";
   font-style: normal;
   font-weight: bold;
   border-style: none;
-  position: center;
 }
 p{
+  width: 20rem;
   background-color: #EBE8D7;
   color: #485162;
-  font-family: Crete-round;
+  font-family: "Carter One";
   font-style: normal;
   font-weight: bold;
-  padding-top: 1rem;
-}
+  border-style: none;
+  padding: 0.6rem;
 
-.col {
-  align-items: center;
-  display: flex;
-}
-.majmun{
-  position: center;
 }

@@ -83,7 +83,7 @@ export interface Panic {
   id: number;
   user: UserSimple;
   ride: RideRet;
-  dateTime: Time;
+  time: Date;
   reason: string;
 }
 

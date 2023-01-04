@@ -41,6 +41,7 @@ h2{
 }
 
 .greenBtn {
+  margin-bottom: 0.1rem;
   background: #BFDC36;
   backdrop-filter: blur(2px);
   color: #485162;
@@ -49,6 +50,7 @@ h2{
   width: 80%;
 }
 .redBtn{
+  margin-bottom: 0.1rem;
   background: #DC7C36;
   backdrop-filter: blur(2px);
   color: #485162;

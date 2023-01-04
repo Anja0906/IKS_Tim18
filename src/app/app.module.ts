@@ -29,6 +29,8 @@ import { DriverNavbarComponent } from './driver-navbar/driver-navbar.component';
 import { ReasonDialogComponent } from './panics/reason-dialog/reason-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatLegacyButtonModule} from "@angular/material/legacy-button";
+import { NoteComponent } from './blocked-users/note/note.component';
+import {MessageComponent} from './blocked-users/messages/messages/messages.component';
 import { httpInterceptorProviders } from './interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -56,9 +58,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PendingRidesComponent,
     RideHistoryComponent,
     DriverNavbarComponent,
-    ReasonDialogComponent
+    ReasonDialogComponent,
+    NoteComponent,
+    MessageComponent
   ],
-  entryComponents: [ReasonDialogComponent],
+  entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [
     MatDialogModule,
     BrowserModule,

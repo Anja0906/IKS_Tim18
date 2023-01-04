@@ -5,7 +5,7 @@
   </div>
 </div>
 <!--Input form-->
-<div class="form-container" #form>
+<div class="form-container" #form *ngIf="showForm">
   <h2>Search:</h2>
   <form [formGroup]="priceForm" (ngSubmit)="check()">
     <div class="col">
@@ -16,7 +16,12 @@
         <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
       </div>
       <div class="row">
-        <img src="assets/icons8-us-dollar-64.png" alt="price">
+        <div class="col">
+          <img src="assets/icons8-us-dollar-64.png" alt="price">
+        </div>
+        <div class="col">
+          <p id="price"></p>
+        </div>
       </div>
       <div class="row cent">
         <button type="submit" class="btn greenBtn text-uppercase">Go</button>

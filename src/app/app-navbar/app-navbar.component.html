@@ -15,11 +15,14 @@
                 </li>
             </ul>
             <div>
-                <button [routerLink]="['login']" id="button-login" class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button [routerLink]="['login']" id="button-login" class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="isNotLoggedIn">
                     <span>Log in</span>
                 </button>
-                <button [routerLink]="['registration']" id="button-registration" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign up</button>
-            </div>
+                <button [routerLink]="['registration']" id="button-registration" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="isNotLoggedIn">Sign up</button>
+            
+                <button id="button-activity" class="btn {{btnCall}}"  type="button" [ngSwitch]="" (click)="changeActivity()" *ngIf="isDriver">{{btnVal}}</button>
+                <button id="button-logout" class="btn logoutButton" (click)="logout()" type="button" [routerLink]="['..']" *ngIf="isLoggedIn">Log out</button>
+              </div>
         </div>
     </nav>
 </div>

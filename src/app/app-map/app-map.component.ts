@@ -29,7 +29,9 @@ export class AppMapComponent implements AfterViewInit, OnInit {
 
   constructor(private mapService: MapService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.refreshMap();
+  }
 
   hide() {
     this.showForm = false;

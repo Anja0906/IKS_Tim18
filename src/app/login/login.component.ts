@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
 
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   name: string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private loginRouter: Router) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -56,7 +58,15 @@ export class LoginComponent implements OnInit {
         this.name = this.storageService.getUser().details;
         console.log(this.roles);
 
-        this.reloadPage();
+        if (this.roles.includes("ROLE_ADMIN")) {
+            this.loginRouter.navigate(['/admin']);
+        }
+        if (this.roles.includes("ROLE_DRIVER")) {
+          this.loginRouter.navigate(['/driver']);
+        }
+        if (this.roles.includes("ROLE_PASSENGER")) {
+          this.reloadPage(); // :D
+      }
       },
       error: err => {
         this.errorMessage = err.error.message;

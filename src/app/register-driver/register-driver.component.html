@@ -1,54 +1,126 @@
 <div class="form-container">
   <h2>Register driver</h2>
-  <form class="parent"
-        [formGroup]="createDriverForm"
-        (ngSubmit)="add()"
-  >
-    <div class="row">
-      <div class="col img1">
-        <img src="assets/profilna.png" class="rounded-circle" style="width: 150px;"
-             alt="Avatar" />
-        <input type="file" id="avatar" name="avatar" formControlName="profilePicture" class="form-control" accept="image/png, image/jpeg" placeholder="Picture">
-      </div>
-    </div>
+  <mat-stepper #stepper class="stepper">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" (ngSubmit)="submit()">
+        <ng-template matStepLabel>Driver's basic information</ng-template>
+        <div class="img1">
+          <img src="assets/prof2.png" class="rounded-circle imgProfile" style="width: 150px;" alt="Avatar"/>
+          <input type="file" class="file" name="avatar" formControlName="profilePicture" placeholder="Picture">
+        </div>
+        <input matInput type="text" class="myInput" name="name" formControlName="name" placeholder="First name">
 
-<!--    <div class="row">-->
-<!--      <div class="col">-->
-<!--        <input type="text"  class="form-control" name="name" formControlName="name" placeholder="First name">-->
-<!--      </div>-->
-<!--&lt;!&ndash;      <div class="col">&ndash;&gt;-->
-<!--&lt;!&ndash;        <input type="text" class="form-control" name="licence" formControlName="licence" placeholder="Drivers licence">&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--    </div>-->
-    <div class="row">
-      <div class="col">
-        <input type="text"  class="form-control" name="name" formControlName="name" placeholder="First name">
+        <input matInput type="text" class="myInput" name="surname" formControlName="surname" placeholder="Last name">
+
+        <input matInput type="text" class="myInput" name="telephone" formControlName="telephoneNumber"
+               placeholder="Telephone number">
+
+        <input matInput type="text" class="myInput" name="address" formControlName="address" placeholder="Address">
+        <input type="text" class="myInput" name="email" formControlName="email" placeholder="Email address">
+
+        <input matInput type="text" class="myInput" name="password" formControlName="password" placeholder="Password">
+
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="parent">
+        <ng-template matStepLabel>Vehicle's information</ng-template>
+        <h2>Vehicle type</h2>
+        <mat-radio-group formControlName="selectedOption">
+          <mat-radio-button [value]="1">
+            <img src="assets/car.png" class="imgRadio" alt="Option 1">
+          </mat-radio-button>
+          <mat-radio-button [value]="2">
+            <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
+          </mat-radio-button>
+          <mat-radio-button [value]="3">
+            <img src="assets/van.png" class="imgRadio" alt="Option 3">
+          </mat-radio-button>
+        </mat-radio-group>
+          <input matInput type="text" class="myInput" name="model" formControlName="model" placeholder="Model">
+
+          <input matInput type="text" class="myInput" name="licenseNumber" formControlName="licenseNumber" placeholder="License number">
+
+        <div class="line">
+          <input matInput type="number" class="myInputNum" name="numberOfSeats" formControlName="numberOfSeats" placeholder="Number of seats">
+          <mat-slide-toggle class="mySlide" formControlName="petTransport">
+            <span>
+              Pet transport
+            </span>
+          </mat-slide-toggle>
+          <mat-slide-toggle class="mySlide" formControlName="babyTransport">
+            <span>
+              Baby transport
+            </span>
+          </mat-slide-toggle>
+        </div>
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup" class="parent">
+        <ng-template matStepLabel>Documents information</ng-template>
+        <h2>Vehicle type</h2>
+
+        <input matInput type="text" class="myInput" name="documentName" formControlName="documentName" placeholder="Document name">
+
+        <img src="" class="imgDocument"/>
+        <input type="file" class="file" name="picture" formControlName="picture" placeholder="Picture">
+
+
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext>Next</button>
+        </div>
+      </form>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Symbol </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
       </div>
-      <div class="col">
-        <input type="text" class="form-control" name="surname" formControlName="surname" placeholder="Last name">
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
-<!--      <div class="col">-->
-<!--        <input type="text" class="form-control" name="vehicleRegistration" formControlName="vehicleRegistration"  placeholder="Vehicle registration">-->
-<!--      </div>-->
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" name="telephone" formControlName="telephoneNumber"   placeholder="Telephone number">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" name="address" formControlName="address"   placeholder="Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" name="email" formControlName="email"   placeholder="Email address">
-      </div>
-      <div class="col">
-        <input type="password" class="form-control" name="password" formControlName="password"   placeholder="Password">
-      </div>
-    </div>
-    <div class="row">
-      <button type="submit" class="btn greenBtn text-uppercase wide-btn">Register</button>
-    </div>
-  </form>
+    </mat-step>
+  </mat-stepper>
 </div>

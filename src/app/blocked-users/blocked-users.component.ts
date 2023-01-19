@@ -69,6 +69,7 @@ export class BlockedUsersComponent {
       .block(id)
       .subscribe((res: any) => {
         console.log(res);
+        this.refreshPage();
       });
   }
 
@@ -78,7 +79,12 @@ export class BlockedUsersComponent {
       .unblock(id)
       .subscribe((res: any) => {
         console.log(res);
+        this.refreshPage();
       });
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 
   //mat dialog to leave note

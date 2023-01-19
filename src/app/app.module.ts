@@ -33,6 +33,13 @@ import { NoteComponent } from './blocked-users/note/note.component';
 import {MessageComponent} from './blocked-users/messages/messages/messages.component';
 import { httpInterceptorProviders } from './interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatStepperModule} from "@angular/material/stepper";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -67,13 +74,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     BrowserModule,
     ReactiveFormsModule,
-    
-    FormsModule, 
+
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatLegacyButtonModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    MatTableModule,
     // DriverNavbarComponent,
 
   ],

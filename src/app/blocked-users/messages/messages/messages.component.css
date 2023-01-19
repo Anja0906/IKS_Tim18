@@ -27,6 +27,7 @@ textarea {
   position: center;
   border-radius: 5px;
   margin: 0.3rem;
+  width: inherit;
 }
 
 .img1{

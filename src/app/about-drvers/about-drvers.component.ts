@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {DriverService} from "../service/driver/driver.service";
 import {Router} from "@angular/router";
-import {Driver} from "../register-driver/register-driver.component";
+import {Driver} from "../model/Driver";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 
 @Component({

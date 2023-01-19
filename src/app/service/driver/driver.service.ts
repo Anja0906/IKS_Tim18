@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../../model/User";
+import {HttpClient, HttpEvent} from "@angular/common/http";
+import {Driver} from "../../model/Driver";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class DriverService {
     const options: any = {
       responseType: 'text',
     };
-    return this.http.post<string>(environment.apiHost + 'api/driver', driver, options);
+    return this.http.post<Driver>(environment.apiHost + 'api/driver', driver, options);
   }
 
 

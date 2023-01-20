@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {DriverService} from "../service/driver/driver.service";
 import {Router} from "@angular/router";
-import {Driver} from "../model/Driver";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {Driver} from "../model/Driver";
 
 @Component({
   selector: 'app-about-drvers',

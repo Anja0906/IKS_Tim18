@@ -1,23 +1,12 @@
-export interface IDriver {
+export interface Driver {
   id: number;
   name: string;
   surname: string;
+  email: string;
+  address: string;
+  password: string;
   profilePicture: string;
   telephoneNumber: string;
-  email: string;
-  password: string;
-  address: string;
 }
 
-export class Driver implements IDriver{
-  address!: string;
-  email!: string;
-  id!: number;
-  name!: string;
-  password!: string;
-  profilePicture!: string;
-  surname!: string;
-  telephoneNumber!: string;
-
-}
 

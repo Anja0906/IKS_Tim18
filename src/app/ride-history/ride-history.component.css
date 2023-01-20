@@ -78,6 +78,7 @@ h2{
   flex-direction: column;
 }
 .row{
+  width: 100%;
   display: inline-block;
 }
 html{

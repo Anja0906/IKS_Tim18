@@ -2,7 +2,7 @@
   <h2>Register driver</h2>
   <mat-stepper #stepper class="stepper">
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup" (ngSubmit)="submit()">
+      <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Driver's basic information</ng-template>
         <div class="img1">
           <img src="assets/prof2.png" class="rounded-circle imgProfile" style="width: 150px;" alt="Avatar"/>
@@ -29,23 +29,23 @@
       <form [formGroup]="secondFormGroup" class="parent">
         <ng-template matStepLabel>Vehicle's information</ng-template>
         <h2>Vehicle type</h2>
-        <mat-radio-group formControlName="selectedOption">
-          <mat-radio-button [value]="1">
+        <mat-radio-group formControlName="vehicleType">
+          <mat-radio-button [value]="0">
             <img src="assets/car.png" class="imgRadio" alt="Option 1">
           </mat-radio-button>
-          <mat-radio-button [value]="2">
+          <mat-radio-button [value]="1">
             <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
           </mat-radio-button>
-          <mat-radio-button [value]="3">
+          <mat-radio-button [value]="2">
             <img src="assets/van.png" class="imgRadio" alt="Option 3">
           </mat-radio-button>
         </mat-radio-group>
+        <div class="row">
           <input matInput type="text" class="myInput" name="model" formControlName="model" placeholder="Model">
-
           <input matInput type="text" class="myInput" name="licenseNumber" formControlName="licenseNumber" placeholder="License number">
-
-        <div class="line">
-          <input matInput type="number" class="myInputNum" name="numberOfSeats" formControlName="numberOfSeats" placeholder="Number of seats">
+        </div>
+        <div class="row">
+          <input matInput type="number" class="myInput" name="passengerSeats" formControlName="passengerSeats" placeholder="Number of seats">
           <mat-slide-toggle class="mySlide" formControlName="petTransport">
             <span>
               Pet transport
@@ -64,44 +64,23 @@
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup" class="parent">
-        <ng-template matStepLabel>Documents information</ng-template>
-        <h2>Vehicle type</h2>
-
-        <input matInput type="text" class="myInput" name="documentName" formControlName="documentName" placeholder="Document name">
-
-        <img src="" class="imgDocument"/>
-        <input type="file" class="file" name="picture" formControlName="picture" placeholder="Picture">
-
-
-        <div class="parent">
-          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext>Next</button>
-        </div>
-      </form>
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <ng-template matStepLabel>Document's information</ng-template>
+        <table mat-table [dataSource]="dataSource" style="background-color: #EBE8D7">
+          <!--Id Column-->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
-
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 
-          <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-          </ng-container>
-
           <!-- Symbol Column -->
-          <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Symbol </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          <ng-container matColumnDef="documentImage">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let element"> {{element.documentImage}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -110,16 +89,31 @@
 
         <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                        showFirstLastButtons
-                       aria-label="Select page of periodic elements">
+                       aria-label="Select page of periodic elements" style="width: 100%;background-color: #EBE8D7">
         </mat-paginator>
-      </div>
+
+        <div class="row">
+          <h3 class="h3Beige">Add new document: </h3>
+          <input matInput type="text" class="docInput" name="name" formControlName="name" placeholder="Document name">
+<!--          <img src="" class="imgDocument"/>-->
+          <input type="file" class="docInput" name="picture" formControlName="documentImage" placeholder="Picture">
+          <button type="button" id="add-btn" class="add-btn" (click)="addDocument()">+</button>
+        </div>
+
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext>Next</button>
+        </div>
+      </form>
+
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+      <div class="parent">
+        <div class="submitPart">
+          <h3 class="h3Beige">You are done now</h3>
+          <button mat-button class="redBtn" (click)="stepper.reset()">Reset</button>
+          <button mat-button class="greenBtn" (click)="submit()">Submit</button>
+        </div>
       </div>
     </mat-step>
   </mat-stepper>

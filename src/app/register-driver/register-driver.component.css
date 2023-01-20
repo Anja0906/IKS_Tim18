@@ -20,6 +20,17 @@ form{
   padding: 1rem;
   margin: 1rem;
 }
+
+.submitPart{
+  background: #485162;
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.7rem;
+  place-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  display: inline-flex;
+  width: 100%;
+}
 .parent{
   display: grid;
   place-items: center;
@@ -36,33 +47,41 @@ form{
 }
 
 .line{
+  width: 100%;
   display: inline-flex;
 }
 
 .myInput{
+  width: 47%;
   border-style: none;
   background-color: #EBE8D7;
   border-color: #485162;
-  width: 47%;
   margin: 1rem;
   padding: 1rem;
   border-radius: 15px;
   height: 1rem;
 }
 
+.docInput{
+  width: 25%;
+  height: 4rem;
+  border-style: none;
+  background-color: #EBE8D7;
+  border-color: #485162;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.row{
+  width: 100%;
+}
+
 .mySlide{
+  width: 25%;
   padding: 1rem;
 }
 
-.myInputNum{
-  border-color: #485162;
-  border-style: none;
-  background-color: #EBE8D7;
-  padding: 1rem;
-  margin-top: 0.8rem;
-  border-radius: 15px;
-  height: 1rem;
-}
 
 
 .imgRadio{
@@ -72,6 +91,18 @@ form{
   width: 5rem;
   height: 5rem;
 }
+
+.add-btn{
+  border-style: none;
+  color: #485162;
+  background-color: #BFDC36;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 70%;
+  margin: 1.5rem;
+}
+
+
 
 .mat-mdc-radio-button.mat-accent{
   --mdc-radio-selected-focus-icon-color: #BFDC36;
@@ -106,10 +137,18 @@ span{
 }
 
 .imgDocument{
-  width: 46%;
-  height: 15rem;
+  width: 27%;
+  height: 40%;
   background: #EBE8D7;
   padding: 1rem;
+}
+
+.h3Beige{
+  margin: 1rem;
+  padding: 1rem;
+  color: #EBE8D7;
+  width: 25%;
+  height: 4rem;
 }
 
 .stepper{
@@ -123,6 +162,16 @@ h2{
 
 .greenBtn {
   background: #BFDC36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  position: center;
+  border-radius: 5px;
+  width: 15rem;
+  margin: 1rem;
+}
+
+.redBtn {
+  background: #DC7C36;
   backdrop-filter: blur(2px);
   color: #485162;
   position: center;

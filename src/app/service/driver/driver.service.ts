@@ -10,14 +10,9 @@ import {Driver} from "../../model/Driver";
 export class DriverService {
   constructor(private http: HttpClient) { }
   drivers: any[] = [];
-  add(driver: any): Observable<any> {
-    const options: any = {
-      responseType: 'text',
-    };
-    return this.http.post<Driver>(environment.apiHost + 'api/driver', driver, options);
+  add(driver: any): Observable<Driver> {
+    return this.http.post<Driver>(environment.apiHost + 'api/driver', driver);
   }
-
-
   getAll(request: { page?: string; size?: string }): Observable<any[]> {
     return this.http.get<any[]>(environment.apiHost + 'api/driver?page='+request['page']+'&size='+request['size']);
   }

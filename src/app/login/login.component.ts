@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
           this.loginRouter.navigate(['/driver']);
         }
         if (this.roles.includes("ROLE_PASSENGER")) {
-          this.reloadPage(); // :D
+          this.reloadPage();
       }
       },
       error: err => {

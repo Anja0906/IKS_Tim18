@@ -1,10 +1,11 @@
-import {Location1} from "../panics/panics.component";
+import {Loc} from "../panics/panics.component";
 
 export interface Vehicle {
+  driverId : number;
   vehicleType: number;
   model: string;
   licenseNumber: string;
-  location: Location1;
+  currentLocation: Loc;
   passengerSeats: number;
   babyTransport: boolean;
   petTransport: boolean;

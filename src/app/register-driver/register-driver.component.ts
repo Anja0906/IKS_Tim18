@@ -8,7 +8,6 @@ import {MatPaginator} from "@angular/material/paginator";
 import {Driver} from "../model/Driver";
 import {DriverDocument} from "../model/DriverDocument";
 import {Vehicle} from "../model/Vehicle";
-import {Location1} from "../panics/panics.component";
 import {VehicleService} from "../service/vehicle/vehicle.service";
 import {DocumentService} from "../service/document/document.service";
 
@@ -147,22 +146,34 @@ export class RegisterDriverComponent implements OnInit {
 
   //potvrda svih formi
   async submit() {
-    const driverResponse = await this.addDriver();
-    this.driver = Object.assign({}, driverResponse) as Driver;
-    console.log(this.driver.id);
-
-    const vehicleResponse = await this.addVehicle();
-    this.vehicle = Object.assign({}, vehicleResponse) as Vehicle;
-    console.log(this.vehicle);
-
-    for (const doc of this.dataSource.data) {
-      await this.addSingleDocument(doc);
+    if(this.firstFormGroup.valid){
+      const driverResponse = await this.addDriver();
+      this.driver = Object.assign({}, driverResponse) as Driver;
+      console.log(this.driver.id);
+    }
+    else {
+      alert("First form is not valid!")
+    }
+    if(this.secondFormGroup.valid){
+      const vehicleResponse = await this.addVehicle();
+      this.vehicle = Object.assign({}, vehicleResponse) as Vehicle;
+      console.log(this.vehicle);
+    }
+    else {
+      alert("Second form is not valid!")
+    }
+    if(this.dataSource.data.length>0){
+      for (const doc of this.dataSource.data) {
+        await this.addSingleDocument(doc);
+      }
+    }
+    else {
+      alert("You need to add at least one document!")
     }
     await this.router.navigate(['admin/all-drivers']);
   }
 }
 
-const ELEMENT_DATA: DriverDocument[] = [
-];
+const ELEMENT_DATA: DriverDocument[] = [];
 
 

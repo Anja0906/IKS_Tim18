@@ -1,17 +1,17 @@
 <div class="form-container">
   <h2 class="mb-4">About drivers</h2>
   <div class="search">
-    <input type="text" class="input1" placeholder="Search">
-    <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Sort</button>
-    <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Filter</button>
+    <input type="text" class="input1"
+           [(ngModel)]="term"
+           placeholder="What are you looking for?">
   </div>
-  <div class="card" *ngFor="let driver of drivers; let i = index">
+  <div class="card" *ngFor="let driver of drivers | filter: term; let i = index" (click)="onCardClick(driver)">
     <div class="card-up">
       <div class="dot active1"></div>
     </div>
     <div class="card-body">
       <h3>{{driver.email}}</h3>
-      <p>{{driver.name + driver.surname}}</p>
+      <p>{{driver.name + " "+ driver.surname}}</p>
     </div>
   </div>
 </div>

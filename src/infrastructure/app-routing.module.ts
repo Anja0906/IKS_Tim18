@@ -17,9 +17,10 @@ import {PendingRidesComponent} from "../app/pending-rides/pending-rides.componen
 import {RideHistoryComponent} from "../app/ride-history/ride-history.component";
 
 import {RegistrationComponent} from 'src/app/registration/registration.component';
+import {AboutDriverComponent} from "../app/about-driver/about-driver.component";
 
 const routes: Routes = [
-  
+
   { path: 'home', component: AppMapComponent},
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'block-users', component: BlockedUsersComponent},
       { path:'panic-notifications', component: PanicsComponent},
+      { path: 'about-driver/:id', component: AboutDriverComponent},
     ],
   },
   { path:'', component: AppMapComponent},

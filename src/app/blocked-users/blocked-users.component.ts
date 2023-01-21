@@ -18,6 +18,8 @@ export class BlockedUsersComponent {
   users: UserSimple[] = [];
   totalElements: number = 0;
   result: any;
+  searchTerm = '';
+  term = '';
 
   constructor(private userService: UserService, private router: Router, private dialog: MatDialog) {}
 

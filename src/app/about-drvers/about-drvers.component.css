@@ -69,8 +69,8 @@ input{
 }
 
 .input1{
-  width: 75%;
   height: 3rem;
+  width: 90%;
   text-align: center;
   border-color: black;
   border-radius: 15px;

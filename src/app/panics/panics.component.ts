@@ -15,6 +15,9 @@ export class PanicsComponent {
   @Output() panic!:Panic;
   panics: Panic[] = [];
   totalElements: number = 0;
+  searchTerm = '';
+  term = '';
+
 
   constructor(private panicService: PanicService, private dialog: MatDialog, private router: Router) {}
 

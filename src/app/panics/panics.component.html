@@ -1,11 +1,11 @@
 <div class="form-container">
   <h2 class="mb-4">Panic notifications</h2>
-<!--  <div class="search">-->
-<!--    <input type="text" class="input1" placeholder="Search">-->
-<!--    <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Sort</button>-->
-<!--    <button type="submit" class="btn transparentBtn text-uppercase wide-btn">Filter</button>-->
-<!--  </div>-->
-  <div class="card" *ngFor="let panic of panics;">
+  <div class="search">
+    <input type="text" class="input1"
+           [(ngModel)]="term"
+           placeholder="What are you looking for?">
+  </div>
+  <div class="card" *ngFor="let panic of panics | filter: term; let i = index">
     <div class="card-up">
       <h3>{{"Panic id: " + panic.id}}</h3>
     </div>

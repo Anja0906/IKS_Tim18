@@ -40,6 +40,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import { AboutDriverComponent } from './about-driver/about-driver.component';
+import {CommonModule} from "@angular/common";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 
 @NgModule({
@@ -67,14 +70,15 @@ import {MatTableModule} from "@angular/material/table";
     DriverNavbarComponent,
     ReasonDialogComponent,
     NoteComponent,
-    MessageComponent
+    MessageComponent,
+    AboutDriverComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [
     MatDialogModule,
     BrowserModule,
     ReactiveFormsModule,
-
+    CommonModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -88,6 +92,7 @@ import {MatTableModule} from "@angular/material/table";
     MatSlideToggleModule,
     MatPaginatorModule,
     MatTableModule,
+    Ng2SearchPipeModule,
     // DriverNavbarComponent,
 
   ],

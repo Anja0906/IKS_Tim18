@@ -83,16 +83,15 @@ input{
 }
 
 .input1{
-  width: 75%;
   height: 3rem;
+  width: 90%;
   text-align: center;
   border-color: black;
   border-radius: 15px;
   position: center;
   margin: 1rem;
-  background: rgba(255, 255, 255, 0.5);
-  color: black;
 }
+
 
 .active1{
   width:2rem;

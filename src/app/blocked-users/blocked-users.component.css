@@ -61,9 +61,7 @@ h2{
 .search{
   display: inline-flex;
   width: 100%;
-  margin-top: 3rem;
-  margin-left: 2rem;
-  margin-bottom: 3rem;
+  margin: 3rem;
 }
 
 .transparentBtn {
@@ -83,8 +81,8 @@ input{
 }
 
 .input1{
-  width: 75%;
   height: 3rem;
+  width: 90%;
   text-align: center;
   border-color: black;
   border-radius: 15px;

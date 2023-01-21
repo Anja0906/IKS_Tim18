@@ -13,6 +13,8 @@ import {Driver} from "../model/Driver";
 export class AboutDrversComponent implements OnInit {
   drivers: Driver[] = [];
   totalElements: number = 0;
+  searchTerm = '';
+  term = '';
 
   createDriverForm = new FormGroup({
     profilePicture: new FormControl(),
@@ -66,4 +68,7 @@ export class AboutDrversComponent implements OnInit {
     this.getDrivers(request);
   }
 
+  public onCardClick(driver: Driver){
+    this.router.navigate(['/admin/about-driver', driver.id ]);
+  }
 }

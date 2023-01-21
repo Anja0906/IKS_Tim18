@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../model/User";
+import {StorageService} from "../service/storage/storage.service";
 
 
 export interface IUserFormGroup extends FormGroup {
@@ -28,7 +29,8 @@ export class MyProfileInfoComponent implements OnInit {
   user!: User;
   form!: IUserFormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService,
+              private storageService: StorageService, private router: Router) { }
 
   //setting the form and user information
   ngOnInit(): void {
@@ -41,7 +43,8 @@ export class MyProfileInfoComponent implements OnInit {
       surname: [''],
       telephoneNumber: [''],
     }) as IUserFormGroup;
-    this.userService.getUser(1).subscribe((res) => {
+    const loggedUser = this.storageService.getUser();
+    this.userService.getUser(loggedUser.id).subscribe((res) => {
       this.user = res;
       // console.log(this.user);
       this.form.patchValue(res);
@@ -52,13 +55,14 @@ export class MyProfileInfoComponent implements OnInit {
   //submitting the form and updating user on the backend side
   update() {
     if (this.form.valid) {
+      const loggedUser = this.storageService.getUser();
       this.userService
-        .updateUser(1, this.form.value)
+        .updateUser(loggedUser.id, this.form.value)
         .subscribe((res: any) => {
           console.log(res);
           this.router.navigate([this])
         });
-      this.userService.getUser(1).subscribe((res) => {
+      this.userService.getUser(loggedUser.id).subscribe((res) => {
         this.user = res;
         this.form.patchValue(res);
       });

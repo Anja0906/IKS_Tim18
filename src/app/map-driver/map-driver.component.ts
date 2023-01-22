@@ -48,8 +48,7 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
           this.dest = new LatLng(45.2378474,19.827125);
           this.ngAfterViewInit();
           this.route(this.dep,this.dest);
-          this.map.center = [(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2]
-          this.map.zoom = 15;
+          this.map.setView([(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2],16);
       });
   }
 

@@ -32,26 +32,7 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
 
 
   constructor(private mapService: MapService, private router: Router, private rideService:RideService, private storageService:StorageService ) {}
-//   this.rideService.getRide(100)
-// .pipe(catchError((error: HttpErrorResponse) => {
-//   if (error.status === 404) {
-//   // Handle 404 error
-//   console.log("Ride not found!");
-// } else {
-//   // Handle other errors
-//   console.log("Error occured while fetching ride!");
-// }
-// return throwError(error);
-// }))
-// .subscribe((res) => {
-//   this.ride = res;
-//   this.dep = new LatLng(45.2401582,19.8471768);
-//   this.dest = new LatLng(45.2378474,19.827125);
-//   this.ngAfterViewInit();
-//   this.route(this.dep,this.dest);
-//   this.map.zoom = 15;
-//   this.map.center = [(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2]
-// });
+
 
   ngOnInit(): void {
     this.initMap();
@@ -59,9 +40,6 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
         if (error.status === 404) {
           alert("Active ride does not exist!");
           this.router.navigate(['driver']);
-        }else{
-          console.log(error.status)
-          console.log("JEBEMTI DRZAVU");
         }
         return throwError(error);
       })).subscribe((res) =>{
@@ -70,8 +48,8 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
           this.dest = new LatLng(45.2378474,19.827125);
           this.ngAfterViewInit();
           this.route(this.dep,this.dest);
-          this.map.zoom = 15;
           this.map.center = [(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2]
+          this.map.zoom = 15;
       });
   }
 

@@ -3,9 +3,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <div>
-                        <img class="header-img logo" src="assets/img/UberLogo.png" width="70" height="40" alt="Logo" />
-                    </div>
+                  <img class="header-img logo" src="assets/img/UberLogo.png"  alt="Logo" (click)="homePage()" />
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#footer">Contact</a>
@@ -19,7 +17,7 @@
                     <span>Log in</span>
                 </button>
                 <button [routerLink]="['registration']" id="button-registration" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="isNotLoggedIn">Sign up</button>
-            
+
                 <button id="button-activity" class="btn {{btnCall}}"  type="button" [ngSwitch]="" (click)="changeActivity()" *ngIf="isDriver">{{btnVal}}</button>
                 <button id="button-logout" class="btn logoutButton" (click)="logout()" type="button" [routerLink]="['..']" *ngIf="isLoggedIn">Log out</button>
               </div>

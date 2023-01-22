@@ -40,6 +40,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import { DriversNavigationComponent } from './drivers-navigation/drivers-navigation.component';
+import { MapDriverComponent } from './map-driver/map-driver.component';
+import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ride.component';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import {MatTableModule} from "@angular/material/table";
     DriverNavbarComponent,
     ReasonDialogComponent,
     NoteComponent,
-    MessageComponent
+    MessageComponent,
+    DriversNavigationComponent,
+    MapDriverComponent,
+    DriverActiveRideComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [

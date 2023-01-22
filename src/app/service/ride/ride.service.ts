@@ -16,12 +16,15 @@ export class RideService {
   public getRide(rideId: number): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/${rideId}`);
   }
+  public getActiveRide(driverId: number): Observable<Ride> {
+    return this.http.get<Ride>(`${this.apiServerUrl}api/ride/driver/${driverId}/active`);
+  }
 
   public getPendingRides(): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/pending`);
   }
 
-  public getRidesForDriver(id: number): Observable<Ride> {
+  public getRidesForDriver(id: number): Observable<any> {
     return this.http.get<Ride>(environment.apiHost + `api/driver/2/ride`);
   }
 }

@@ -1,0 +1,34 @@
+<div class="admin-nav-container" style="width: 100%; height: 100vh">
+  <div class="navigation container-fluid">
+    <div class="row">
+      <div class="col-sm my-col" (click)="history()">
+        <a>
+          <img src="../../assets/history.png" class="img">
+          <p>Ride history</p>
+        </a>
+      </div>
+      <div class="col-sm my-col" (click)="current()">
+        <a>
+          <img src="../../assets/currentRide.png" class="img">
+          <p>Current ride</p>
+        </a>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm my-col" (click)="stats()">
+        <a>
+          <img src="../../assets/chart.png" class="img">
+          <p>Stats</p>
+        </a>
+      </div>
+      <div class="col-sm my-col" (click)="myAccount()">
+        <a>
+          <img src="../../assets/acc.png" class="img">
+          <p>My account</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

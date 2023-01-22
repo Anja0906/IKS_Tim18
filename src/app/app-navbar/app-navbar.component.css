@@ -5,6 +5,11 @@
     --bs-font-monospace: monospace;
 }
 
+
+.header-img{
+  width: 6vh;
+  height: 5vh;
+}
 header {
     background: #485162;
     font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +31,10 @@ footer {
 .nav-item{
   font-family: Crete-round;
   font-style: normal;
+  padding-top:  0.1rem;
+  display: inline-flex;
+  width: auto;
+  height: auto;
 }
 .back1 {
     margin-top: 5rem;
@@ -86,8 +95,8 @@ footer {
 .activeButtonOnline{
     box-sizing: border-box;
     position: relative;
-    width: 4rem;
-    height: 2rem;
+    width: auto;
+    height: auto;
     font-family: Crete-round;
     font-style: normal;
     font-weight: 400;
@@ -99,31 +108,31 @@ footer {
     background: #BFDC36;
     border: 1px solid #485162;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 20px;
   }
   .activeButtonOffline{
     box-sizing: border-box;
     position: relative;
-    width: 4rem;
-    height: 2rem;
+
+    width: auto;
+    height: auto;
     font-family: Crete-round;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     align-items: center;
     text-align: center;
-    margin-right: 0.1rem;
     color: #485162;
     background: #DC7C36;
     border: 1px solid #485162;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 20px;
   }
   .logoutButton{
     box-sizing: border-box;
     position: relative;
-    width: 5rem;
-    height: 2rem;
+    width: auto;
+    height: auto;
     font-family: Crete-round;
     font-style: normal;
     font-style: normal;
@@ -135,7 +144,7 @@ footer {
     background: #EBE8D7;
     border: 1px solid #485162;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    border-radius: 20px;
   }
 
 @media (min-width: 768px) {

@@ -25,6 +25,6 @@ export class RideService {
   }
 
   public getRidesForDriver(id: number): Observable<any> {
-    return this.http.get<Ride>(environment.apiHost + `api/driver/2/ride`);
+    return this.http.get<Ride>(environment.apiHost + `api/driver/2/ride?page=0&size=100`);
   }
 }

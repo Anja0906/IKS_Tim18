@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Ride} from "../model/Ride";
-import {FormControl, FormGroup} from "@angular/forms";
-import {PageEvent} from "@angular/material/paginator";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {RideService} from "../service/ride/ride.service";
 import {Router} from "@angular/router";
 import {StorageService} from "../service/storage/storage.service";
 import {MatTableDataSource} from "@angular/material/table";
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-ride-history',
@@ -17,6 +17,8 @@ export class RideHistoryComponent implements OnInit{
   dataSource!: MatTableDataSource<Ride>;
   rides: Ride[] = [];
   totalElements: number = 0;
+  @ViewChild(MatPaginator) paginator!: any;
+  @ViewChild(MatSort) sort!: any;
 
 
 
@@ -29,6 +31,9 @@ export class RideHistoryComponent implements OnInit{
           this.rides = data['results'];
           this.dataSource = new MatTableDataSource<Ride>(this.rides);
           this.totalElements = data['totalCount'];
+          console.log(this.rides);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         }, error =>
         {
           console.log(error.error.message);

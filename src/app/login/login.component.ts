@@ -5,7 +5,6 @@ import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
 
 import {Router} from '@angular/router';
-import {UserService} from "../service/user/user.service";
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   name: string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private loginRouter: Router,private  userService:UserService) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private loginRouter: Router) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -58,8 +57,6 @@ export class LoginComponent implements OnInit {
         this.roles = this.storageService.getUser().roles;
         this.name = this.storageService.getUser().details;
         console.log(this.roles);
-        this.userService.userOnline(this.storageService.getUser().id).subscribe(() => {
-        });
         if (this.roles.includes("ROLE_ADMIN")) {
             this.loginRouter.navigate(['/admin']);
         }

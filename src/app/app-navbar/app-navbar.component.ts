@@ -5,7 +5,6 @@ import { StorageService } from '../service/storage/storage.service';
 import {Router} from '@angular/router';
 import { map } from 'leaflet';
 import {DriverService} from "../service/driver/driver.service";
-import {UserService} from "../service/user/user.service";
 
 @Component({
   selector: 'app-app-navbar',
@@ -19,7 +18,7 @@ export class AppNavbarComponent {
   isNotLoggedIn = true;
   isDriver=false;
 
-  constructor(private storageService: StorageService, private authService: AuthService, private router: Router,private userService:UserService) { }
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router,private driverService:DriverService) { }
 
 
   homePage() {
@@ -40,8 +39,11 @@ export class AppNavbarComponent {
     if (roles !== undefined) {
       if (roles.includes("ROLE_DRIVER")){
         this.isDriver = true;
+        this.driverService.driverOnline(this.storageService.getUser().id).subscribe(() => {
+          console.log(this.storageService.getUser().id)
+        });
       }
-  }
+      }
   }
 
   changeActivity()
@@ -49,21 +51,27 @@ export class AppNavbarComponent {
     if(this.btnVal==="Online"){
       this.btnVal = "Offline";
       this.btnCall = "activeButtonOffline"
-      this.userService.userOffline(this.storageService.getUser().id).subscribe(() => {
-        console.log("OFFLINE")
+      this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
+        console.log("OFFLINE");
       });
     }else{
       this.btnVal = "Online"
       this.btnCall = "activeButtonOnline"
-      this.userService.userOnline(this.storageService.getUser().id).subscribe(() => {
-        console.log("OFFLINE")
+      this.driverService.driverOnline(this.storageService.getUser().id).subscribe(() => {
+        console.log("OFFLINE");
       });
     }
   }
 
   logout(): void {
-    this.userService.userOffline(this.storageService.getUser().id).subscribe(() => {
-    });
+    console.log("111111111111111");
+    console.log(this.storageService.getUser().id);
+    if(this.isDriver){
+      this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
+
+        console.log("DASDASDSADASDADS");
+      });
+    }
     this.storageService.clean();
     this.router.navigate(['']);
   }

@@ -52,24 +52,18 @@ export class AppNavbarComponent {
       this.btnVal = "Offline";
       this.btnCall = "activeButtonOffline"
       this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
-        console.log("OFFLINE");
       });
     }else{
       this.btnVal = "Online"
       this.btnCall = "activeButtonOnline"
       this.driverService.driverOnline(this.storageService.getUser().id).subscribe(() => {
-        console.log("OFFLINE");
       });
     }
   }
 
   logout(): void {
-    console.log("111111111111111");
-    console.log(this.storageService.getUser().id);
     if(this.isDriver){
       this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
-
-        console.log("DASDASDSADASDADS");
       });
     }
     this.storageService.clean();

@@ -21,6 +21,7 @@ export class DriverNavbarComponent {
   changeActivity()
   {
     if(this.btnVal==="Online"){
+
       this.btnVal = "Offline";
       this.btnCall = "activeButtonOffline"
     }else{

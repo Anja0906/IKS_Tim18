@@ -29,5 +29,6 @@ export class DriverService {
   getDocumentsForDriver(id:number): Observable<DriverDocument[]> {
     return this.http.get<DriverDocument[]>(environment.apiHost + 'api/driver/'+id+'/documents');
   }
+
 }
 

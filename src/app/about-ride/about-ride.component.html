@@ -55,12 +55,12 @@
         </div>
         <div class="col">
           <label>Name: </label>
-          <p *ngFor="let pass of ride.passengers; let i = index">
-            Passenger {{pass.email}}</p>
+          <p *ngFor="let pass of ride.passengers; let i = index">{{pass.email}}</p>
         </div>
       </div>
       <div class="buttondiv">
         <button type="" class="btn panic">PANIC!</button>
+        <button type="" class="btn rejcet">REJECT</button>
       </div>
     </form>
   </div>

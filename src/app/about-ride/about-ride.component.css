@@ -14,9 +14,11 @@
   display: inline-flex;
   place-items: center;
   align-content: center;
-  margin:auto;
   justify-items: center;
   width: 100%;
+}
+.panic{
+  width: 15rem;
 }
 
 label{
@@ -50,6 +52,19 @@ h2{
   color:#485162;
 }
 .panic{
+  box-sizing: border-box;
+  font-weight: bolder;
+  font-family: "Carter One";
+  margin: auto;
+  margin-bottom: 0.5rem;
+  background: #DC7C36;
+  border: 1px solid #485162;
+  border-radius: 5px;
+  width: 50%;
+  justify-items: center;
+
+}
+.rejcet{
   box-sizing: border-box;
   font-weight: bolder;
   font-family: "Carter One";

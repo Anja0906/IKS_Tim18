@@ -46,6 +46,7 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { DriversNavigationComponent } from './drivers-navigation/drivers-navigation.component';
 import { MapDriverComponent } from './map-driver/map-driver.component';
 import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ride.component';
+import { RejectionComponent } from './about-ride/reject/rejection/rejection.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ri
     AboutDriverComponent,
     DriversNavigationComponent,
     MapDriverComponent,
-    DriverActiveRideComponent 
+    DriverActiveRideComponent,
+    RejectionComponent 
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [

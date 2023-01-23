@@ -2,7 +2,7 @@
 <div class="bg-modal">
 
   <div class="modal-content">
-    <button type="button" [routerLink]="['..']" class="close">+</button>  
+    <button type="button" [routerLink]="['..']" class="close">+</button>
     <img src="assets/img/UberLogo.png" class="img_logo_login">
     <form
     *ngIf="!isLoggedIn"
@@ -11,30 +11,16 @@
     #f="ngForm"
     class="was-validated">
       <div class="form-group">
-        <input id="email"
-              type="email" 
-              class="form-control" 
-              placeholder="Email address" 
-              name="email" 
-              [(ngModel)]="form.email" 
-              #email="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
-              required>
+        <input id="email" type="email" class="form-control" placeholder="Email address" name="email"
+              [(ngModel)]="form.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" required>
         <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
             Email is required! And in the right format!
         </div>
       </div>
       <div class="form-group">
-        <input id="password" 
-                type="password" 
-                placeholder="Password" 
-                class="form-control" 
-                name="password" 
-                [(ngModel)]="form.password"
-                #password="ngModel"
-                [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
-                minlength="2"
-                required>
+        <input id="password" type="password" placeholder="Password" class="form-control" name="password"
+                [(ngModel)]="form.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                minlength="2" required>
         <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
         <div *ngIf="password.errors['required']">Password is required</div>
         <div *ngIf="password.errors['minlength']">
@@ -42,7 +28,7 @@
         </div>
       </div>
         </div>
-        
+
         <button [routerLink]="['change_password']" type="button" class="forget_password">Forgot password?</button>
         <div class="form-group">
           <button class="btn greenBtn text-uppercase wide-btn">Log in</button>
@@ -54,7 +40,7 @@
         </div>
     </form>
     <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ roles }} 
+      Logged in as {{ roles }}
       <br/>
       {{ name }}
     </div>

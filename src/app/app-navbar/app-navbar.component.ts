@@ -4,6 +4,8 @@ import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
 import {Router} from '@angular/router';
 import { map } from 'leaflet';
+import {DriverService} from "../service/driver/driver.service";
+import {UserService} from "../service/user/user.service";
 
 @Component({
   selector: 'app-app-navbar',
@@ -11,13 +13,13 @@ import { map } from 'leaflet';
   styleUrls: ['./app-navbar.component.css']
 })
 export class AppNavbarComponent {
-  btnVal = "Offline";
-  btnCall="activeButtonOffline";
+  btnVal = "Online";
+  btnCall="activeButtonOnline";
   isLoggedIn = false;
   isNotLoggedIn = true;
   isDriver=false;
 
-  constructor(private storageService: StorageService, private authService: AuthService, private router: Router) { }
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router,private userService:UserService) { }
 
 
   homePage() {
@@ -47,13 +49,21 @@ export class AppNavbarComponent {
     if(this.btnVal==="Online"){
       this.btnVal = "Offline";
       this.btnCall = "activeButtonOffline"
+      this.userService.userOffline(this.storageService.getUser().id).subscribe(() => {
+        console.log("OFFLINE")
+      });
     }else{
       this.btnVal = "Online"
       this.btnCall = "activeButtonOnline"
+      this.userService.userOnline(this.storageService.getUser().id).subscribe(() => {
+        console.log("OFFLINE")
+      });
     }
   }
 
   logout(): void {
+    this.userService.userOffline(this.storageService.getUser().id).subscribe(() => {
+    });
     this.storageService.clean();
     this.router.navigate(['']);
   }

@@ -1,0 +1,43 @@
+@import url('leaflet/dist/leaflet.css');
+
+
+.map-container {
+  background-color: #485162;
+  position: relative;
+  margin-top: 0.5rem;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  height: 93.5%;
+}
+
+
+.map-frame {
+  border: 2px solid #485162;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+
+.form-container {
+  z-index: 5000;
+  top: 50%;
+  background: #485162;
+  box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  color: #485162;
+  margin-left: 3rem;
+  padding: 1rem;
+  position: absolute;
+  width: 25%;
+  font-family: Cambria, serif;
+}
+
+
+
+
+
+

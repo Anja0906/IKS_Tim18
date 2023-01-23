@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-driver-navbar',
@@ -8,6 +9,14 @@ import { Component } from '@angular/core';
 export class DriverNavbarComponent {
   btnVal = "Offline";
   btnCall="activeButtonOffline";
+  @ViewChild('driver') home!: TemplateRef<any>;
+  @Output() templateChange = new EventEmitter<TemplateRef<any>>();
+  constructor(private router: Router) {
+  }
+
+  homePage() {
+    this.router.navigate(['driver']);
+  }
 
   changeActivity()
   {

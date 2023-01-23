@@ -4,13 +4,40 @@
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
+th:first-child{
+  border-top-left-radius: 0.7rem;}
+th:last-child{border-top-right-radius: 0.7rem;}
 
-.testimonial-card .avatar {
-  width: 110px;
-  margin-top: -60px;
-  overflow: hidden;
-  border: 3px solid #fff;
-  border-radius: 50%;
+table{
+  background-color:#EBE8D7;
+}
+
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 0.7rem;}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 0.7rem;}
+
+
+
+tr,th,td{
+  border: 1px  #485162;
+  background-color: #485162;
+  color: #EBE8D7;
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+}
+mat-paginator{
+  background-color: #EBE8D7;
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+}
+button {
+  margin-left: 20px;
 }
 .sort{
   box-sizing: border-box;
@@ -41,15 +68,6 @@ h2{
   text-align: left;
 }
 
-.card{
-  background: #485162;
-  color: #EBE8D7;
-  border-radius: 10px;
-  margin: auto;
-  width: 100%;
-  height: auto;
-  flex-direction: column;
-}
 
 .search{
   display: inline-flex;
@@ -72,15 +90,8 @@ h2{
   position: center;
   margin: 1rem;
 }
-.card-body{
-  display: inline-grid;
-  margin: auto;
-  flex-direction: column;
-}
-.row{
-  width: 100%;
-  display: inline-block;
-}
+
+
 html{
   background-color: #485162;
 }
@@ -96,13 +107,4 @@ h4{
   font-family: Crete-round;
   font-style: normal;
 }
-p{
-  font-family: Crete-round;
-  font-style: normal;
-}
-label{
-  margin-right: 0.2rem;
-}
-p{
-  padding-left: 0.6rem;
-}
+

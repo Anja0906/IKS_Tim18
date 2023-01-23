@@ -9,7 +9,6 @@ import {ReportsComponent} from "../app/reports/reports.component";
 import {MyProfileInfoComponent} from "../app/my-profile-info/my-profile-info.component";
 import {BlockedUsersComponent} from "../app/blocked-users/blocked-users.component";
 import {PanicsComponent} from "../app/panics/panics.component";
-import {AppModule} from "../app/app.module";
 import {AppMapComponent} from "../app/app-map/app-map.component";
 import {DriverPageComponent} from "../app/driver-page/driver-page.component";
 import {AboutRideComponent} from "../app/about-ride/about-ride.component";
@@ -18,6 +17,10 @@ import {RideHistoryComponent} from "../app/ride-history/ride-history.component";
 
 import {RegistrationComponent} from 'src/app/registration/registration.component';
 import {AboutDriverComponent} from "../app/about-driver/about-driver.component";
+import {MapDriverComponent} from "../app/map-driver/map-driver.component";
+import {DriverActiveRideComponent} from "../app/driver-active-ride/driver-active-ride.component";
+import {AboutUsComponent} from "../app/about-us/about-us.component";
+
 
 const routes: Routes = [
 
@@ -29,11 +32,12 @@ const routes: Routes = [
   { path: 'driver',
     component: DriverPageComponent,
     children:[
-      { path:'', component: AppMapComponent},
-      { path:'about-ride', component: AboutRideComponent},
+      { path:'', component: AboutUsComponent},
+      { path:'about-ride', component: DriverActiveRideComponent},
       { path:'pending-rides', component: PendingRidesComponent},
       { path:'ride-history',component: RideHistoryComponent},
       { path:'my-account', component: MyProfileInfoComponent},
+      { path:'stats', component: ReportsComponent},
     ],
   },
   { path:'admin',

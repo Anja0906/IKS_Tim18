@@ -43,7 +43,7 @@ export class AboutRideComponent implements OnInit{
         splitFare: [false],
         status: [''],
       }) as IRideFormGroup;
-      this.rideService.getRide(2).subscribe((res) => {
+      this.rideService.getRide(1).subscribe((res) => {
         this.ride = res;
         this.form.patchValue(res);
       });

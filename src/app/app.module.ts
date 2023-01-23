@@ -43,6 +43,9 @@ import {MatTableModule} from "@angular/material/table";
 import { AboutDriverComponent } from './about-driver/about-driver.component';
 import {CommonModule} from "@angular/common";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { DriversNavigationComponent } from './drivers-navigation/drivers-navigation.component';
+import { MapDriverComponent } from './map-driver/map-driver.component';
+import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ride.component';
 
 
 @NgModule({
@@ -71,7 +74,10 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     ReasonDialogComponent,
     NoteComponent,
     MessageComponent,
-    AboutDriverComponent
+    AboutDriverComponent,
+    DriversNavigationComponent,
+    MapDriverComponent,
+    DriverActiveRideComponent 
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [

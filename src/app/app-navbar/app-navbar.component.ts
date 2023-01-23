@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output, TemplateRef, ViewChild} from '@angular/core';
 
 import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
@@ -20,6 +20,16 @@ export class AppNavbarComponent {
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router) { }
 
 
+  homePage() {
+    if(this.storageService.getUser().roles.includes("ROLE_DRIVER")){
+      this.router.navigate(['driver']);
+    }else if(this.storageService.getUser().roles.includes("ROLE_ADMIN")){
+      this.router.navigate(['admin']);
+    }else{
+      this.router.navigate(['passenger']);
+    }
+
+  }
   ngOnInit(): void {
     let user = this.storageService.getUser();
     let roles = user.roles;
@@ -45,6 +55,6 @@ export class AppNavbarComponent {
 
   logout(): void {
     this.storageService.clean();
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 }

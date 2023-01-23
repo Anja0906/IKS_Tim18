@@ -5,39 +5,40 @@
     <button type="button" [routerLink]="['..']" class="close">+</button>
     <img src="assets/img/UberLogo.png" class="img_logo_login">
     <form
-    *ngIf="!isLoggedIn"
-    name="form"
-    (ngSubmit)="f.form.valid && onSubmit()"
-    #f="ngForm"
-    class="was-validated">
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      class="was-validated">
       <div class="form-group">
         <input id="email" type="email" class="form-control" placeholder="Email address" name="email"
-              [(ngModel)]="form.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" required>
+               [(ngModel)]="form.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
+               required>
         <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
-            Email is required! And in the right format!
+          Email is required! And in the right format!
         </div>
       </div>
       <div class="form-group">
         <input id="password" type="password" placeholder="Password" class="form-control" name="password"
-                [(ngModel)]="form.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
-                minlength="2" required>
+               [(ngModel)]="form.password" #password="ngModel"
+               [ngClass]="{ 'is-invalid': f.submitted && password.errors }" minlength="2" required>
         <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-        <div *ngIf="password.errors['required']">Password is required</div>
-        <div *ngIf="password.errors['minlength']">
-          Password must be at least 2 characters
-        </div>
-      </div>
-        </div>
-
-        <button [routerLink]="['change_password']" type="button" class="forget_password">Forgot password?</button>
-        <div class="form-group">
-          <button class="btn greenBtn text-uppercase wide-btn">Log in</button>
-        </div>
-        <div class="form-group">
-          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-            Login failed
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 2 characters
           </div>
         </div>
+      </div>
+
+      <button [routerLink]="['change_password']" type="button" class="forget_password">Forgot password?</button>
+      <div class="form-group">
+        <button class="btn greenBtn text-uppercase wide-btn">Log in</button>
+      </div>
+      <div class="form-group">
+        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
+          Login failed
+        </div>
+      </div>
     </form>
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in as {{ roles }}

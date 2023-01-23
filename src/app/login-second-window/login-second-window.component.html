@@ -5,6 +5,7 @@
       <button type="button" [routerLink]="['..']" class="close">+</button>
       <img src="assets/img/UberLogo.png" class="img_logo_login">
       <form class="form" [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+        <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email" />
         <input id="newPassword" type="password" placeholder="New password" class="form-control" formControlName="newPassword" #pw required/> <div
                   *ngIf="
                     newPassword.invalid &&
@@ -33,3 +34,5 @@
                 </div>
         <button id="submit" type="submit" class="btn greenBtn text-uppercase wide-btn" [disabled]="resetPasswordForm.invalid">Change password</button>
       </form>
+    </div>
+</div>

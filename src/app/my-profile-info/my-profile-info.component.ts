@@ -56,12 +56,21 @@ export class MyProfileInfoComponent implements OnInit {
   update() {
     if (this.form.valid) {
       const loggedUser = this.storageService.getUser();
-      this.userService
-        .updateUser(loggedUser.id, this.form.value)
-        .subscribe((res: any) => {
-          console.log(res);
-          this.router.navigate([this])
-        });
+      if (loggedUser.roles.includes("ROLE_DRIVER")){
+        this.userService
+          .updateDriver(loggedUser.id, this.form.value)
+          .subscribe((res: any) => {
+            console.log(res);
+            this.router.navigate([this])
+          });
+      }else {
+        this.userService
+          .updateUser(loggedUser.id, this.form.value)
+          .subscribe((res: any) => {
+            console.log(res);
+            this.router.navigate([this])
+          });
+      }
       this.userService.getUser(loggedUser.id).subscribe((res) => {
         this.user = res;
         this.form.patchValue(res);

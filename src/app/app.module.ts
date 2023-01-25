@@ -47,6 +47,7 @@ import { DriversNavigationComponent } from './drivers-navigation/drivers-navigat
 import { MapDriverComponent } from './map-driver/map-driver.component';
 import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ride.component';
 import { RejectionComponent } from './about-ride/reject/rejection/rejection.component';
+import { PanicDriveComponent } from './about-ride/panic/panic-drive/panic-drive.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { RejectionComponent } from './about-ride/reject/rejection/rejection.comp
     DriversNavigationComponent,
     MapDriverComponent,
     DriverActiveRideComponent,
-    RejectionComponent 
+    RejectionComponent,
+    PanicDriveComponent 
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
   imports: [

@@ -59,8 +59,8 @@
         </div>
       </div>
       <div class="buttondiv">
-        <button type="" class="btn panic">PANIC!</button>
-        <button type="" class="btn rejcet">REJECT</button>
+        <button type="" class="btn panic" (click)="openDialogPanic(ride.id)">PANIC!</button>
+        <button type="" class="btn rejcet"(click)="openDialogRejection(ride.id)" >REJECT</button>
       </div>
     </form>
   </div>

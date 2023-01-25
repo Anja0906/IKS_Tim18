@@ -8,8 +8,8 @@ import {NoteService} from "../../../service/note/note.service";
   styleUrls: ['./rejection.component.css']
 })
 export class RejectionComponent implements OnInit, OnDestroy{
-  @ViewChild('note') rejectionInput!: ElementRef;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private noteService: NoteService, public matDialogRef: MatDialogRef<RejectionComponent>) {
+  @ViewChild('rejection') rejectionInput!: ElementRef;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public matDialogRef: MatDialogRef<RejectionComponent>) {
   }
 
   ngOnInit(): void {
@@ -23,7 +23,6 @@ export class RejectionComponent implements OnInit, OnDestroy{
   onCloseDialog() {
     const textarea = this.rejectionInput.nativeElement;
     const text = textarea.value;
-    this.noteService.addNote(text, this.data);
     this.matDialogRef.close();
   }
 

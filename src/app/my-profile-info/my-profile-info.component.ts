@@ -77,5 +77,9 @@ export class MyProfileInfoComponent implements OnInit {
       });
     }
   }
+
+  resetPassword() {
+    this.router.navigate(["login/change_password"])
+  }
 }
 

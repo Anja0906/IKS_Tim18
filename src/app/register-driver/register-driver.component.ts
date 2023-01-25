@@ -54,10 +54,13 @@ export class RegisterDriverComponent implements OnInit {
     profilePicture: [''],
     name: [''],
     surname: [''],
-    telephoneNumber: ['', Validators.pattern("^((\\+381[0-9]{10})|(0[0-9]{10}))$")],
+    // telephoneNumber: ['', Validators.pattern("/[0-9\\+\\-\\ ]/")],
+    telephoneNumber: [''],
     address: [''],
-    email: ['', Validators.pattern("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")],
-    password: ['', Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])(.{8,15})$")],
+    // email: ['', Validators.pattern("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")],
+    email: [''],
+    // password: ['', Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]")],
+    password: [''],
   });
   secondFormGroup = this._formBuilder.group({
     vehicleType: [1],

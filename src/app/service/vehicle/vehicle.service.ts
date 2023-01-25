@@ -16,6 +16,7 @@ export class VehicleService {
       latitude: 45.5454,
       longitude: 19.4545
     }
+    console.log(vehicle);
     return this.http.post<Vehicle>(environment.apiHost + 'api/driver/' + driverId + '/vehicle', vehicle);
   }
 }

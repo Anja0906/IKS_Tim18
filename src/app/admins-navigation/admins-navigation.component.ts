@@ -23,6 +23,8 @@ export class AdminsNavigationComponent {
   @ViewChild('profileInfos') profileInfos!: TemplateRef<any>;
   @ViewChild('usersBlocking') usersBlocking!: TemplateRef<any>;
   @ViewChild('panic') panicNotifications!: TemplateRef<any>;
+  @ViewChild('request') driverSChanges!: TemplateRef<any>;
+  @ViewChild('rideHistory') rideHistory!: TemplateRef<any>;
   @Output() templateChange = new EventEmitter<TemplateRef<any>>();
   constructor(private router: Router) {
   }
@@ -45,5 +47,13 @@ export class AdminsNavigationComponent {
   }
   panics(){
     this.router.navigate(['admin/panic-notifications']);
+  }
+
+  requests() {
+    this.router.navigate(['admin/requests']);
+  }
+
+  history() {
+    this.router.navigate(['admin/ride-history']);
   }
 }

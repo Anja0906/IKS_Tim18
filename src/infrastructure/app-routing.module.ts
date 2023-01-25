@@ -20,6 +20,7 @@ import {AboutDriverComponent} from "../app/about-driver/about-driver.component";
 import {MapDriverComponent} from "../app/map-driver/map-driver.component";
 import {DriverActiveRideComponent} from "../app/driver-active-ride/driver-active-ride.component";
 import {AboutUsComponent} from "../app/about-us/about-us.component";
+import {RequestsComponent} from "../app/requests/requests.component";
 
 
 const routes: Routes = [
@@ -50,6 +51,8 @@ const routes: Routes = [
       { path:'block-users', component: BlockedUsersComponent},
       { path:'panic-notifications', component: PanicsComponent},
       { path: 'about-driver/:id', component: AboutDriverComponent},
+      { path: 'requests', component: RequestsComponent},
+      { path:'ride-history',component: RideHistoryComponent},
     ],
   },
   { path:'', component: AppMapComponent},

@@ -33,11 +33,14 @@ export class UserService {
 
   }
 
-
-
   public updateUser(id: number, user: User) {
     return this.http.put<User>(`${this.apiServerUrl}api/user/${id}`, user);
   }
+
+  public updateDriver(id: number, user: User) {
+    return this.http.post<User>(`${this.apiServerUrl}api/request/${id}`, user);
+  }
+
 
   public deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/user/delete/${userId}`);

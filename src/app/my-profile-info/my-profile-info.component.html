@@ -1,5 +1,8 @@
 <div class="form-container">
+
   <h2>My profile</h2>
+  <button class="newGreen" (click)="resetPassword()">Change password</button>
+
   <form *ngIf="user" [formGroup]="form" (ngSubmit)="update()" class="img1">
     <div class="row">
       <div class="col img1">

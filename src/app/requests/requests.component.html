@@ -1,4 +1,4 @@
-<div>
+<div class="form-container">
   <table mat-table [dataSource]="dataSource" style="background-color: #EBE8D7">
     <!--Id Column-->
     <ng-container matColumnDef="id">
@@ -34,8 +34,8 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button (click)="accept(element)">+</button>
-        <button mat-button (click)="decline(element)">-</button>
+        <button class="greenBtn" (click)="accept(element)">+</button>
+        <button class="redBtn" (click)="decline(element)">-</button>
       </td>
     </ng-container>
 

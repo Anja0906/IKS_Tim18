@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Ride} from "../model/Ride";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {RideService} from "../service/ride/ride.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {StorageService} from "../service/storage/storage.service";
 import {MatTableDataSource} from "@angular/material/table";
 import { MatSort } from '@angular/material/sort';
@@ -13,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./ride-history.component.css']
 })
 export class RideHistoryComponent implements OnInit{
+  userId: any;
   displayedColumns: string[] = ['id', 'startTime', 'endTime', 'totalCost', 'estimatedTime'];
   dataSource!: MatTableDataSource<Ride>;
   rides: Ride[] = [];
@@ -24,21 +25,41 @@ export class RideHistoryComponent implements OnInit{
 
 
 
-  constructor(private rideService: RideService, private router: Router, private storageService:StorageService) {}
+  constructor(private rideService: RideService, private router: Router, private storageService:StorageService, private route: ActivatedRoute) {}
   ngOnInit(): void {
-    this.rideService.getRidesForDriver(this.storageService.getUser().id)
-      .subscribe(data => {
-          this.rides = data['results'];
-          this.dataSource = new MatTableDataSource<Ride>(this.rides);
-          this.totalElements = data['totalCount'];
-          console.log(this.rides);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        }, error =>
-        {
-          console.log(error.error.message);
-        }
-      );
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      if(this.storageService.getUser().roles[1]==="ROLE_ADMIN") {
+        this.rideService.getRidesForUser(this.id)
+          .subscribe(data => {
+              this.rides = data['results'];
+              this.dataSource = new MatTableDataSource<Ride>(this.rides);
+              this.totalElements = data['totalCount'];
+              console.log(this.rides);
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
+            }, error =>
+            {
+              console.log(error.error.message);
+            }
+          );
+      }else if (this.storageService.getUser().roles[1]==="ROLE_DRIVER") {
+        this.rideService.getRidesForDriver(this.id)
+          .subscribe(data => {
+              this.rides = data['results'];
+              this.dataSource = new MatTableDataSource<Ride>(this.rides);
+              this.totalElements = data['totalCount'];
+              console.log(this.rides);
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
+            }, error =>
+            {
+              console.log(error.error.message);
+            }
+          );
+      }
+    });
+
   }
 
 

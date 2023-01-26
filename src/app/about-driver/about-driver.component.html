@@ -1,71 +1,147 @@
-<div class="form-container line">
-  <form [formGroup]="firstFormGroup">
-<!--    <img src="assets/prof2.png" class="rounded-circle imgProfile" style="width: 150px;" alt="Avatar"/>-->
-    <h3 class="h3Beige">About driver</h3>
-<!--    <input type="file" class="file" name="avatar" formControlName="profilePicture" placeholder="Picture" [readonly]="true">-->
-    <input matInput type="text" class="myInput" name="name" formControlName="name" placeholder="First name" [readonly]="true">
-    <input matInput type="text" class="myInput" name="surname" formControlName="surname" placeholder="Last name" [readonly]="true">
-    <input matInput type="text" class="myInput" name="telephone" formControlName="telephoneNumber"
-           placeholder="Telephone number" [readonly]="true">
-    <input matInput type="text" class="myInput" name="address" formControlName="address" placeholder="Address" [readonly]="true">
-    <input type="text" class="myInput" name="email" formControlName="email" placeholder="Email address" [readonly]="true">
-  </form>
-  <form [formGroup]="secondFormGroup">
-    <h3 class="h3Beige">About vehicle</h3>
-    <mat-radio-group formControlName="vehicleType">
-      <mat-radio-button [value]="0">
-        <img src="assets/car.png" class="imgRadio" alt="Option 1">
-      </mat-radio-button>
-      <mat-radio-button [value]="1">
-        <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
-      </mat-radio-button>
-      <mat-radio-button [value]="2">
-        <img src="assets/van.png" class="imgRadio" alt="Option 3">
-      </mat-radio-button>
-    </mat-radio-group>
-    <input matInput type="text" class="myInput" name="model" formControlName="model" placeholder="Model" [readonly]="true">
-    <input matInput type="text" class="myInput" name="licenseNumber" formControlName="licenseNumber"
-           placeholder="License number" [readonly]="true">
-    <input matInput type="number" class="myInput" name="passengerSeats" formControlName="passengerSeats"
-           placeholder="Number of seats" [readonly]="true">
-    <mat-slide-toggle class="mySlide" formControlName="petTransport">
+<div class="form-container">
+  <div class="line">
+    <form [formGroup]="firstFormGroup" class="singleForm">
+      <!--    <img src="assets/prof2.png" class="rounded-circle imgProfile" style="width: 150px;" alt="Avatar"/>-->
+      <h3 class="h3Beige">About driver</h3>
+      <!--    <input type="file" class="file" name="avatar" formControlName="profilePicture" placeholder="Picture" [readonly]="true">-->
+      <input matInput type="text" class="myInput" name="name" formControlName="name" placeholder="First name"
+             [readonly]="true">
+      <input matInput type="text" class="myInput" name="surname" formControlName="surname" placeholder="Last name"
+             [readonly]="true">
+      <input matInput type="text" class="myInput" name="telephone" formControlName="telephoneNumber"
+             placeholder="Telephone number" [readonly]="true">
+      <input matInput type="text" class="myInput" name="address" formControlName="address" placeholder="Address"
+             [readonly]="true">
+      <input type="text" class="myInput" name="email" formControlName="email" placeholder="Email address"
+             [readonly]="true">
+    </form>
+    <form [formGroup]="secondFormGroup" class="singleForm">
+      <h3 class="h3Beige">About vehicle</h3>
+      <mat-radio-group formControlName="vehicleType">
+        <mat-radio-button [value]="0">
+          <img src="assets/car.png" class="imgRadio" alt="Option 1">
+        </mat-radio-button>
+        <mat-radio-button [value]="1">
+          <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
+        </mat-radio-button>
+        <mat-radio-button [value]="2">
+          <img src="assets/van.png" class="imgRadio" alt="Option 3">
+        </mat-radio-button>
+      </mat-radio-group>
+      <input matInput type="text" class="myInput" name="model" formControlName="model" placeholder="Model"
+             [readonly]="true">
+      <input matInput type="text" class="myInput" name="licenseNumber" formControlName="licenseNumber"
+             placeholder="License number" [readonly]="true">
+      <input matInput type="number" class="myInput" name="passengerSeats" formControlName="passengerSeats"
+             placeholder="Number of seats" [readonly]="true">
+      <mat-slide-toggle class="mySlide" formControlName="petTransport">
             <span>
               Pet transport
             </span>
-    </mat-slide-toggle>
-    <mat-slide-toggle class="mySlide" formControlName="babyTransport">
+      </mat-slide-toggle>
+      <mat-slide-toggle class="mySlide" formControlName="babyTransport">
             <span>
               Baby transport
             </span>
-    </mat-slide-toggle>
-  </form>
-  <form>
-    <h3 class="h3Beige">About documents</h3>
-    <table mat-table [dataSource]="dataSource" style="background-color: #EBE8D7">
-      <!--Id Column-->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+      </mat-slide-toggle>
+    </form>
+    <form class="singleForm">
+      <h3 class="h3Beige">About documents</h3>
+      <table mat-table [dataSource]="dataSource" style="background-color: #EBE8D7">
+        <!--Id Column-->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="documentImage">
-        <th mat-header-cell *matHeaderCellDef> Image</th>
-        <td mat-cell *matCellDef="let element"> {{element.documentImage}} </td>
-      </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="documentImage">
+          <th mat-header-cell *matHeaderCellDef> Image</th>
+          <td mat-cell *matCellDef="let element"> {{element.documentImage}} </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[4]"
-                   showFirstLastButtons
-                   aria-label="Select page of periodic elements" style="width: 100%;background-color: #EBE8D7">
-    </mat-paginator>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[4]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements" style="width: 100%;background-color: #EBE8D7">
+      </mat-paginator>
 
-  </form>
+    </form>
+  </div>
+  <div class="position1">
+    <button class="greenBtn" (click)="showRide()">Current ride</button>
+  </div>
 </div>
+
+
+<div *ngIf="showTemplate" class="form-container">
+<!--  <app-app-map></app-app-map>-->
+  <div class="form-container2">
+
+    <div class="innerClass">
+      <form *ngIf="ride" [formGroup]="form" class="parent">
+        <h3 class="h3Beige">About ride</h3>
+        <div class="row">
+          <div class="col">
+            <label>ID: </label>
+            <input type="text" [formControl]="form.controls.id" class="myInput2" readonly>
+          </div>
+          <div class="col">
+            <label>Estimated Time in Minutes: </label>
+            <input type="text" [formControl]="form.controls.estimatedTimeInMinutes" class="myInput2" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Start time: </label>
+            <input type="text" [formControl]="form.controls.startTime" class="myInput2" readonly>
+          </div>
+          <div class="col">
+            <label>End time: </label>
+            <input type="text" [formControl]="form.controls.endTime" class="myInput2" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Total cost: </label>
+            <input type="text" [formControl]="form.controls.totalCost" class="myInput2" readonly>
+          </div>
+          <div class="col">
+            <label>Baby transport: </label>
+            <input type="text" [formControl]="form.controls.babyTransport" class="myInput2" readonly>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col">
+            <label>Pet transport: </label>
+            <input type="text" [formControl]="form.controls.petTransport" class="myInput2" readonly>
+          </div>
+          <div class="col">
+            <label>Split fare: </label>
+            <input type="text" [formControl]="form.controls.splitFare" class="myInput2" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Status: </label>
+            <input type="text" [formControl]="form.controls.status" class="myInput2" readonly>
+          </div>
+          <div class="col">
+            <label>Name: </label>
+            <p *ngFor="let pass of ride.passengers; let i = index">{{pass.email}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

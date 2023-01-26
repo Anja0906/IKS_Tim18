@@ -54,6 +54,6 @@ export class AdminsNavigationComponent {
   }
 
   history() {
-    this.router.navigate(['admin/ride-history']);
+    this.router.navigate(['admin/users-history']);
   }
 }

@@ -27,7 +27,11 @@ export class RideService {
   }
 
   public getRidesForDriver(id: number): Observable<any> {
-    return this.http.get<Ride>(environment.apiHost + `api/driver/2/ride?page=0&size=100`);
+    return this.http.get<Ride>(environment.apiHost + `api/driver/${id}/ride?page=0&size=100`);
+  }
+
+  public getRidesForUser(id: number): Observable<any> {
+    return this.http.get<Ride>(environment.apiHost + `api/user/${id}/ride?page=0&size=100`);
   }
   public activatePanic(id: number,reason:Reason): Observable<any> {
     return this.http.put<Panic>(environment.apiHost + `api/driver/ride/${id}/panic`,reason);

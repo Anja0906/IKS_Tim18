@@ -1,0 +1,25 @@
+<div class="form-container">
+  <h2 class="mb-4">Ride history of all users</h2>
+  <div class="search">
+    <input type="text" class="input1"
+           [(ngModel)]="term"
+           placeholder="What are you looking for?">
+  </div>
+  <div class="card testimonial-card text-center" *ngFor="let user of users | filter: term; let i = index">
+    <div class="card-up"></div>
+    <div class="avatar mx-auto bg-white">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+           class="rounded-circle img-fluid" />
+      <!--      <img src="{{user.profilePicture}}"-->
+      <!--           class="rounded-circle img-fluid" />-->
+    </div>
+    <div class="card-body">
+      <hr />
+      <input type="text" class="form-control" placeholder="{{user.name + ' ' + user.surname}}" readonly>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button type="submit" class="btn greenBtn text-uppercase wide-btn" (click)="openHistory(user.id)">history</button>
+    </div>
+
+  </div>
+</div>

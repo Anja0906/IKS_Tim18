@@ -1,3 +1,5 @@
+@import url('leaflet/dist/leaflet.css');
+
 .form{
   background: #485162;
 }
@@ -10,9 +12,17 @@
   color: #485162;
   margin: 3rem;
   padding: 1rem;
-
 }
-form{
+
+.form-container2 {
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.7rem;
+  background-color: #485162;
+  color: #EBE8D7;
+  margin: 3rem;
+  padding: 1rem;
+}
+.singleForm{
   background: #485162;
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 0.7rem;
@@ -53,6 +63,18 @@ form{
 
 .myInput{
   width: 90%;
+  border-style: none;
+  background-color: #EBE8D7;
+  border-color: #485162;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 15px;
+  height: 1rem;
+  text-align: center;
+}
+
+.myInput2{
+  width: 55%;
   border-style: none;
   background-color: #EBE8D7;
   border-color: #485162;
@@ -165,9 +187,16 @@ h2{
   backdrop-filter: blur(2px);
   color: #485162;
   position: center;
-  border-radius: 5px;
-  width: 15rem;
+  border-radius: 10px;
+  border-style: none;
+  width: 60%;
+  padding: 0.6rem;
   margin: 1rem;
+}
+
+label{
+  width: 35%;
+  font-weight: bolder;
 }
 
 .redBtn {
@@ -188,4 +217,30 @@ img{
 .img1{
   display: grid;
   place-items: center;
+}
+
+.position1{
+  display: grid;
+  place-items: center;
+}
+
+
+.map-container {
+  background-color: #485162;
+  position: relative;
+  margin-top: 0.5rem;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  height: 93.5%;
+}
+
+
+.map-frame {
+  border: 2px solid #485162;
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
 }

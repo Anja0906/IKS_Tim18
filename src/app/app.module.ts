@@ -50,8 +50,10 @@ import { RejectionComponent } from './about-ride/reject/rejection/rejection.comp
 import { PanicDriveComponent } from './about-ride/panic/panic-drive/panic-drive.component';
 import { RequestsComponent } from './requests/requests.component';
 import { UsersRideHistoryComponent } from './users-ride-history/users-ride-history.component';
+import { PanicNotificationsComponent } from './panics/panic-notifications/panic-notifications.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -87,10 +89,13 @@ import {MatNativeDateModule} from "@angular/material/core";
     RejectionComponent,
     PanicDriveComponent,
     RequestsComponent,
-    UsersRideHistoryComponent
+    UsersRideHistoryComponent,
+    PanicNotificationsComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [
+        FormsModule,
+        MatSnackBarModule,
         MatDialogModule,
         BrowserModule,
         ReactiveFormsModule,

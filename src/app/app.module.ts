@@ -50,6 +50,8 @@ import { RejectionComponent } from './about-ride/reject/rejection/rejection.comp
 import { PanicDriveComponent } from './about-ride/panic/panic-drive/panic-drive.component';
 import { RequestsComponent } from './requests/requests.component';
 import { UsersRideHistoryComponent } from './users-ride-history/users-ride-history.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -88,28 +90,30 @@ import { UsersRideHistoryComponent } from './users-ride-history/users-ride-histo
     UsersRideHistoryComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
-  imports: [
-    MatDialogModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatLegacyButtonModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSlideToggleModule,
-    MatPaginatorModule,
-    MatTableModule,
-    Ng2SearchPipeModule,
-    // DriverNavbarComponent,
+    imports: [
+        MatDialogModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatLegacyButtonModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSlideToggleModule,
+        MatPaginatorModule,
+        MatTableModule,
+        Ng2SearchPipeModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        // DriverNavbarComponent,
 
-  ],
+    ],
   exports:[AppMapComponent],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

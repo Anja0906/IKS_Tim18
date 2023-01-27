@@ -19,6 +19,7 @@ import {DriverActiveRideComponent} from "../app/driver-active-ride/driver-active
 import {AboutUsComponent} from "../app/about-us/about-us.component";
 import {RequestsComponent} from "../app/requests/requests.component";
 import {UsersRideHistoryComponent} from "../app/users-ride-history/users-ride-history.component";
+import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
 
 
 const routes: Routes = [
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: 'requests', component: RequestsComponent},
       { path:'users-history',component: UsersRideHistoryComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
+      { path:'',component: PanicNotificationsComponent},
     ],
   },
   { path:'', component: AppMapComponent},

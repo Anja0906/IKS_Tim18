@@ -5,7 +5,13 @@ import {Ride} from "./Ride";
 export interface Panic{
   id: number;
   user: User;
-  ride : Ride;
   time : string;
   reason : number;
+}
+
+export interface PanicSocket{
+  id: number;
+  user: string;
+  time : string;
+  reason : string;
 }

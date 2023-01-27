@@ -1,10 +1,59 @@
 <div class="form-container">
   <div>
-    <h2>Global reports</h2>
+    <h2>Reports</h2>
   </div>
-  <div class="charts">
-    <div class="chart-container">
-      <canvas  id="MyChart" width="80%" height="80%">{{ chart }}</canvas>
+  <div class="cent">
+    <div style="width: 50%;">
+      <mat-form-field style="width:60%">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
+
+      <button mat-button type="submit" class="greenBtn" (click)="submitDates()">Submit dates</button>
+    </div>
+  </div>
+
+  <div *ngIf="showStats">
+    <div class="row">
+      <div class="card">
+        <h3>Total costs: </h3>
+        <p>{{moneySum}}</p>
+      </div>
+      <div class="card">
+        <h3>Average costs: </h3>
+        <p>{{averageMoney}}</p>
+      </div>
+      <div class="card">
+        <h3>Total kilometers: </h3>
+        <p>{{totalKilometers}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card">
+        <div class="chart-container">
+          <canvas  id="MyChart">{{ chart }}</canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chart-container">
+          <canvas  id="MyChart2">{{ chart1 }}</canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="chart-container">
+          <canvas  id="MyChart3">{{ chart2 }}</canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+

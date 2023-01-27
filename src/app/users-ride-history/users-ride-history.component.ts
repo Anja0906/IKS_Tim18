@@ -41,4 +41,8 @@ export class UsersRideHistoryComponent {
   openHistory(id:number) {
     this.router.navigate(['/admin/ride-history', id ]);
   }
+
+  openStats(id:number) {
+    this.router.navigate(['/admin/stats', id ]);
+  }
 }

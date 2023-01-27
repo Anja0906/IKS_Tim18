@@ -36,7 +36,7 @@ const routes: Routes = [
       { path:'pending-rides', component: PendingRidesComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'my-account', component: MyProfileInfoComponent},
-      { path:'stats', component: ReportsComponent},
+      { path:'stats/:id', component: ReportsComponent},
     ],
   },
   { path:'admin',
@@ -44,7 +44,7 @@ const routes: Routes = [
     children: [
       { path:'register-driver', component: RegisterDriverComponent},
       { path:'all-drivers', component: AboutDrversComponent},
-      { path:'stats', component: ReportsComponent},
+      { path:'stats/:id', component: ReportsComponent},
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'block-users', component: BlockedUsersComponent},
       { path:'panic-notifications', component: PanicsComponent},

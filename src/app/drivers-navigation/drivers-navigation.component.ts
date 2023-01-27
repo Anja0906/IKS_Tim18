@@ -27,6 +27,6 @@ export class DriversNavigationComponent {
     this.router.navigate(['driver/ride-history', this.storageService.getUser().id]);
   }
   stats(){
-    this.router.navigate(['driver/stats']);
+    this.router.navigate(['driver/stats', this.storageService.getUser().id]);
   }
 }

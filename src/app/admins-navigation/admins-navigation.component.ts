@@ -37,7 +37,7 @@ export class AdminsNavigationComponent {
     this.router.navigate(['admin/all-drivers']);
   }
   stats(){
-    this.router.navigate(['admin/stats']);
+    this.router.navigate(['admin/stats/0']);
   }
   myAccount(){
     this.router.navigate(['admin/my-account']);

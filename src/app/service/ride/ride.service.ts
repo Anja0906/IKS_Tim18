@@ -34,9 +34,9 @@ export class RideService {
     return this.http.get<Ride>(environment.apiHost + `api/user/${id}/ride?page=0&size=100`);
   }
   public activatePanic(id: number,reason:Reason): Observable<any> {
-    return this.http.put<Panic>(environment.apiHost + `api/driver/ride/${id}/panic`,reason);
+    return this.http.put<Panic>(`${this.apiServerUrl}api/ride/${id}/panic`,reason);
   }
   public rejectRide(id: number,reason:Reason): Observable<any> {
-    return this.http.put<Ride>(environment.apiHost + `api/driver/ride/${id}/cancel`,reason);
+    return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/cancel`,reason);
   }
 }

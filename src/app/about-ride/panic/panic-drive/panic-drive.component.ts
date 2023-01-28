@@ -20,11 +20,9 @@ export class PanicDriveComponent implements OnInit, OnDestroy{
     this.matDialogRef.close(this.data);
   }
 
-
   onCloseDialog() {
     const textarea = this.panicInput.nativeElement;
-    const text = textarea.value;
-    console.log(text);
-    this.matDialogRef.close(text);
+    this.data = textarea.value;
+    this.matDialogRef.close(this.data);
   }
 }

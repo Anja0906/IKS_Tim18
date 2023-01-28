@@ -19,11 +19,10 @@ export class RejectionComponent implements OnInit, OnDestroy{
     this.matDialogRef.close(this.data);
   }
 
-
   onCloseDialog() {
     const textarea = this.rejectionInput.nativeElement;
-    const text = textarea.value;
-    this.matDialogRef.close();
+    this.data = textarea.value;
+    this.matDialogRef.close(this.data);
   }
 
 }

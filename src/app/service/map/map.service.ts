@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {LatLng} from "leaflet";
 import {Loc, Location1} from "../../panics/panics.component";
 import {DurationDistance} from "../../model/DurationDistance";
+import {VehiclesForMap} from "../../model/VehiclesForMap";
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +35,9 @@ export class MapService {
       longitude: destination.lng };
     let locations: Location1 = { departure: dep, destination: des };
     return this.http.post<DurationDistance>(environment.apiHost + 'api/unregisteredUser/duration', locations);
+  }
+
+  getVehiclesForMap(): Observable<VehiclesForMap>{
+    return this.http.get<VehiclesForMap>(environment.apiHost + 'api/vehicle')
   }
 }

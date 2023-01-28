@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {LatLng} from "leaflet";
 import {StorageService} from "../service/storage/storage.service";
 import {DurationDistance} from "../model/DurationDistance";
+import {VehiclesForMap} from "../model/VehiclesForMap";
 
 @Component({
   selector: 'app-app-map',
@@ -27,11 +28,24 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   km!:number;
   durationDistance!:DurationDistance;
 
+  redPin = L.icon({
+    iconSize: [30, 30],
+    iconAnchor: [10, 31],
+    iconUrl: 'assets/redmapPin.png',
+  });
+
+  greenPin = L.icon({
+    iconSize: [30, 30],
+    iconAnchor: [10, 31],
+    iconUrl: 'assets/greenmapPin.png',
+  });
+
   priceForm = new FormGroup({
     departure: new FormControl(),
     destination: new FormControl(),
     price: new FormControl(),
   });
+  vehiclesForMap!: VehiclesForMap;
 
 
   constructor(private mapService: MapService, private router: Router, private storageService: StorageService) {}
@@ -79,7 +93,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   //map initialisation
   private initMap(): void {
     this.map = L.map('map', {
-      center: [45.2493, 19.8148],
+      center: [45.26044, 19.8148415],
       zoom: 15,
     });
     const tiles = L.tileLayer(
@@ -100,6 +114,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   private refreshMap(): void{
     this.map.remove();
     this.initMap();
+    this.initVehicles();
   }
   //searching the address on map from input string
 
@@ -143,23 +158,25 @@ export class AppMapComponent implements AfterViewInit, OnInit {
         address = res.display_name;
         new L.Marker([lat, lng]).addTo(this.map).bindPopup(res.display_name)
           .openPopup();
-      });
-      if (this.dep === undefined && this.dest === undefined) {
-        this.dest = new LatLng(lat, lng);
-        this.dep = new LatLng( 45.2453708, 19.8477573);
-        this.priceForm.controls.departure.setValue("Vasa trenutna lokacija");
-      }
-      else {
-        if (this.flag){
-          this.dep = new LatLng(lat, lng);
-          this.priceForm.controls.departure.setValue(address);
-          this.flag = !this.flag;
-        }else {
+        if (this.dep === undefined && this.dest === undefined) {
           this.dest = new LatLng(lat, lng);
-          this.priceForm.controls.destination.setValue(address);
-          this.flag = !this.flag;
+          this.dep = new LatLng( 45.2453708, 19.8477573);
+          this.priceForm.controls.departure.setValue("Vasa trenutna lokacija");
         }
-      }
+        else {
+          if (this.flag){
+            this.dep = new LatLng(lat, lng);
+            this.priceForm.controls.departure.setValue(address);
+            this.flag = !this.flag;
+          }else {
+            console.log(address);
+            this.dest = new LatLng(lat, lng);
+            this.priceForm.controls.destination.setValue(address);
+            this.flag = !this.flag;
+          }
+        }
+      });
+
       this.refreshMap();
       this.route(this.dep, this.dest);
 
@@ -177,10 +194,19 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     console.log(r2);
   }
 
+  initVehicles(){
+    this.mapService.getVehiclesForMap().subscribe(data => {
+      this.vehiclesForMap = data;
+      console.log(data);
+      for (let vehicle of data.inUse) {
+        L.marker([vehicle.currentLocation.latitude, vehicle.currentLocation.longitude], {icon: this.redPin}).addTo(this.map);
+      }
+      for (let vehicle of data.outOfUse) {
+        L.marker([vehicle.currentLocation.latitude, vehicle.currentLocation.longitude], {icon: this.greenPin}).addTo(this.map);
+      }
+    });
+  }
 
-
-
-  //setting the map pin icon
   ngAfterViewInit(): void {
     L.Marker.prototype.options.icon = L.icon({
       iconSize: [40, 40],
@@ -188,6 +214,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
       iconUrl: 'https://img.icons8.com/fluency/512/map-pin.png',
     });
     this.initMap();
+    this.initVehicles();
   }
 
 }

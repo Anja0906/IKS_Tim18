@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../model/User";
 import {StorageService} from "../service/storage/storage.service";
+import {ChangePassword} from "../model/ChangePassword";
 
 
 export interface IUserFormGroup extends FormGroup {
@@ -19,6 +20,15 @@ export interface IUserFormGroup extends FormGroup {
   };
 }
 
+export interface IChangePassword extends FormGroup{
+  value: ChangePassword;
+  controls: {
+    oldPassword: FormControl;
+    newPassword: FormControl;
+    newPassword2: FormControl;
+  };
+}
+
 @Component({
   selector: 'app-my-profile-info',
   templateUrl: './my-profile-info.component.html',
@@ -28,6 +38,9 @@ export interface IUserFormGroup extends FormGroup {
 export class MyProfileInfoComponent implements OnInit {
   user!: User;
   form!: IUserFormGroup;
+  changePasswordForm!:IChangePassword;
+  change=false;
+  displayUser=true;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService,
               private storageService: StorageService, private router: Router) { }
@@ -50,6 +63,11 @@ export class MyProfileInfoComponent implements OnInit {
       this.form.patchValue(res);
     });
     this.form.patchValue(this.user);
+    this.changePasswordForm = this.formBuilder.group({
+      oldPassword: [''],
+      newPassword: [''],
+      newPassword2: [''],
+    }) as IChangePassword;
   }
 
   //submitting the form and updating user on the backend side
@@ -78,8 +96,25 @@ export class MyProfileInfoComponent implements OnInit {
     }
   }
 
-  resetPassword() {
-    this.router.navigate(["login/change_password"])
+  changePassword() {
+    this.change = true;
+    this.displayUser = false;
+  }
+
+  submitPassword() {
+    const loggedUser = this.storageService.getUser();
+    if (this.changePasswordForm.valid) {
+      if(this.changePasswordForm.controls.newPassword.value===this.changePasswordForm.controls.newPassword2.value){
+        console.log(this.changePasswordForm.value);
+        this.userService.changePassword(loggedUser.id, this.changePasswordForm.value).subscribe(
+          () => {
+            console.log(this.changePasswordForm.value);
+            this.change = false;
+            this.displayUser = true;
+          }
+        );
+      }
+    }
   }
 }
 

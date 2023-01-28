@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/model/User';
 import {environment} from "../environments/environment";
 import {Note} from "./model/Note";
+import {ChangePassword} from "./model/ChangePassword";
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +53,10 @@ export class UserService {
 
   block(id: number){
     return this.http.put(`${this.apiServerUrl}api/user/${id}/block`, {});
+  }
+
+  changePassword(id:number, changePassword:ChangePassword){
+    return this.http.put(`${this.apiServerUrl}api/user/${id}/changePassword`, changePassword);
   }
 
 }

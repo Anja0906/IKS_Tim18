@@ -2,9 +2,24 @@
 
   <h2>My profile</h2>
   <div class="position1">
-    <button class="newGreen" (click)="resetPassword()">Change password</button>
+    <button class="newGreen" (click)="changePassword()">Change password</button>
   </div>
-  <form *ngIf="user" [formGroup]="form" (ngSubmit)="update()" class="img1">
+  <form *ngIf="change" [formGroup]="changePasswordForm" (ngSubmit)="submitPassword()" class="img1">
+    <div class="row">
+      <label for="oldPassword" class="col">Old password: </label>
+      <input type="password" id="oldPassword" [formControl]="changePasswordForm.controls.oldPassword" class="col myInput">
+    </div>
+    <div class="myDiv">
+      <label for="newPassword" class="col">New password: </label>
+      <input type="password" id="newPassword" [formControl]="changePasswordForm.controls.newPassword" class="col myInput">
+    </div>
+    <div class="myDiv">
+      <label for="confirmNewPassword" class="col">Confirm new password: </label>
+      <input type="password" id="confirmNewPassword" [formControl]="changePasswordForm.controls.newPassword2" class="col myInput">
+    </div>
+    <button type="submit" class="btn passwordChangeBtn text-uppercase wide-btn" (click)="submitPassword()">Submit changes</button>
+  </form>
+  <form *ngIf="user&&displayUser" [formGroup]="form" (ngSubmit)="update()" class="img1">
     <div class="row">
       <div class="col img1">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp" class="rounded-circle" style="width: 150px;"

@@ -16,11 +16,11 @@
         <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
       </div>
       <div class="row">
-        <div class="col">
-          <img src="assets/icons8-us-dollar-64.png" alt="price">
+        <div style="width: 5rem">
+          <img src="assets/time.png" alt="time">
         </div>
-        <div class="col">
-          <p id="price"></p>
+        <div class="col" *ngIf="time">
+          <p id="time">{{time}} minutes, {{km}} kilometers</p>
         </div>
       </div>
       <div class="row cent">

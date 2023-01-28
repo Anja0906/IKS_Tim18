@@ -7,6 +7,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LatLng} from "leaflet";
 import {StorageService} from "../service/storage/storage.service";
+import {DurationDistance} from "../model/DurationDistance";
 
 @Component({
   selector: 'app-app-map',
@@ -17,9 +18,14 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   //za showForm flag je neophodno u zavisnosti od korisnika promeniti da li se forma prikazuje ili ne
   showForm = true;
   map!: any;
-  result!: any;
+  flag!: boolean;
   dep!: LatLng;
+  depAddress!:string;
   dest!: LatLng;
+  desAddress!:string;
+  time!:number;
+  km!:number;
+  durationDistance!:DurationDistance;
 
   priceForm = new FormGroup({
     departure: new FormControl(),
@@ -31,6 +37,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   constructor(private mapService: MapService, private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {
+    this.flag = true;
     if (this.storageService.getUser().roles[1] === "ROLE_ADMIN" || this.storageService.getUser().roles[1] === "ROLE_DRIVER"){
       this.showForm = false;
     }
@@ -52,16 +59,20 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     if (this.priceForm.valid) {
       await this.initLocations();
       this.route(this.dep, this.dest);
+
     }
   }
 
   private async initLocations() {
     const dep1 = await this.search(this.priceForm.value.departure);
     this.dep = new LatLng(Number(dep1[0].lat), Number(dep1[0].lon));
+    this.depAddress = dep1[0].display_name;
     console.log(this.dep);
     const dest1 = await this.search(this.priceForm.value.destination);
     this.dest = new LatLng(Number(dest1[0].lat), Number(dest1[0].lon));
+    this.desAddress = dest1[0].display_name;
     console.log(this.dest);
+    this.getDuration(this.depAddress, this.desAddress, this.dep, this.dest);
   }
 
 
@@ -110,6 +121,17 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     });
   }
 
+  getDuration(address1:string, address2:string, departure: LatLng, destination: LatLng){
+    this.mapService.getDuration(address1, address2, departure, destination).subscribe(
+      (data) => { this.durationDistance = data;
+        this.km = Number((data.distance/1000).toFixed(1));
+        this.time = Math.round(this.durationDistance.duration/60);
+        console.log(this.durationDistance);},
+      (error) => { console.log(error) },
+      () => { console.log("completed") }
+    );
+  }
+
   //inverse search (from click to location)
   registerOnClick(): void {
     this.map.on('click', (e: any) => {
@@ -119,7 +141,6 @@ export class AppMapComponent implements AfterViewInit, OnInit {
       let address = coord.display_name;
       this.mapService.reverseSearch(lat, lng).subscribe( async (res) => {
         address = res.display_name;
-        this.priceForm.controls.destination.setValue(address);
         new L.Marker([lat, lng]).addTo(this.map).bindPopup(res.display_name)
           .openPopup();
       });
@@ -129,7 +150,15 @@ export class AppMapComponent implements AfterViewInit, OnInit {
         this.priceForm.controls.departure.setValue("Vasa trenutna lokacija");
       }
       else {
-        this.dest = new LatLng(lat, lng);
+        if (this.flag){
+          this.dep = new LatLng(lat, lng);
+          this.priceForm.controls.departure.setValue(address);
+          this.flag = !this.flag;
+        }else {
+          this.dest = new LatLng(lat, lng);
+          this.priceForm.controls.destination.setValue(address);
+          this.flag = !this.flag;
+        }
       }
       this.refreshMap();
       this.route(this.dep, this.dest);
@@ -147,6 +176,8 @@ export class AppMapComponent implements AfterViewInit, OnInit {
     console.log(r1);
     console.log(r2);
   }
+
+
 
 
   //setting the map pin icon

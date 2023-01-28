@@ -49,6 +49,11 @@ import { DriverActiveRideComponent } from './driver-active-ride/driver-active-ri
 import { RejectionComponent } from './about-ride/reject/rejection/rejection.component';
 import { PanicDriveComponent } from './about-ride/panic/panic-drive/panic-drive.component';
 import { RequestsComponent } from './requests/requests.component';
+import { UsersRideHistoryComponent } from './users-ride-history/users-ride-history.component';
+import { PanicNotificationsComponent } from './panics/panic-notifications/panic-notifications.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -82,32 +87,39 @@ import { RequestsComponent } from './requests/requests.component';
     MapDriverComponent,
     DriverActiveRideComponent,
     RejectionComponent,
-    PanicDriveComponent, 
-    RequestsComponent 
+    PanicDriveComponent,
+    RequestsComponent,
+    UsersRideHistoryComponent,
+    PanicNotificationsComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
-  imports: [
-    MatDialogModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatLegacyButtonModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    MatSlideToggleModule,
-    MatPaginatorModule,
-    MatTableModule,
-    Ng2SearchPipeModule,
-    // DriverNavbarComponent,
+    imports: [
+        FormsModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatLegacyButtonModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        MatSlideToggleModule,
+        MatPaginatorModule,
+        MatTableModule,
+        Ng2SearchPipeModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        // DriverNavbarComponent,
 
-  ],
+    ],
+  exports:[AppMapComponent],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

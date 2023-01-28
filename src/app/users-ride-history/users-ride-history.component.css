@@ -49,6 +49,16 @@ h2{
   border-radius: 5px;
   width: 80%;
 }
+
+.beigeBtn {
+  margin-bottom: 0.1rem;
+  background: #DC7C36;
+  backdrop-filter: blur(2px);
+  color: #EBE8D7;
+  position: center;
+  border-radius: 5px;
+  width: 80%;
+}
 .redBtn{
   margin-bottom: 0.1rem;
   background: #DC7C36;

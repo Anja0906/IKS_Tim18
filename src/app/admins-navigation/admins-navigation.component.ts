@@ -37,7 +37,7 @@ export class AdminsNavigationComponent {
     this.router.navigate(['admin/all-drivers']);
   }
   stats(){
-    this.router.navigate(['admin/stats']);
+    this.router.navigate(['admin/stats/0']);
   }
   myAccount(){
     this.router.navigate(['admin/my-account']);
@@ -54,6 +54,6 @@ export class AdminsNavigationComponent {
   }
 
   history() {
-    this.router.navigate(['admin/ride-history']);
+    this.router.navigate(['admin/users-history']);
   }
 }

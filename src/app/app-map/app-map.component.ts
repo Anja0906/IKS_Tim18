@@ -6,6 +6,7 @@ import {MapService} from "../service/map/map.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LatLng} from "leaflet";
+import {StorageService} from "../service/storage/storage.service";
 
 @Component({
   selector: 'app-app-map',
@@ -27,9 +28,12 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   });
 
 
-  constructor(private mapService: MapService, private router: Router) {}
+  constructor(private mapService: MapService, private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {
+    if (this.storageService.getUser().roles[1] === "ROLE_ADMIN" || this.storageService.getUser().roles[1] === "ROLE_DRIVER"){
+      this.showForm = false;
+    }
     this.refreshMap();
   }
 

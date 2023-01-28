@@ -21,7 +21,6 @@ export class PanicNotificationsComponent {
   panic!: PanicSocket;
 
   isLoaded: boolean = false;
-  isCustomSocketOpened = false;
 
   constructor(private _snackBar: MatSnackBar) { }
 
@@ -43,7 +42,7 @@ export class PanicNotificationsComponent {
 
   openGlobalSocket() {
     if (this.isLoaded) {
-      this.stompClient.subscribe("/newPanic", (message: { body: string; }) => {
+      this.stompClient.subscribe("/socket-topic/newPanic", (message: { body: string; }) => {
         this.handleResult(message);
       });
     }

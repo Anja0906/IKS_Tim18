@@ -69,11 +69,19 @@ export class AppNavbarComponent {
     if (this.btnVal === "Online") {
       this.btnVal = "Offline";
       this.btnCall = "activeButtonOffline"
+      this.driverService.workingHourValidationLogout(this.storageService.getUser().id).subscribe(() => {});
       this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
       });
     } else {
       this.btnVal = "Online"
       this.btnCall = "activeButtonOnline"
+      this.driverService.workingHourValidation(this.storageService.getUser().id).subscribe((res) => {
+        if (res === -1) {
+          confirm("You worked more than 8 hours");
+          this.router.navigate(['']);
+          this.storageService.clean();
+        }
+      });
       this.driverService.driverOnline(this.storageService.getUser().id).subscribe(() => {
       });
     }
@@ -81,6 +89,7 @@ export class AppNavbarComponent {
 
   logout(): void {
     if (this.isDriver) {
+      this.driverService.workingHourValidationLogout(this.storageService.getUser().id).subscribe(() => {});
       this.driverService.driverOffline(this.storageService.getUser().id).subscribe(() => {
       });
     }

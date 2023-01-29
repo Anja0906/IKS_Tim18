@@ -42,11 +42,8 @@ export class DriverService {
   workingHourValidation(driverId:number): Observable<any>{
     return this.http.get<any>(environment.apiHost + `api/driver/working-hour/${driverId}/login`);
   }
-  updateWorkingHourByIdLogout(driverId:number): Observable<any>{
-    return this.http.put<any>(environment.apiHost + `api/driver/working-hour/driver/${driverId}/login`,null);
-  }
-  updateWorkingHourByIdLogin(workingHourId:number): Observable<any>{
-    return this.http.put<any>(environment.apiHost + `api/driver/working-hour/${workingHourId}`,null);
+  workingHourValidationLogout(driverId:number): Observable<any>{
+    return this.http.get<any>(environment.apiHost + `api/driver/working-hour/${driverId}/logout`);
   }
   addWorkingHour(driverId:number): Observable<any>{
     return this.http.post<any>(environment.apiHost + `api/driver/${driverId}/working-hour`,null);

@@ -11,6 +11,7 @@ import {Reason} from "../model/Reason";
 import {StorageService} from "../service/storage/storage.service";
 import {co} from "chart.js/dist/chunks/helpers.core";
 import { createReason } from 'src/app/model/Reason';
+import {DriverService} from "../service/driver/driver.service";
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -40,7 +41,7 @@ export class AboutRideComponent implements OnInit{
   reason!: Reason ;
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,
-              private dialog: MatDialog, private storageService:StorageService ) { }
+              private dialog: MatDialog, private storageService:StorageService,private driverService:DriverService ) { }
 
   ngOnInit(): void {
       this.form = this.formBuilder.group({
@@ -54,6 +55,13 @@ export class AboutRideComponent implements OnInit{
         splitFare: [false],
         status: [''],
       }) as IRideFormGroup;
+      this.driverService.driverCheck(this.storageService.getUser().id).subscribe((valid) => {
+        if(valid === -1){
+          confirm("You worked more than 8 hours");
+          this.router.navigate(['']);
+          this.storageService.clean();
+        }
+      });
       this.rideService.getActiveRide(this.storageService.getUser().id).subscribe((res) => {
         this.ride = res;
         this.form.patchValue(res);

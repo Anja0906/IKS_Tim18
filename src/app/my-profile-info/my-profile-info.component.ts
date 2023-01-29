@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {User} from "../model/User";
 import {StorageService} from "../service/storage/storage.service";
+import {DriverService} from "../service/driver/driver.service";
 
 
 export interface IUserFormGroup extends FormGroup {
@@ -30,7 +31,7 @@ export class MyProfileInfoComponent implements OnInit {
   form!: IUserFormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService,
-              private storageService: StorageService, private router: Router) { }
+              private storageService: StorageService, private router: Router, private driverService:DriverService) { }
 
   //setting the form and user information
   ngOnInit(): void {
@@ -57,6 +58,13 @@ export class MyProfileInfoComponent implements OnInit {
     if (this.form.valid) {
       const loggedUser = this.storageService.getUser();
       if (loggedUser.roles.includes("ROLE_DRIVER")){
+        this.driverService.driverCheck(this.storageService.getUser().id).subscribe((valid) => {
+          if(valid === -1){
+            confirm("You worked more than 8 hours");
+            this.router.navigate(['']);
+            this.storageService.clean();
+          }
+        });
         this.userService
           .updateDriver(loggedUser.id, this.form.value)
           .subscribe((res: any) => {

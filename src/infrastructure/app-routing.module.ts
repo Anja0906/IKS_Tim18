@@ -19,6 +19,9 @@ import {DriverActiveRideComponent} from "../app/driver-active-ride/driver-active
 import {AboutUsComponent} from "../app/about-us/about-us.component";
 import {RequestsComponent} from "../app/requests/requests.component";
 import {UsersRideHistoryComponent} from "../app/users-ride-history/users-ride-history.component";
+import { PassengerPageComponent } from 'src/app/passenger-page/passenger-page.component';
+import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
+import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
 
 
 const routes: Routes = [
@@ -55,7 +58,20 @@ const routes: Routes = [
       { path:'ride-history/:id',component: RideHistoryComponent},
     ],
   },
+  { path: 'passenger',
+    component: PassengerPageComponent,
+    children:[
+      { path:'', component: AboutUsComponent},
+      { path:'about-ride', component: DriverActiveRideComponent},
+      { path:'pending-rides', component: PendingRidesComponent},
+      { path:'ride-history/:id',component: RideHistoryComponent},
+      { path:'my-account', component: MyProfileInfoComponent},
+      { path:'stats/:id', component: ReportsComponent},
+      { path:'order-ride', component: OrderRideComponent},
+    ],
+  },
   { path:'', component: AppMapComponent},
+  { path:'timer/:id', component: CurrentRideTimerComponent},
 
 
 ];

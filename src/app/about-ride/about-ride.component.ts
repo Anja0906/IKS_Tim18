@@ -52,10 +52,17 @@ export class AboutRideComponent implements OnInit{
         splitFare: [false],
         status: [''],
       }) as IRideFormGroup;
-      this.rideService.getActiveRide(this.storageService.getUser().id).subscribe((res) => {
-        this.ride = res;
-        this.form.patchValue(res);
-      });
+      if (this.storageService.getUser().roles.includes("ROLE_DRIVER")){
+        this.rideService.getActiveRide(this.storageService.getUser().id).subscribe((res) => {
+          this.ride = res;
+          this.form.patchValue(res);
+        });
+      } else {
+        this.rideService.getActiveRideForPassenger(this.storageService.getUser().id).subscribe((res) => {
+          this.ride = res;
+          this.form.patchValue(res);
+        });
+      }
       this.form.patchValue(this.ride);
   }
 

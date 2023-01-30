@@ -1,0 +1,15 @@
+.idk {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 15em;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+.idk2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 20%;
+    position: relative;
+}

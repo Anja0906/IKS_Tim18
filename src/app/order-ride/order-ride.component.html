@@ -1,0 +1,98 @@
+<div class="map-container" #map>
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
+</div>
+
+<div class="form-container">
+  <h2>Order ride</h2>
+  <mat-stepper #stepper class="stepper">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Specify ride</ng-template>
+        <h2>Vehicle type</h2>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <input type="text" name="departure" formControlName="departure" placeholder="Departure"/>
+            </div>
+            <div class="row">
+              <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
+            </div>
+            <!--
+            <div class="row">
+              <button mat-button type="button" class="btn redBtn text-uppercase wide-btn" (click)="showPines()">Click</button>
+            </div>
+          -->
+            <div class="row">
+              <input type="datetime-local" name="date" formControlName="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{9}Z"/>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <mat-radio-group formControlName="vehicleType">
+                <mat-radio-button [value]="0">
+                  <img src="assets/car.png" class="imgRadio" alt="Option 1">
+                </mat-radio-button>
+                <mat-radio-button [value]="1">
+                  <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
+                </mat-radio-button>
+                <mat-radio-button [value]="2">
+                  <img src="assets/van.png" class="imgRadio" alt="Option 3">
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="row">
+              <mat-slide-toggle class="mySlide" formControlName="petTransport">
+                <span>
+                  Pet transport
+                </span>
+              </mat-slide-toggle>
+              <mat-slide-toggle class="mySlide" formControlName="babyTransport">
+                <span>
+                  Baby transport
+                </span>
+              </mat-slide-toggle>  
+            </div>
+          </div>
+        </div>
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="firstClick()"
+          >Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="parent" class="was-validated">
+        <ng-template matStepLabel>Add passengers</ng-template>
+        <div formArrayName="passenger">
+          <div
+            *ngFor="let passengerGroup of passenger?.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <h3 class="whiteText">passenger {{i + 1}}</h3>
+            <input id="email" class="form-control" type="email" formControlName="email" placeholder="email"/>
+          </div>
+        </div>
+      
+        <button class="add-btn" (click)="addPassenger()">+</button>
+        <div class="parent">
+          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="secondClick()">Next</button>
+          <button mat-button class="redBtn" matStepperNext>Skip</button>
+        </div>
+      </form>
+    </mat-step>
+ 
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="parent">
+        <div class="submitPart">
+          <h3 class="h3Beige">You are done now</h3>
+          <button mat-button class="redBtn" (click)="stepper.reset()">Reset</button>
+          <button mat-button class="greenBtn" (click)="submit()">Submit</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

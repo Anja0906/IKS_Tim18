@@ -5,10 +5,13 @@ import {Observable} from "rxjs";
 import {Ride} from "../../model/Ride";
 import {Reason} from "../../model/Reason";
 import {Panic} from "../../model/Panic";
+import { RideRet } from 'src/app/panics/panics.component';
+import { RideRec } from 'src/app/order-ride/order-ride.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class RideService {
 
   private apiServerUrl = environment.apiHost;
@@ -38,5 +41,12 @@ export class RideService {
   }
   public rejectRide(id: number,reason:Reason): Observable<any> {
     return this.http.put<Ride>(environment.apiHost + `api/driver/ride/${id}/cancel`,reason);
+  }
+  public createRide(rideRec: any): Observable<any> {
+    return this.http.post<any>(environment.apiHost + 'api/ride', rideRec);
+  }
+
+  public getActiveRideForPassenger(passengerId: number): Observable<Ride> {
+    return this.http.get<Ride>(`${this.apiServerUrl}api/ride/passenger/${passengerId}/active`);
   }
 }

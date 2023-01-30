@@ -52,6 +52,10 @@ import { RequestsComponent } from './requests/requests.component';
 import { UsersRideHistoryComponent } from './users-ride-history/users-ride-history.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { PassengerPageComponent } from './passenger-page/passenger-page.component';
+import { PassengerNavigationComponent } from './passenger-navigation/passenger-navigation.component';
+import { OrderRideComponent } from './order-ride/order-ride.component';
+import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-timer.component';
 
 
 @NgModule({
@@ -87,7 +91,11 @@ import {MatNativeDateModule} from "@angular/material/core";
     RejectionComponent,
     PanicDriveComponent,
     RequestsComponent,
-    UsersRideHistoryComponent
+    UsersRideHistoryComponent,
+    PassengerPageComponent,
+    PassengerNavigationComponent,
+    OrderRideComponent,
+    CurrentRideTimerComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [

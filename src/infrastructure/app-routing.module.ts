@@ -68,10 +68,10 @@ const routes: Routes = [
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'stats/:id', component: ReportsComponent},
       { path:'order-ride', component: OrderRideComponent},
+      { path:'timer/:id', component: CurrentRideTimerComponent},
     ],
   },
   { path:'', component: AppMapComponent},
-  { path:'timer/:id', component: CurrentRideTimerComponent},
 
 
 ];

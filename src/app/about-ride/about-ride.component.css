@@ -62,8 +62,8 @@ h2{
   border-radius: 5px;
   width: 45%;
   justify-items: center;
-
 }
+
 .rejcet{
   box-sizing: border-box;
   font-weight: bolder;
@@ -95,5 +95,33 @@ p{
   font-weight: bold;
   border-style: none;
   padding: 0.6rem;
+
+}
+
+.pay{
+  box-sizing: border-box;
+  font-weight: bolder;
+  font-family: "Carter One";
+  margin: auto;
+  margin-bottom: 0.5rem;
+  background: rgb(63, 171, 122);
+  border: 1px solid #485162;
+  border-radius: 5px;
+  width: 45%;
+  justify-items: center;
+
+}
+
+.rate{
+  box-sizing: border-box;
+  font-weight: bolder;
+  font-family: "Carter One";
+  margin: auto;
+  margin-bottom: 0.5rem;
+  background: #BFDC36;
+  border: 1px solid #485162;
+  border-radius: 5px;
+  width: 45%;
+  justify-items: center;
 
 }

@@ -1,15 +1,84 @@
-.idk {
+.timer {
     color: white;
     font-family: Arial, sans-serif;
     font-size: 15em;
     letter-spacing: -1px;
     text-align: center;
+    display: grid;
+    height: 80%;
 }
 
-.idk2 {
-    display: flex;
+.back {
+    display: block;
     justify-content: center;
     align-items: center;
-    top: 20%;
     position: relative;
 }
+
+h1{
+    font-family: "Carter One";
+    font-style: normal;
+    text-align: center;
+    color: rgb(215, 203, 203);
+    font-size: 3em;
+  }
+
+  
+  button:disabled,
+  button[disabled] {
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-family: "Carter One";
+    margin: auto;
+    margin-bottom: 0.5rem;
+    background: #949a74;
+    border: 1px solid #485162;
+    border-radius: 5px;
+    width: 45%;
+    justify-items: center;
+    color: rgb(255, 255, 255);
+  }
+
+  .greenBtn {
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-family: "Carter One";
+    margin: auto;
+    margin-bottom: 0.5rem;
+    background: #BFDC36;
+    border: 1px solid #485162;
+    border-radius: 5px;
+    width: 45%;
+    justify-items: center;
+  }
+  
+  .redBtn {
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-family: "Carter One";
+    margin: auto;
+    margin-bottom: 0.5rem;
+    background: #DC7C36;
+    border: 1px solid #485162;
+    border-radius: 5px;
+    width: 45%;
+    justify-items: center;
+  }
+
+
+  .img1{
+    border-radius: 0.7rem;
+    place-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    width: 100%;
+  }
+
+  .buttondiv {
+    display: inline-flex;
+    place-items: center;
+    align-content: center;
+    justify-items: center;
+    width: 100%;
+  }
+

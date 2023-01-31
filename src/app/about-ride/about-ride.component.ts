@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {ControlContainer, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Ride} from "../model/Ride";
 import {RideService} from "../service/ride/ride.service";
@@ -9,6 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {PanicDriveComponent} from "./panic/panic-drive/panic-drive.component";
 import {Reason} from "../model/Reason";
 import {StorageService} from "../service/storage/storage.service";
+import differenceInSeconds from 'date-fns/differenceInSeconds'
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -36,6 +37,10 @@ export class AboutRideComponent implements OnInit{
   form!: IRideFormGroup
   result: any;
   reason!: Reason ;
+  now = new Date();
+  isPassenger: boolean = false;
+  rideFinished: boolean = true;
+
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,
               private dialog: MatDialog, private storageService:StorageService ) { }
@@ -56,11 +61,45 @@ export class AboutRideComponent implements OnInit{
         this.rideService.getActiveRide(this.storageService.getUser().id).subscribe((res) => {
           this.ride = res;
           this.form.patchValue(res);
+          this.isPassenger = false;
         });
       } else {
         this.rideService.getActiveRideForPassenger(this.storageService.getUser().id).subscribe((res) => {
           this.ride = res;
+          this.isPassenger = true;
+
+          console.log(this.ride);
+        let strStartTime = this.ride.startTime;
+        let startTime = new Date();
+        let diff = -1;
+
+        const [dateValues, timeValues] = strStartTime.split(' ');
+        console.log(dateValues); 
+        console.log(timeValues); 
+
+        const [year, month, day] = dateValues.split('-');
+        const [important, _] = timeValues.split('.');
+
+        const [hours, minutes, seconds] = important.split(':');
+
+        startTime = new Date(+year, +month - 1, +day, +hours, +minutes, +seconds);
+        console.log(startTime);
+        console.log(this.now);
+        diff = differenceInSeconds(startTime, this.now);
+
+        if (diff > 0) {
+          this.router.navigate(['passenger/timer/' + this.ride.id]);
+        } else {
+          this.rideService.getRide(this.ride.id).subscribe((res) => {
+              if (res.status == "ACCEPTED") {
+                this.rideService.startRide(this.ride.id).subscribe((res) => {
+                  this.ride = res;
+                  console.log(this.ride);
+                });
+              }
+          });
           this.form.patchValue(res);
+        }
         });
       }
       this.form.patchValue(this.ride);
@@ -89,5 +128,11 @@ export class AboutRideComponent implements OnInit{
       this.rideService.activatePanic(this.ride.id,this.reason)
     });
   }
+
+
+  rateRide() {
+    this.router.navigate(['passenger']);
+  }
+
 }
 

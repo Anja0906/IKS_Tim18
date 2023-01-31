@@ -25,7 +25,7 @@ constructor(){
 }
 */
 import { Component, Input,  OnInit } from '@angular/core';
-import { map, timer, takeWhile } from 'rxjs';
+import { map, timer, takeWhile, finalize } from 'rxjs';
 import millisecondsToSeconds from 'date-fns/millisecondsToSeconds'
 import differenceInSeconds from 'date-fns/differenceInSeconds'
 import {ActivatedRoute, Router} from "@angular/router";
@@ -49,9 +49,11 @@ export class CurrentRideTimerComponent {
   timeRemaining!: any;
   smallTime = false;
   bigTime = true;
+  isStartBtnDisabled: boolean= true;
+  isWithdrawBtnDisabled: boolean = false;
   
 
-  constructor(private route: ActivatedRoute, private rideService: RideService, private storageService: StorageService) {}
+  constructor(private route: ActivatedRoute, private rideService: RideService, private storageService: StorageService, private router: Router) {}
 
   ngOnInit() {
     let startTime = new Date();
@@ -100,13 +102,37 @@ export class CurrentRideTimerComponent {
       (this.seconds - n) * 1000 
       : 
       (this.seconds - n - 3600) * 1000),
-    takeWhile(n => n >= 0),
+    takeWhile(n => n >= 0), 
+    finalize(() => {
+      this.isStartBtnDisabled = false;
+      this.isWithdrawBtnDisabled = true;
+    })
   );
-  
+
   }
 
   calculate() {
     console.log(this.diff1);
     return this.diff1;
+  }
+
+  start() {
+    // dodaj start endpoint
+    this.rideService.startRide(this.id).subscribe((res) => {
+      this.ride = res;
+      console.log(this.ride);
+    });
+    this.router.navigate(['passenger/about-ride']);
+  }
+
+  withdraw() {
+    console.log('hi withdraw');
+    // dodaj withdraw endpoint
+    this.rideService.withdrawRide(this.id).subscribe((res) => {
+      this.ride = res;
+      console.log(this.ride);
+    });
+    this.router.navigate(['passenger']);
+    alert("Ride has been withdrawn")
   }
 }

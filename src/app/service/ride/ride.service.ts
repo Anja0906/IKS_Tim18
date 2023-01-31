@@ -49,4 +49,12 @@ export class RideService {
   public getActiveRideForPassenger(passengerId: number): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/passenger/${passengerId}/active`);
   }
+
+  public withdrawRide(id: number): Observable<any> {
+    return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/withdraw`, null);
+  }
+
+  public startRide(id: number): Observable<any> {
+    return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/start`, null);
+  }
 }

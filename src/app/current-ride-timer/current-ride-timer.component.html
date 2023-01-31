@@ -4,12 +4,19 @@
 </div>
 -->
 
-<div class="idk2">
-    <p class="idk" *ngIf="bigTime"> 
-        {{ timeRemaining | async | date:'hh:mm:ss' }}
-    </p>
+<div class="back">
 
-    <p class="idk" *ngIf="smallTime"> 
+    <h1>Your ride is in: </h1>
+
+    <div class="timer" *ngIf="bigTime"> 
+        {{ timeRemaining | async | date:'hh:mm:ss' }}
+    </div>
+
+    <div class="timer" *ngIf="smallTime"> 
         {{ timeRemaining | async | date:'mm:ss' }}
-    </p>
+    </div>
+</div>
+<div class="buttondiv img1">
+    <button class="greenBtn btn" [disabled]="isStartBtnDisabled" (click)="start()">START RIDE</button>
+    <button class="redBtn btn" [disabled]="isWithdrawBtnDisabled" (click)="withdraw()">WITHDRAW RIDE</button>
 </div>

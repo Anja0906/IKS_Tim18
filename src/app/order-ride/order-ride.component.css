@@ -184,6 +184,17 @@ input{
     margin: 1rem;
   }
 
+  .redBtn2 {
+    background: #DC7C36;
+    backdrop-filter: blur(2px);
+    color: #485162;
+    position: center;
+    border-radius: 5px;
+    width: 15rem;
+    margin: 1rem;
+    width: 90%;
+  }
+
   .greyBtn {
     background: #787977;
     backdrop-filter: blur(2px);

@@ -110,9 +110,18 @@ this.secondFormGroup = new FormGroup({
     });
   }
 
+  locations() {
+    try {
+      	this.initLocations();
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+
   firstClick() {
     console.log("click");
-    this.initLocations();
+    //this.initLocations();
    // console.log(this.firstFormGroup.value.departure);
     //console.log(this.firstFormGroup.value.destination);
     if (this.currentDate != this.firstFormGroup.value.date) {
@@ -141,7 +150,7 @@ this.secondFormGroup = new FormGroup({
     }
     if (this.firstFormGroup.valid) {
       await this.initLocations();
-      this.route(this.dep, this.dest);
+      this.route(this.dep,this.dest);
     }
   }
 
@@ -152,6 +161,7 @@ this.secondFormGroup = new FormGroup({
     const dest1 = await this.search(this.firstFormGroup.value.destination);
     this.dest = new LatLng(Number(dest1[0].lat), Number(dest1[0].lon));
     console.log(this.dest);
+    this.route(this.dep, this.dest);
   }
 
 
@@ -195,6 +205,7 @@ this.secondFormGroup = new FormGroup({
         },
         error: (error) => {
           reject(error);
+          alert(error)
         },
       });
     });
@@ -369,6 +380,7 @@ this.secondFormGroup = new FormGroup({
     });
     console.log(comething);
     this.map.remove();
+    alert("Ride successfully created!");
 
     /*
     if(this.firstFormGroup.valid){

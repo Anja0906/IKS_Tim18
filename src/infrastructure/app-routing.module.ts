@@ -22,6 +22,7 @@ import {UsersRideHistoryComponent} from "../app/users-ride-history/users-ride-hi
 import { PassengerPageComponent } from 'src/app/passenger-page/passenger-page.component';
 import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
+import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
 
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
       { path: 'requests', component: RequestsComponent},
       { path:'users-history',component: UsersRideHistoryComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
+      { path:'',component: PanicNotificationsComponent},
     ],
   },
   { path: 'passenger',

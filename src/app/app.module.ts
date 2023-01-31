@@ -50,12 +50,14 @@ import { RejectionComponent } from './about-ride/reject/rejection/rejection.comp
 import { PanicDriveComponent } from './about-ride/panic/panic-drive/panic-drive.component';
 import { RequestsComponent } from './requests/requests.component';
 import { UsersRideHistoryComponent } from './users-ride-history/users-ride-history.component';
+import { PanicNotificationsComponent } from './panics/panic-notifications/panic-notifications.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { PassengerPageComponent } from './passenger-page/passenger-page.component';
 import { PassengerNavigationComponent } from './passenger-navigation/passenger-navigation.component';
 import { OrderRideComponent } from './order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-timer.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -95,10 +97,13 @@ import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-tim
     PassengerPageComponent,
     PassengerNavigationComponent,
     OrderRideComponent,
-    CurrentRideTimerComponent
+    CurrentRideTimerComponent,
+    PanicNotificationsComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [
+        FormsModule,
+        MatSnackBarModule,
         MatDialogModule,
         BrowserModule,
         ReactiveFormsModule,

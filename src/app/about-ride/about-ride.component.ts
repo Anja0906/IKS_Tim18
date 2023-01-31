@@ -10,6 +10,9 @@ import {PanicDriveComponent} from "./panic/panic-drive/panic-drive.component";
 import {Reason} from "../model/Reason";
 import {StorageService} from "../service/storage/storage.service";
 import differenceInSeconds from 'date-fns/differenceInSeconds'
+import {co} from "chart.js/dist/chunks/helpers.core";
+import { createReason } from 'src/app/model/Reason';
+import {DriverService} from "../service/driver/driver.service";
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -43,7 +46,7 @@ export class AboutRideComponent implements OnInit{
 
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,
-              private dialog: MatDialog, private storageService:StorageService ) { }
+              private dialog: MatDialog, private storageService:StorageService,private driverService:DriverService ) { }
 
   ngOnInit(): void {
       this.form = this.formBuilder.group({
@@ -102,30 +105,43 @@ export class AboutRideComponent implements OnInit{
         }
         });
       }
+      this.driverService.driverCheck(this.storageService.getUser().id).subscribe((valid) => {
+        if(valid === -1){
+          confirm("You worked more than 8 hours");
+          this.router.navigate(['']);
+          this.storageService.clean();
+        }
+      });
+      this.rideService.getActiveRide(this.storageService.getUser().id).subscribe((res) => {
+        this.ride = res;
+        this.form.patchValue(res);
+      });
       this.form.patchValue(this.ride);
   }
 
-  openDialogRejection(id: number) {
+  openDialogRejection() {
     const dialogRef = this.dialog.open(RejectionComponent, {
       data: this.reason,
       panelClass: 'my-dialog-container-class',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.reason = result;
-      this.rideService.rejectRide(this.ride.id,this.reason);
+      this.reason = createReason(result);
+      this.rideService.rejectRide(this.ride.id,this.reason).subscribe( {
+      });
+      this.router.navigate(['driver']);
     });
-
   }
 
-  openDialogPanic(id: number) {
+
+  openDialogPanic() {
     const dialogRef = this.dialog.open(PanicDriveComponent, {
       data: this.reason,
       panelClass: 'my-dialog-container-class',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.reason = result;
-      console.log(this.reason);
-      this.rideService.activatePanic(this.ride.id,this.reason)
+      this.reason = createReason(result);
+      this.rideService.activatePanic(this.ride.id,this.reason).subscribe( {
+      });
     });
   }
 

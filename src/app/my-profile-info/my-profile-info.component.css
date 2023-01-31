@@ -59,6 +59,17 @@ h2{
   padding: 1rem;
   margin-right: 1rem;
 }
+
+.passwordChangeBtn {
+  background: #BFDC36;
+  backdrop-filter: blur(2px);
+  color: #485162;
+  position: center;
+  border-radius: 5px;
+  border-style: none;
+  width: 20rem;
+  margin: 1rem;
+}
 img{
   margin: 1rem;
 }
@@ -71,6 +82,28 @@ img{
 .position1{
   display: grid;
   place-items: end;
+}
+
+.myInput{
+  border-style: none;
+  width: 20rem;
+}
+
+.myDiv{
+  display: flex;
+  alignment: left;
+  justify-content: center;
+}
+
+label{
+  text-align: right;
+  font-size: larger;
+  color: #EBE8D7;
+  padding-top: 1.1rem;
+  width: 20rem;
+}
+col{
+  width: 10rem;
 }
 
 

@@ -59,10 +59,11 @@
         </div>
       </div>
       <div class="buttondiv">
-        <button type="" class="btn panic" (click)="openDialogPanic(ride.id)" [disabled]="rideFinished" *ngIf="isPassenger && !rideFinished">PANIC!</button>
-        <button type="" class="btn rejcet"(click)="openDialogRejection(ride.id)" *ngIf="!isPassenger">REJECT</button>
-        <button type="" class="btn pay"(click)="rateRide()" *ngIf="isPassenger && rideFinished">PAY</button>
-        <button type="" class="btn rate"(click)="rateRide()" *ngIf="isPassenger && rideFinished">RATE RIDE</button>
+        <button type="" class="btn panic" (click)="openDialogPanic()" *ngIf="!isPassenger">PANIC!</button>
+        <button type="" class="btn panic" (click)="openDialogPanic()" [disabled]="rideFinished" *ngIf="isPassenger && !rideFinished">PANIC!</button>
+        <button type="" class="btn rejcet" (click)="openDialogRejection()" *ngIf="!isPassenger">REJECT</button>
+        <button type="" class="btn pay" (click)="rateRide()" *ngIf="isPassenger && rideFinished">PAY</button>
+        <button type="" class="btn rate" (click)="rateRide()" *ngIf="isPassenger && rideFinished">RATE RIDE</button>
       </div>
     </form>
   </div>

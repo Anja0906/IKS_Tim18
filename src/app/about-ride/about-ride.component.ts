@@ -42,7 +42,8 @@ export class AboutRideComponent implements OnInit{
   reason!: Reason ;
   now = new Date();
   isPassenger: boolean = false;
-  rideFinished: boolean = true;
+  rideFinished: boolean = false;
+
 
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,

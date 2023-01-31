@@ -111,11 +111,14 @@ this.secondFormGroup = new FormGroup({
   }
 
   locations() {
+    /*
     try {
       	this.initLocations();
     } catch (err) {
       alert(err)
     }
+    */
+    this.initLocations();
   }
 
 
@@ -205,7 +208,6 @@ this.secondFormGroup = new FormGroup({
         },
         error: (error) => {
           reject(error);
-          alert(error)
         },
       });
     });
@@ -379,8 +381,9 @@ this.secondFormGroup = new FormGroup({
       },
     });
     console.log(comething);
-    this.map.remove();
+    //this.map.remove();
     alert("Ride successfully created!");
+    this.router.navigate(['/passenger']);
 
     /*
     if(this.firstFormGroup.valid){

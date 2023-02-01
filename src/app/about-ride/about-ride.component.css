@@ -107,21 +107,33 @@ p{
   background: rgb(63, 171, 122);
   border: 1px solid #485162;
   border-radius: 5px;
-  width: 45%;
+  width: 30%;
   justify-items: center;
 
 }
 
-.rate{
+.rateDriver{
   box-sizing: border-box;
   font-weight: bolder;
   font-family: "Carter One";
   margin: auto;
   margin-bottom: 0.5rem;
-  background: #BFDC36;
+  background: #ea2c2c;
   border: 1px solid #485162;
   border-radius: 5px;
-  width: 45%;
+  width: 30%;
   justify-items: center;
+}
 
+.rateVehicle{
+  box-sizing: border-box;
+  font-weight: bolder;
+  font-family: "Carter One";
+  margin: auto;
+  margin-bottom: 0.5rem;
+  background: #dc3697;
+  border: 1px solid #485162;
+  border-radius: 5px;
+  width: 30%;
+  justify-items: center;
 }

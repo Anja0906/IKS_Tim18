@@ -7,12 +7,15 @@ import {NoteComponent} from "../blocked-users/note/note.component";
 import {RejectionComponent} from "./reject/rejection/rejection.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PanicDriveComponent} from "./panic/panic-drive/panic-drive.component";
-import {Reason} from "../model/Reason";
+import { createReason, Reason } from 'src/app/model/Reason';
 import {StorageService} from "../service/storage/storage.service";
 import differenceInSeconds from 'date-fns/differenceInSeconds'
 import {co} from "chart.js/dist/chunks/helpers.core";
-import { createReason } from 'src/app/model/Reason';
 import {DriverService} from "../service/driver/driver.service";
+import { RateDriverComponent } from '../rate-ride/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from '../rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { createReview, Review } from '../model/Review';
+import { ReviewService } from '../service/review/review.service';
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -42,12 +45,14 @@ export class AboutRideComponent implements OnInit{
   reason!: Reason ;
   now = new Date();
   isPassenger: boolean = false;
-  rideFinished: boolean = false;
+  rideFinished: boolean = true;
+  review!: Review;
 
 
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,
-              private dialog: MatDialog, private storageService:StorageService,private driverService:DriverService ) { }
+              private dialog: MatDialog, private storageService:StorageService,private driverService:DriverService,
+              private reviewService: ReviewService ) { }
 
   ngOnInit(): void {
       this.form = this.formBuilder.group({
@@ -147,8 +152,44 @@ export class AboutRideComponent implements OnInit{
   }
 
 
-  rateRide() {
-    this.router.navigate(['passenger']);
+  rating!: number;
+  comment!: string;
+  rateDriver() {
+    let obj: Review;
+    const dialogRef = this.dialog.open(RateDriverComponent, {
+      data: {rating: this.rating, comment: this.comment},
+      panelClass: 'my-dialog-container-class',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      obj = {
+        "rating": parseInt(result.rating),
+        "comment": result.comment
+      }
+      this.review = createReview(result.rating, result.comment);
+      const rep = this.reviewService.addDriverReview(this.ride.id, obj);
+      console.log(rep);
+    });
+  }
+
+  rateVehicle() {
+    let obj: Review;
+    const dialogRef = this.dialog.open(RateVehicleComponent, {
+      data: {rating: this.rating, comment: this.comment},
+      panelClass: 'my-dialog-container-class',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      obj = {
+        "rating": parseInt(result.rating),
+        "comment": result.comment
+      }
+      this.review = createReview(result.rating, result.comment);
+      const rep = this.reviewService.addVehicleReview(this.ride.id, obj);
+      console.log(rep);
+    });
+  }
+
+  pay() {
+    alert("Ride paid!");
   }
 
 }

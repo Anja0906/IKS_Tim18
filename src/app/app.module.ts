@@ -58,6 +58,9 @@ import { PassengerNavigationComponent } from './passenger-navigation/passenger-n
 import { OrderRideComponent } from './order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-timer.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSliderModule} from "@angular/material/slider";
+import { RateDriverComponent } from './rate-ride/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
 
 
 @NgModule({
@@ -98,7 +101,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     PassengerNavigationComponent,
     OrderRideComponent,
     CurrentRideTimerComponent,
-    PanicNotificationsComponent
+    PanicNotificationsComponent,
+    RateDriverComponent,
+    RateVehicleComponent,
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [
@@ -124,6 +129,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         Ng2SearchPipeModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatSliderModule,
         // DriverNavbarComponent,
 
     ],

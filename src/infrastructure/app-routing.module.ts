@@ -23,6 +23,8 @@ import { PassengerPageComponent } from 'src/app/passenger-page/passenger-page.co
 import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
 import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
+import { RateDriverComponent } from 'src/app/rate-ride/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from 'src/app/rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
 
 
 const routes: Routes = [
@@ -71,6 +73,8 @@ const routes: Routes = [
       { path:'stats/:id', component: ReportsComponent},
       { path:'order-ride', component: OrderRideComponent},
       { path:'timer/:id', component: CurrentRideTimerComponent},
+      { path: 'rate-driver', component: RateDriverComponent},
+      { path: 'rate-vehicle', component: RateVehicleComponent}
     ],
   },
   { path:'', component: AppMapComponent},

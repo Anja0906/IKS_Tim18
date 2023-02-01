@@ -58,6 +58,7 @@ import { PassengerNavigationComponent } from './passenger-navigation/passenger-n
 import { OrderRideComponent } from './order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-timer.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { RideNotificationComponent } from './pending-rides/ride-notification/ride-notification/ride-notification.component';
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     PassengerNavigationComponent,
     OrderRideComponent,
     CurrentRideTimerComponent,
-    PanicNotificationsComponent
+    PanicNotificationsComponent,
+    RideNotificationComponent
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [

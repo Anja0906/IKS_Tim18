@@ -23,6 +23,9 @@ import { PassengerPageComponent } from 'src/app/passenger-page/passenger-page.co
 import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
 import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
+import {
+  RideNotificationComponent
+} from "../app/pending-rides/ride-notification/ride-notification/ride-notification.component";
 
 
 const routes: Routes = [
@@ -35,12 +38,13 @@ const routes: Routes = [
   { path: 'driver',
     component: DriverPageComponent,
     children:[
-      { path:'', component: AboutUsComponent},
+      // { path:'', component: AboutUsComponent},
       { path:'about-ride', component: DriverActiveRideComponent},
       { path:'pending-rides', component: PendingRidesComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'stats/:id', component: ReportsComponent},
+      { path:'',component: RideNotificationComponent},
     ],
   },
   { path:'admin',

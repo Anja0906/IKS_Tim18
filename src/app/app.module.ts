@@ -60,8 +60,10 @@ import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-tim
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { RideNotificationComponent } from './pending-rides/ride-notification/ride-notification/ride-notification.component';
 import {MatSliderModule} from "@angular/material/slider";
-import { RateDriverComponent } from './rate-ride/rate-driver/rate-driver/rate-driver.component';
-import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { RateDriverComponent } from './reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from './reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { ReviewsComponent } from './reviews/reviews/reviews.component';
+import { CommentDialogComponent } from './reviews/reviews/comment-dialog/comment-dialog/comment-dialog.component';
 
 
 @NgModule({
@@ -104,6 +106,8 @@ import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate
     CurrentRideTimerComponent,
     PanicNotificationsComponent,
     RideNotificationComponent,
+    ReviewsComponent,
+    CommentDialogComponent,
     RateDriverComponent,
     RateVehicleComponent,
   ],

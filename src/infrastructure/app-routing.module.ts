@@ -24,8 +24,9 @@ import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
 import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
 import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
 import {RideNotificationComponent} from "../app/pending-rides/ride-notification/ride-notification/ride-notification.component";
-import { RateDriverComponent } from 'src/app/rate-ride/rate-driver/rate-driver/rate-driver.component';
-import { RateVehicleComponent } from 'src/app/rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { ReviewsComponent } from 'src/app/reviews/reviews/reviews.component';
+import { RateDriverComponent } from 'src/app/reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from 'src/app/reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
 
 
 
@@ -63,6 +64,7 @@ const routes: Routes = [
       { path:'users-history',component: UsersRideHistoryComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'',component: PanicNotificationsComponent},
+      { path:'reviews/:id',component: ReviewsComponent},
     ],
   },
   { path: 'passenger',
@@ -77,7 +79,8 @@ const routes: Routes = [
       { path:'order-ride', component: OrderRideComponent},
       { path:'timer/:id', component: CurrentRideTimerComponent},
       { path: 'rate-driver', component: RateDriverComponent},
-      { path: 'rate-vehicle', component: RateVehicleComponent}
+      { path: 'rate-vehicle', component: RateVehicleComponent},
+      { path:'reviews/:id',component: ReviewsComponent},
     ],
   },
   { path:'', component: AppMapComponent},

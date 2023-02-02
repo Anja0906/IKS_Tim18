@@ -7,6 +7,7 @@ import {StorageService} from "../service/storage/storage.service";
 import {MatTableDataSource} from "@angular/material/table";
 import { MatSort } from '@angular/material/sort';
 import {DriverService} from "../service/driver/driver.service";
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-ride-history',
@@ -27,11 +28,13 @@ export class RideHistoryComponent implements OnInit{
 
 
   constructor(private rideService: RideService, private router: Router, private storageService:StorageService,
-              private route: ActivatedRoute,private driverService:DriverService) {}
+              private route: ActivatedRoute,private driverService:DriverService, private dialog: MatDialog) {}
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      if(this.storageService.getUser().roles[1]==="ROLE_ADMIN") {
+      if(this.storageService.getUser().roles[1]==="ROLE_ADMIN" || this.storageService.getUser().roles.includes("ROLE_PASSENGER")) {
+        let columns: string[] = ['id', 'startTime', 'endTime', 'totalCost', 'estimatedTime', 'reviews'];
+        this.displayedColumns = columns;
         this.rideService.getRidesForUser(this.id)
           .subscribe(data => {
               this.rides = data['results'];
@@ -69,6 +72,15 @@ export class RideHistoryComponent implements OnInit{
       }
     });
 
+  }
+
+  viewReviews(obj: any) {
+    //console.log(obj.id);
+    if (this.storageService.getUser().roles.includes("ROLE_ADMIN")) {
+      this.router.navigate(['admin/reviews', obj.id]);
+    } else {
+     this.router.navigate(['passenger/reviews', obj.id]);
+    }
   }
 
 

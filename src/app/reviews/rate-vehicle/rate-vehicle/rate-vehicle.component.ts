@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Review} from "../../../model/Review";
+import {ReviewSmall} from "../../../model/Review";
 
 @Component({
   selector: 'app-rate-vehicle',
@@ -22,7 +22,7 @@ export class RateVehicleComponent {
   @ViewChild('vehicleComment') vehicleInput!: ElementRef;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Review, public matDialogRef: MatDialogRef<RateVehicleComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ReviewSmall, public matDialogRef: MatDialogRef<RateVehicleComponent>) {
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class RateVehicleComponent {
   }
 
   onCloseDialog() {
-    this.ngOnDestroy();
+    this.matDialogRef.close();
   }
 
   updateSettingVehicle(event: any) {

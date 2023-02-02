@@ -284,68 +284,6 @@ this.secondFormGroup = new FormGroup({
   }
 
 
-  //tabela sa dokumentima
-  displayedColumns: string[] = ['id', 'name', 'documentImage'];
-  dataSource = new MatTableDataSource<DriverDocument>(ELEMENT_DATA);
-
-
-  //zahtev za dodavanje novog vozaca
-  async addDriver() : Promise<Driver> {
-    return new Promise((resolve, reject) => {
-      this.driverService.add(this.firstFormGroup.value).subscribe({
-        next: (result) => {
-          console.log(result);
-          resolve(result);
-        },
-        error: (error) => {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  //zahtev za dodavanje novog vozila
-  async addVehicle() : Promise<Vehicle> {
-    return new Promise((resolve, reject) => {
-      this.vehicleService.add(this.secondFormGroup.value, this.driver.id).subscribe({
-        next: (result) => {
-          console.log(result);
-          resolve(result);
-        },
-        error: (error) => {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  //zahtev za dodavanje novog dokumenta
-  async addSingleDocument(doc: DriverDocument) : Promise<DriverDocument> {
-    return new Promise((resolve, reject) => {
-      this.documentService.add(doc, this.driver.id).subscribe({
-        next: (result) => {
-          console.log(result);
-          resolve(result);
-        },
-        error: (error) => {
-          reject(error);
-        },
-      });
-    });
-  }
-
-  //zahtevi za dodavanje svih novih dokumenata
-  addDocument(){
-    let model = {
-      id: ELEMENT_DATA.length + 1,
-      name: this.thirdFormGroup.controls.name.value,
-      documentImage: this.thirdFormGroup.controls.documentImage.value,
-      driverId: this.driver.id,
-    };
-    this.dataSource.data.push(<DriverDocument>model);  //add the new model object to the dataSource
-    this.dataSource._updateChangeSubscription();
-  }
-
   //potvrda svih formi
   async submit() {
     let locationSet = this.getLocations();
@@ -372,18 +310,22 @@ this.secondFormGroup = new FormGroup({
     console.log("obj");
     console.log(obj);
 
-    const comething = this.rideService.createRide(obj).subscribe({
+    const newRide = this.rideService.createRide(obj).subscribe({
       next: (result) => {
         console.log(result);
+        alert("Ride successfully created!");
+        this.router.navigate(['/passenger']);
       },
       error: (error) => {
-        console.log(error);
+        if (error.error.message==undefined){
+          alert(error.error);
+        } else {
+          alert(error.error.message);
+        }
       },
     });
-    console.log(comething);
+    console.log(newRide);
     //this.map.remove();
-    alert("Ride successfully created!");
-    this.router.navigate(['/passenger']);
 
     /*
     if(this.firstFormGroup.valid){
@@ -468,7 +410,6 @@ this.secondFormGroup = new FormGroup({
   }
 }
 
-const ELEMENT_DATA: DriverDocument[] = [];
 
 export interface RideRec {
   passengers: PassengerEmail[];

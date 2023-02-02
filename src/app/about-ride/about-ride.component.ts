@@ -12,10 +12,10 @@ import {StorageService} from "../service/storage/storage.service";
 import differenceInSeconds from 'date-fns/differenceInSeconds'
 import {co} from "chart.js/dist/chunks/helpers.core";
 import {DriverService} from "../service/driver/driver.service";
-import { RateDriverComponent } from '../rate-ride/rate-driver/rate-driver/rate-driver.component';
-import { RateVehicleComponent } from '../rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
-import { createReview, Review } from '../model/Review';
+import { createReview, ReviewSmall } from '../model/Review';
 import { ReviewService } from '../service/review/review.service';
+import { RateDriverComponent } from '../reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from '../reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -46,7 +46,7 @@ export class AboutRideComponent implements OnInit{
   now = new Date();
   isPassenger: boolean = false;
   rideFinished: boolean = true;
-  review!: Review;
+  review!: ReviewSmall;
 
 
 
@@ -155,36 +155,52 @@ export class AboutRideComponent implements OnInit{
   rating!: number;
   comment!: string;
   rateDriver() {
-    let obj: Review;
+    let obj: ReviewSmall;
     const dialogRef = this.dialog.open(RateDriverComponent, {
       data: {rating: this.rating, comment: this.comment},
       panelClass: 'my-dialog-container-class',
     });
     dialogRef.afterClosed().subscribe(result => {
-      obj = {
-        "rating": parseInt(result.rating),
-        "comment": result.comment
+      if (!Number.isNaN(result.rating) && result.comment != undefined ) {
+        obj = {
+          "rating": parseInt(result.rating),
+          "comment": result.comment
+        }
+        this.review = createReview(result.rating, result.comment);
+        const rep = this.reviewService.addDriverReview(this.ride.id, obj)
+        .subscribe(data => {
+          console.log(data);
+      }, error => {
+        console.log(error);
       }
-      this.review = createReview(result.rating, result.comment);
-      const rep = this.reviewService.addDriverReview(this.ride.id, obj);
-      console.log(rep);
+      );
+        console.log(rep);
+      }
     });
   }
 
   rateVehicle() {
-    let obj: Review;
+    let obj: ReviewSmall;
     const dialogRef = this.dialog.open(RateVehicleComponent, {
       data: {rating: this.rating, comment: this.comment},
       panelClass: 'my-dialog-container-class',
     });
     dialogRef.afterClosed().subscribe(result => {
-      obj = {
-        "rating": parseInt(result.rating),
-        "comment": result.comment
+      if (!Number.isNaN(result.rating) && result.comment != undefined ) {
+        obj = {
+          "rating": parseInt(result.rating),
+          "comment": result.comment
+        }
+        this.review = createReview(result.rating, result.comment);
+        const rep = this.reviewService.addVehicleReview(this.ride.id, obj)
+        .subscribe(data => {
+          console.log(data);
+      }, error => {
+        console.log(error);
       }
-      this.review = createReview(result.rating, result.comment);
-      const rep = this.reviewService.addVehicleReview(this.ride.id, obj);
-      console.log(rep);
+      );
+        console.log(rep);
+    }
     });
   }
 

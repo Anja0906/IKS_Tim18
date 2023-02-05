@@ -45,7 +45,6 @@ const routes: Routes = [
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'stats/:id', component: ReportsComponent},
-      { path:'',component: RideNotificationComponent},
     ],
   },
   { path:'admin',

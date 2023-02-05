@@ -17,7 +17,6 @@ export class PanicNotificationsComponent {
   private serverUrl = environment.apiHost + 'socket'
   private stompClient: any;
   form!: FormGroup;
-  userForm!: FormGroup;
   panic!: PanicSocket;
 
   isLoaded: boolean = false;

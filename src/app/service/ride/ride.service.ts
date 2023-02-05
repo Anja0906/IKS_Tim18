@@ -42,6 +42,9 @@ export class RideService {
   public rejectRide(id: number,reason:Reason): Observable<any> {
     return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/cancel`,reason);
   }
+  public acceptRide(id: number): Observable<any> {
+    return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/accept`,null);
+  }
   public createRide(rideRec: any): Observable<any> {
     return this.http.post<any>(environment.apiHost + 'api/ride', rideRec);
   }
@@ -57,4 +60,5 @@ export class RideService {
   public startRide(id: number): Observable<any> {
     return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/start`, null);
   }
+
 }

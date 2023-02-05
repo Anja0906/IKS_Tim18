@@ -16,6 +16,8 @@ export class RejectionComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
+    const textarea = this.rejectionInput.nativeElement;
+    this.data = textarea.value;
     this.matDialogRef.close(this.data);
   }
 

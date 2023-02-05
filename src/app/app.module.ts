@@ -62,6 +62,7 @@ import { RideNotificationComponent } from './pending-rides/ride-notification/rid
 import {MatSliderModule} from "@angular/material/slider";
 import { RateDriverComponent } from './rate-ride/rate-driver/rate-driver/rate-driver.component';
 import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { NewRidePopupComponent } from './new-ride-popup/new-ride-popup.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate
     RideNotificationComponent,
     RateDriverComponent,
     RateVehicleComponent,
+    NewRidePopupComponent,
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [

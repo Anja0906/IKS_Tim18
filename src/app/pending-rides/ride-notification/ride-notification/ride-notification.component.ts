@@ -1,69 +1,31 @@
-import { Component } from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import * as SockJS from "sockjs-client";
-import * as Stomp from "stompjs";
-import {Howl} from "howler";
+import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Ride} from "../../../model/Ride";
-import {StorageService} from "../../../service/storage/storage.service";
 
 @Component({
   selector: 'app-ride-notification',
   templateUrl: './ride-notification.component.html',
-  styleUrls: ['./ride-notification.component.css']
+  styleUrls: ['./ride-notification.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class RideNotificationComponent {
-  private serverUrl = environment.apiHost + 'socket'
-  private stompClient: any;
-  ride!: Ride;
-  isLoaded: boolean = false;
-
-  constructor(private _snackBar: MatSnackBar, private storageService:StorageService) { }
-
-  ngOnInit() {
-    this.initializeWebSocketConnection();
+export class RideNotificationComponent implements OnInit{
+  constructor(@Inject(MAT_DIALOG_DATA) public ride: Ride, public matDialogRef: MatDialogRef<RideNotificationComponent>) {
   }
 
-  initializeWebSocketConnection() {
-    let ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    let that = this;
-
-    this.stompClient.connect({}, function () {
-      that.isLoaded = true;
-      that.openGlobalSocket()
-    });
-  }
-  openGlobalSocket() {
-    if (this.isLoaded) {
-      this.stompClient.subscribe(`/socket-topic/driver/${this.storageService.getUser().id}`, (message: { body: string; }) => {
-        this.handleResult(message);
-      });
-    }
+  ngOnInit(): void {
   }
 
-  handleResult(message: { body: string; }) {
-    if (message.body) {
-      console.log(message.body);
-      this.ride = JSON.parse(message.body);
-      this.openNotification(this.ride, "Close")
-    }
+
+  onAccept() : void{
+    this.matDialogRef.close(true);
   }
 
-  openNotification(ride: Ride, action: string) {
-    let mess = "New ride! ID: " + ride.id +"\n"+
-      "Start time: " + ride.startTime +"\n"+
-      "End time: " + ride.endTime +"\n"+
-      "Departure: " + ride.locations[0].departure +"\n"+
-      "Destination: " + ride.locations[0].destination +"\n";
-    this.playSound();
-    this._snackBar.open(mess, action);
+  onReject() : void{
+    this.matDialogRef.close(false);
   }
 
-  playSound() {
-    const sound = new Howl({
-      src: ['assets/panicNotification.wav']
-    });
-    sound.play();
+
+  onCloseDialog() {
+    this.matDialogRef.close();
   }
 }

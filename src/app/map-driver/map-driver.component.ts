@@ -45,8 +45,8 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
           return throwError(error);
         })).subscribe((res) =>{
             this.ride = res;
-            this.dep = new LatLng(45.2401582,19.8471768);
-            this.dest = new LatLng(45.2378474,19.827125);
+            this.dep = new LatLng(this.ride.locations[0].departure.latitude,this.ride.locations[0].departure.longitude);
+            this.dest = new LatLng(this.ride.locations[0].destination.latitude,this.ride.locations[0].destination.longitude);
             this.ngAfterViewInit();
             this.route(this.dep,this.dest);
             this.map.setView([(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2],16);
@@ -60,8 +60,8 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
           return throwError(error);
         })).subscribe((res) =>{
             this.ride = res;
-            this.dep = new LatLng(45.2401582,19.8471768);
-            this.dest = new LatLng(45.2378474,19.827125);
+            this.dep = new LatLng(this.ride.locations[0].departure.latitude,this.ride.locations[0].departure.longitude);
+            this.dest = new LatLng(this.ride.locations[0].destination.latitude,this.ride.locations[0].destination.longitude);
             this.ngAfterViewInit();
             this.route(this.dep,this.dest);
             this.map.setView([(this.dep.lat+this.dest.lat)/2,(this.dep.lng+this.dest.lng)/2],16);

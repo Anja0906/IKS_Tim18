@@ -11,7 +11,7 @@ import {Vehicle} from "../model/Vehicle";
 import {VehicleService} from "../service/vehicle/vehicle.service";
 import {DocumentService} from "../service/document/document.service";
 import * as L from "leaflet";
-import {LatLng} from "leaflet";
+import {LatLng, LatLngBounds} from "leaflet";
 import {MapService} from "../service/map/map.service";
 import { RideService } from '../service/ride/ride.service';
 import { Ride } from '../model/Ride';

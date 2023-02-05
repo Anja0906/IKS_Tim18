@@ -70,7 +70,6 @@ const routes: Routes = [
   { path: 'passenger',
     component: PassengerPageComponent,
     children:[
-      { path:'', component: AboutUsComponent},
       { path:'about-ride', component: DriverActiveRideComponent},
       { path:'pending-rides', component: PendingRidesComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
@@ -81,6 +80,7 @@ const routes: Routes = [
       { path: 'rate-driver', component: RateDriverComponent},
       { path: 'rate-vehicle', component: RateVehicleComponent},
       { path:'reviews/:id',component: ReviewsComponent},
+      { path:'',component: RideNotificationComponent},
     ],
   },
   { path:'', component: AppMapComponent},

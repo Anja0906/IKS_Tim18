@@ -54,6 +54,10 @@ export class RideService {
     return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/withdraw`, null);
   }
 
+  public endRide(id: number): Observable<any> {
+    return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/end`, null);
+  }
+
   public startRide(id: number): Observable<any> {
     return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/start`, null);
   }

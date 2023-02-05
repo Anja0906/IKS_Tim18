@@ -16,6 +16,11 @@ import { createReview, ReviewSmall } from '../model/Review';
 import { ReviewService } from '../service/review/review.service';
 import { RateDriverComponent } from '../reviews/rate-driver/rate-driver/rate-driver.component';
 import { RateVehicleComponent } from '../reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { environment } from 'src/environments/environment';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import * as SockJS from "sockjs-client";
+import * as Stomp from "stompjs";
+import {Howl} from "howler";
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -45,16 +50,20 @@ export class AboutRideComponent implements OnInit{
   reason!: Reason ;
   now = new Date();
   isPassenger: boolean = false;
-  rideFinished: boolean = true;
+  rideFinished: boolean = false;
   review!: ReviewSmall;
+  private serverUrl = environment.apiHost + 'socket'
+  private stompClient: any;
+  isLoaded: boolean = false;
 
 
 
   constructor(private formBuilder: FormBuilder, private rideService: RideService, private router: Router,
               private dialog: MatDialog, private storageService:StorageService,private driverService:DriverService,
-              private reviewService: ReviewService ) { }
+              private reviewService: ReviewService, private _snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {
+    this.initializeWebSocketConnection();
       this.form = this.formBuilder.group({
         id: [Number("0")],
         estimatedTimeInMinutes: [Number("0")],
@@ -206,6 +215,61 @@ export class AboutRideComponent implements OnInit{
 
   pay() {
     alert("Ride paid!");
+  }
+
+  end() {
+    this.rideFinished = true;
+    alert("Ride ended");
+    this.rideService.endRide(this.ride.id).subscribe((res) => {
+      this.ride = res;
+      console.log(this.ride);
+    });
+    this.router.navigate(['driver']);
+  }
+
+  initializeWebSocketConnection() {
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+
+    this.stompClient.connect({}, function () {
+      that.isLoaded = true;
+      that.openGlobalSocket()
+    });
+  }
+  openGlobalSocket() {
+    let user = this.storageService.getUser();
+    let userId = user.id;
+    let roles = user.roles;
+    if (this.isLoaded) {
+      if (roles.includes("ROLE_PASSENGER")) {
+        this.stompClient.subscribe(`/socket-topic/ended/${userId}`, (message: { body: string; }) => {
+          this.handleResult(message);
+        });
+      }
+    }
+  }
+
+  handleResult(message: { body: string; }) {
+    if (message.body) {
+      console.log(message.body);
+      this.ride = JSON.parse(message.body);
+      this.openNotification(this.ride, "Close")
+    }
+  }
+
+  openNotification(ride: Ride, action: string) {
+    let mess = "Ride starting at " + ride.startTime + " has been ended";
+    this.playSound();
+    this._snackBar.open(mess, action);
+    this.rideFinished = true;
+  }
+
+  playSound() {
+    const sound = new Howl({
+      src: ['assets/panicNotification.wav']
+    });
+    sound.play();
   }
 
 }

@@ -24,7 +24,6 @@ export class RideService {
   public getActiveRide(driverId: number): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/driver/${driverId}/active`);
   }
-
   public getPendingRides(): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/pending`);
   }
@@ -41,6 +40,9 @@ export class RideService {
   }
   public rejectRide(id: number,reason:Reason): Observable<any> {
     return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/cancel`,reason);
+  }
+  public endRide(id: number): Observable<any> {
+    return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/end`,null);
   }
   public acceptRide(id: number): Observable<any> {
     return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/accept`,null);

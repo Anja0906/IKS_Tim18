@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {Ride} from "../model/Ride";
 import {RideService} from "../service/ride/ride.service";
 import {NoteComponent} from "../blocked-users/note/note.component";
-import {RejectionComponent} from "./reject/rejection/rejection.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PanicDriveComponent} from "./panic/panic-drive/panic-drive.component";
 import { createReason, Reason } from 'src/app/model/Reason';
@@ -77,14 +76,11 @@ export class AboutRideComponent implements OnInit{
           this.ride = res;
           this.isPassenger = true;
 
-          console.log(this.ride);
         let strStartTime = this.ride.startTime;
         let startTime = new Date();
         let diff = -1;
 
         const [dateValues, timeValues] = strStartTime.split(' ');
-        console.log(dateValues); 
-        console.log(timeValues); 
 
         const [year, month, day] = dateValues.split('-');
         const [important, _] = timeValues.split('.');
@@ -92,8 +88,6 @@ export class AboutRideComponent implements OnInit{
         const [hours, minutes, seconds] = important.split(':');
 
         startTime = new Date(+year, +month - 1, +day, +hours, +minutes, +seconds);
-        console.log(startTime);
-        console.log(this.now);
         diff = differenceInSeconds(startTime, this.now);
 
         if (diff > 0) {
@@ -125,19 +119,13 @@ export class AboutRideComponent implements OnInit{
       this.form.patchValue(this.ride);
   }
 
-  openDialogRejection() {
-    const dialogRef = this.dialog.open(RejectionComponent, {
-      data: this.reason,
-      panelClass: 'my-dialog-container-class',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.reason = createReason(result);
-      this.rideService.rejectRide(this.ride.id,this.reason).subscribe( {
-      });
+
+  endRide(){
+    this.rideService.endRide(this.ride.id).subscribe((res) => {
       this.router.navigate(['driver']);
     });
-  }
 
+  }
 
   openDialogPanic() {
     const dialogRef = this.dialog.open(PanicDriveComponent, {

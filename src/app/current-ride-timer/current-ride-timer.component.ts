@@ -68,7 +68,7 @@ export class CurrentRideTimerComponent {
           this.bigTime = false;
         }
         this.timer();
-        this.anotherTimer();
+        //this.anotherTimer();
       });
     });
   }

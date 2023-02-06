@@ -66,6 +66,7 @@ import { ReviewsComponent } from './reviews/reviews/reviews.component';
 import { CommentDialogComponent } from './reviews/reviews/comment-dialog/comment-dialog/comment-dialog.component';
 import { FavoriteRoutesComponent } from './favorite-routes/favorite-routes/favorite-routes.component';
 import { AddFavoriteRouteComponent } from './favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
+import { OrderHistoryComponent } from './ride-history/order-history/order-history/order-history.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { AddFavoriteRouteComponent } from './favorite-routes/add-favorite-route/
     RateVehicleComponent,
     FavoriteRoutesComponent,
     AddFavoriteRouteComponent,
+    OrderHistoryComponent,
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [

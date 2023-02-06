@@ -9,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import {DriverService} from "../service/driver/driver.service";
 import { MatDialog } from '@angular/material/dialog';
 import { RideRec } from '../order-ride/order-ride.component';
+import { OrderHistoryComponent } from './order-history/order-history/order-history.component';
 
 @Component({
   selector: 'app-ride-history',
@@ -89,10 +90,16 @@ export class RideHistoryComponent implements OnInit{
     }
   }
 
-  orderRide(obj: any) {
-    console.log(obj);
+  orderRide(obj: RideRec) {
+    //let obj: RideRec;
+    const dialogRef = this.dialog.open(OrderHistoryComponent, {
+      data: obj,
+      panelClass: 'my-dialog-container-class',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result.scheduledTime);
     let ride: RideRec;
-    if (obj.scheduleDate == undefined) {
+    if (result.scheduleDate == undefined) {
       ride = {
         "locations": obj.locations,
         "passengers": obj.passengers,
@@ -107,7 +114,7 @@ export class RideHistoryComponent implements OnInit{
         "vehicleType": obj.vehicleType,
         "babyTransport": obj.babyTransport,
         "petTransport": obj.petTransport,
-        "scheduledTime": obj.scheduleDate
+        "scheduledTime": result.scheduledTime
       };
     }
     console.log(ride);
@@ -126,6 +133,7 @@ export class RideHistoryComponent implements OnInit{
       },
     });
     console.log(newRide);
+    });
   }
 
 

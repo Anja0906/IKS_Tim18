@@ -13,6 +13,7 @@ export class DriversNavigationComponent {
   @ViewChild('profileInfos') profileInfos!: TemplateRef<any>;
   @ViewChild('rideHistory') rideHistory!: TemplateRef<any>;
   @ViewChild('charts') charts!: TemplateRef<any>;
+
   @Output() templateChange = new EventEmitter<TemplateRef<any>>();
   constructor(private router: Router, private storageService:StorageService) {
   }

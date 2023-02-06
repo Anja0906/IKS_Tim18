@@ -5,10 +5,13 @@ import {Observable} from "rxjs";
 import {Ride} from "../../model/Ride";
 import {Reason} from "../../model/Reason";
 import {Panic} from "../../model/Panic";
+import { RideRet } from 'src/app/panics/panics.component';
+import { RideRec } from 'src/app/order-ride/order-ride.component';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class RideService {
 
   private apiServerUrl = environment.apiHost;
@@ -21,7 +24,6 @@ export class RideService {
   public getActiveRide(driverId: number): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/driver/${driverId}/active`);
   }
-
   public getPendingRides(): Observable<Ride> {
     return this.http.get<Ride>(`${this.apiServerUrl}api/ride/pending`);
   }
@@ -39,4 +41,26 @@ export class RideService {
   public rejectRide(id: number,reason:Reason): Observable<any> {
     return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/cancel`,reason);
   }
+  public endRide(id: number): Observable<any> {
+    return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/end`,null);
+  }
+  public acceptRide(id: number): Observable<any> {
+    return this.http.put<Ride>(`${this.apiServerUrl}api/ride/${id}/accept`,null);
+  }
+  public createRide(rideRec: any): Observable<any> {
+    return this.http.post<any>(environment.apiHost + 'api/ride', rideRec);
+  }
+
+  public getActiveRideForPassenger(passengerId: number): Observable<Ride> {
+    return this.http.get<Ride>(`${this.apiServerUrl}api/ride/passenger/${passengerId}/active`);
+  }
+
+  public withdrawRide(id: number): Observable<any> {
+    return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/withdraw`, null);
+  }
+
+  public startRide(id: number): Observable<any> {
+    return this.http.put<Ride>(environment.apiHost + `api/ride/${id}/start`, null);
+  }
+
 }

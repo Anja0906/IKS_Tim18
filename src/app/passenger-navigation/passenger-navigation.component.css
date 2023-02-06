@@ -1,0 +1,59 @@
+.passenger-nav-container{
+    background-image: url("src/assets/img/passenger.jpg");
+    background-size: cover;
+  }
+  
+  .navigation{
+    width: 60vh;
+    height: 42vh;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    border-radius: 15px;
+    background: #ffffff;
+    padding: 1rem;
+  }
+  
+  img{
+    width: 50px;
+    height: 50px;
+    color: black;
+  
+  }
+  .my-col a{
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  p{
+    font-style: normal;
+    font-family: "sans-serif";
+    font-weight: initial;
+  }
+  
+  a{
+    color: #485162;
+  }
+  a:link {
+    color: #485162;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #485162;
+    background-color: transparent;
+    font-size: 120%;
+  }
+  
+  a:active {
+    color: #BFDC36;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  hr{
+    margin-top: 1rem;
+    position: center;
+  }
+  

@@ -1,0 +1,16 @@
+<div class="fc">
+    <form class="img" [formGroup]="firstFormGroup">
+        <p>Departure: {{data.obj.locations[0].departure.address}}</p>
+        <p>Destination: {{data.obj.locations[0].destination.address}}</p>
+        <p>VehicleType: {{data.obj.vehicleType}}</p>
+        <p>Baby Transport: {{data.obj.babyTransport}}</p>
+        <p>Pet Transport: {{data.obj.petTransport}}</p>
+        <label for="date">Choose date:</label>
+        <input type="datetime-local" formControlName="date" placeholder="{{currentDate}}" [(ngModel)]="data.scheduledTime" #date name="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{9}Z"/>
+        <div class="buttondiv">
+            <button class="greenBtn" (click)="onCloseAfter()">Choose</button>
+            <button class="redBtn" (click)="onCloseNow()">Now</button>
+        </div>
+    </form>
+  </div>  
+  

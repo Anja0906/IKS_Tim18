@@ -53,7 +53,22 @@ import { UsersRideHistoryComponent } from './users-ride-history/users-ride-histo
 import { PanicNotificationsComponent } from './panics/panic-notifications/panic-notifications.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { PassengerPageComponent } from './passenger-page/passenger-page.component';
+import { PassengerNavigationComponent } from './passenger-navigation/passenger-navigation.component';
+import { OrderRideComponent } from './order-ride/order-ride.component';
+import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-timer.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { RideNotificationComponent } from './pending-rides/ride-notification/ride-notification/ride-notification.component';
+import {MatSliderModule} from "@angular/material/slider";
+import { NewRidePopupComponent } from './new-ride-popup/new-ride-popup.component';
+import { RateDriverComponent } from './reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from './reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { ReviewsComponent } from './reviews/reviews/reviews.component';
+import { CommentDialogComponent } from './reviews/reviews/comment-dialog/comment-dialog/comment-dialog.component';
+import { FavoriteRoutesComponent } from './favorite-routes/favorite-routes/favorite-routes.component';
+import { AddFavoriteRouteComponent } from './favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
+import { OrderHistoryComponent } from './ride-history/order-history/order-history/order-history.component';
+import { RideNotificationsComponent } from './passenger-page/ride-notifications/ride-notifications.component';
 
 
 @NgModule({
@@ -90,7 +105,21 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     PanicDriveComponent,
     RequestsComponent,
     UsersRideHistoryComponent,
-    PanicNotificationsComponent
+    PassengerPageComponent,
+    PassengerNavigationComponent,
+    OrderRideComponent,
+    CurrentRideTimerComponent,
+    PanicNotificationsComponent,
+    RideNotificationComponent,
+    ReviewsComponent,
+    CommentDialogComponent,
+    RateDriverComponent,
+    RateVehicleComponent,
+    NewRidePopupComponent,
+    FavoriteRoutesComponent,
+    AddFavoriteRouteComponent,
+    OrderHistoryComponent,
+    RideNotificationsComponent,
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [
@@ -116,6 +145,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         Ng2SearchPipeModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatSliderModule,
         // DriverNavbarComponent,
 
     ],

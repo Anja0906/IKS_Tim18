@@ -1,0 +1,13 @@
+<div class="form-container img1">
+  <p>Ride id: {{ride.id}}</p>
+  <p>Destination: {{ride.locations[0].departure.address}}</p>
+  <p>Departure: {{ride.locations[0].destination.address}}</p>
+  <p>Number of passengers: {{ride.passengers.length}}</p>
+  <p>Price: {{ride.totalCost}}</p>
+  <div class="buttons">
+    <button class="accept" (click)="onAccept()">Accept</button>
+    <button class="reject" (click)="onReject()">Reject</button>
+  </div>
+</div>
+
+

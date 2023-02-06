@@ -1,0 +1,22 @@
+<!--
+<div class="idk">
+    {{counter}} seconds left
+</div>
+-->
+
+<div class="back">
+
+    <h1>Your ride is in: </h1>
+
+    <div class="timer" *ngIf="bigTime"> 
+        {{ timeRemaining | async | date:'hh:mm:ss' }}
+    </div>
+
+    <div class="timer" *ngIf="smallTime"> 
+        {{ timeRemaining | async | date:'mm:ss' }}
+    </div>
+</div>
+<div class="buttondiv img1">
+    <button class="greenBtn btn" [disabled]="isStartBtnDisabled" (click)="start()">START RIDE</button>
+    <button class="redBtn btn" [disabled]="isWithdrawBtnDisabled" (click)="withdraw()">WITHDRAW RIDE</button>
+</div>

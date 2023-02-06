@@ -19,7 +19,18 @@ import {DriverActiveRideComponent} from "../app/driver-active-ride/driver-active
 import {AboutUsComponent} from "../app/about-us/about-us.component";
 import {RequestsComponent} from "../app/requests/requests.component";
 import {UsersRideHistoryComponent} from "../app/users-ride-history/users-ride-history.component";
+import { PassengerPageComponent } from 'src/app/passenger-page/passenger-page.component';
+import { OrderRideComponent } from 'src/app/order-ride/order-ride.component';
+import { CurrentRideTimerComponent } from 'src/app/current-ride-timer/current-ride-timer.component';
 import {PanicNotificationsComponent} from "../app/panics/panic-notifications/panic-notifications.component";
+import {RideNotificationComponent} from "../app/pending-rides/ride-notification/ride-notification/ride-notification.component";
+import { ReviewsComponent } from 'src/app/reviews/reviews/reviews.component';
+import { RateDriverComponent } from 'src/app/reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from 'src/app/reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { FavoriteRoutesComponent } from 'src/app/favorite-routes/favorite-routes/favorite-routes.component';
+import { AddFavoriteRouteComponent } from 'src/app/favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
+import { RideNotificationsComponent } from 'src/app/passenger-page/ride-notifications/ride-notifications.component';
+
 
 
 const routes: Routes = [
@@ -32,12 +43,13 @@ const routes: Routes = [
   { path: 'driver',
     component: DriverPageComponent,
     children:[
-      { path:'', component: AboutUsComponent},
+      // { path:'', component: AboutUsComponent},
       { path:'about-ride', component: DriverActiveRideComponent},
       { path:'pending-rides', component: PendingRidesComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'stats/:id', component: ReportsComponent},
+      { path:'',component: RideNotificationsComponent},
     ],
   },
   { path:'admin',
@@ -55,6 +67,26 @@ const routes: Routes = [
       { path:'users-history',component: UsersRideHistoryComponent},
       { path:'ride-history/:id',component: RideHistoryComponent},
       { path:'',component: PanicNotificationsComponent},
+      { path:'reviews/:id',component: ReviewsComponent},
+    ],
+  },
+  { path: 'passenger',
+    component: PassengerPageComponent,
+    children:[
+      { path:'about-ride', component: DriverActiveRideComponent},
+      { path:'pending-rides', component: PendingRidesComponent},
+      { path:'ride-history/:id',component: RideHistoryComponent},
+      { path:'my-account', component: MyProfileInfoComponent},
+      { path:'stats/:id', component: ReportsComponent},
+      { path:'order-ride', component: OrderRideComponent},
+      { path:'order-ride/:id', component: OrderRideComponent},
+      { path:'timer/:id', component: CurrentRideTimerComponent},
+      { path: 'rate-driver', component: RateDriverComponent},
+      { path: 'rate-vehicle', component: RateVehicleComponent},
+      { path:'reviews/:id',component: ReviewsComponent},
+      { path:'',component: RideNotificationsComponent},
+      { path:'favorite-routes',component: FavoriteRoutesComponent},
+      { path:'add-fav-route',component: AddFavoriteRouteComponent},
     ],
   },
   { path:'', component: AppMapComponent},

@@ -10,10 +10,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(private storageService: StorageService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const jwt = localStorage.getItem('jwt');
-    console.log(jwt);
-    console.log(this.storageService.getUser().id);
+   // console.log(jwt);
+    //console.log(this.storageService.getUser().id);
     const jwtSpring = this.storageService.getUser().accessToken;
-    console.log(jwtSpring);
+    //console.log(jwtSpring);
     if (jwtSpring) {
       const cloned = req.clone({
         setHeaders: {

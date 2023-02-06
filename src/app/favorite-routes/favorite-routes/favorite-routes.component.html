@@ -1,0 +1,24 @@
+<div class="form-container">
+    <h2 class="mb-4">Favorite routes</h2>
+    <div class="position1">
+        <button type="button" class="btn newGreen text-uppercase wide-btn" (click)="add()">Add new</button> 
+    </div>
+    <div class="card" *ngFor="let route of routes">
+      <div class="card-up">
+        <h3>{{"Route id: " + route.id}}</h3>
+      </div>
+      <div class="card-body">
+        <h4>Name: {{route.favoriteName}}</h4>
+        <h4>Departure: {{route.locations[0].departure.address}}</h4>
+        <h4>Destination: {{route.locations[0].destination.address}}</h4>
+        <h4>Vehicle type: {{route.vehicleType}}</h4>
+        <h4>Baby transport: {{route.babyTransport}}</h4>
+        <h4>Pet transport: {{route.petTransport}}</h4>
+      </div>
+      <div class="buttondiv">
+        <button type="button" class="btn redBtn text-uppercase wide-btn" (click)="deleteRoute(route.id)">Delete</button>
+        <button type="button" class="btn greenBtn text-uppercase wide-btn" (click)="order(route)">Order</button>
+      </div>
+  
+    </div>
+  </div>

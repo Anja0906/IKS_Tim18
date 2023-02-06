@@ -100,6 +100,7 @@ export class RegisterDriverComponent implements OnInit {
         },
         error: (error) => {
           reject(error);
+          alert(error.error.message);
         },
       });
     });

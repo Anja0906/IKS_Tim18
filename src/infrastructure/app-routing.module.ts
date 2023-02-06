@@ -27,6 +27,8 @@ import {RideNotificationComponent} from "../app/pending-rides/ride-notification/
 import { ReviewsComponent } from 'src/app/reviews/reviews/reviews.component';
 import { RateDriverComponent } from 'src/app/reviews/rate-driver/rate-driver/rate-driver.component';
 import { RateVehicleComponent } from 'src/app/reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { FavoriteRoutesComponent } from 'src/app/favorite-routes/favorite-routes/favorite-routes.component';
+import { AddFavoriteRouteComponent } from 'src/app/favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
 
 
 
@@ -76,11 +78,14 @@ const routes: Routes = [
       { path:'my-account', component: MyProfileInfoComponent},
       { path:'stats/:id', component: ReportsComponent},
       { path:'order-ride', component: OrderRideComponent},
+      { path:'order-ride/:id', component: OrderRideComponent},
       { path:'timer/:id', component: CurrentRideTimerComponent},
       { path: 'rate-driver', component: RateDriverComponent},
       { path: 'rate-vehicle', component: RateVehicleComponent},
       { path:'reviews/:id',component: ReviewsComponent},
       { path:'',component: RideNotificationComponent},
+      { path:'favorite-routes',component: FavoriteRoutesComponent},
+      { path:'add-fav-route',component: AddFavoriteRouteComponent},
     ],
   },
   { path:'', component: AppMapComponent},

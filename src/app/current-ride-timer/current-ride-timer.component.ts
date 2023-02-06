@@ -1,29 +1,3 @@
-/*
-import { Component } from '@angular/core';
-import {timer} from 'rxjs';
-import {takeWhile, tap} from 'rxjs/operators';
-
-@Component({
-  selector: 'app-current-ride-timer',
-  templateUrl: './current-ride-timer.component.html',
-  styleUrls: ['./current-ride-timer.component.css']
-})
-export class CurrentRideTimerComponent {
-counter = 10;
-constructor(){
- 
-    
-    timer(1000, 1000) //Initial delay 1 seconds and interval countdown also 1 second
-      .pipe(
-        takeWhile( () => this.counter > 0 ),
-        tap(() => this.counter--)
-      )
-      .subscribe( () => {
-        //add you more code
-      } );
-}
-}
-*/
 import { Component, Input,  OnInit } from '@angular/core';
 import { map, timer, takeWhile, finalize } from 'rxjs';
 import millisecondsToSeconds from 'date-fns/millisecondsToSeconds'
@@ -33,6 +7,8 @@ import {Ride} from "../model/Ride";
 import {RideService} from "../service/ride/ride.service";
 import {StorageService} from "../service/storage/storage.service";
 import { Moment } from 'moment';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Howl} from "howler";
 
 @Component({
   selector: 'app-current-ride-timer',
@@ -45,6 +21,7 @@ export class CurrentRideTimerComponent {
   now = new Date();
   differenceSec = 5;
   seconds = 0;
+  untilRide=0;
   diff1!: number;
   timeRemaining!: any;
   smallTime = false;
@@ -53,7 +30,7 @@ export class CurrentRideTimerComponent {
   isWithdrawBtnDisabled: boolean = false;
   
 
-  constructor(private route: ActivatedRoute, private rideService: RideService, private storageService: StorageService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private rideService: RideService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     let startTime = new Date();
@@ -82,6 +59,7 @@ export class CurrentRideTimerComponent {
         console.log(diff);
         this.diff1 = diff;
         this.seconds = this.calculate();
+        this.untilRide = this.seconds;
         if (this.seconds > 3600) {
           this.smallTime = false;
           this.bigTime = true;
@@ -90,6 +68,7 @@ export class CurrentRideTimerComponent {
           this.bigTime = false;
         }
         this.timer();
+        this.anotherTimer();
       });
     });
   }
@@ -108,7 +87,26 @@ export class CurrentRideTimerComponent {
       this.isWithdrawBtnDisabled = true;
     })
   );
+  }
 
+  anotherTimer() {
+    timer(0, 5000).subscribe(() => { 
+      this.openNotification("Close");
+      this.untilRide-=5;
+    });
+  }
+
+  openNotification(action: string) {
+    let mess = "Ride starts in " + this.untilRide;
+    this.playSound();
+    this._snackBar.open(mess, action);
+  }
+
+  playSound() {
+    const sound = new Howl({
+      src: ['assets/panicNotification.wav']
+    });
+    sound.play();
   }
 
   calculate() {

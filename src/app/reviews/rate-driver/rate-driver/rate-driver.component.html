@@ -1,0 +1,13 @@
+<div class="fc">
+  <form class="img1">
+    <label for="noteDriver">Rate driver:</label>
+    <mat-slider min="1" max="5" step="1" showTickMarks discrete [displayWith]="formatLabel" #rateDriver (change)="updateSettingDriver($event)" value="rateDriver" color="warn" [(ngModel)]="data.rating" name="driverRate">
+      <input matSliderThumb>
+    </mat-slider>
+    <textarea #driverComment id="noteDriver" name="noteDriver" rows="5" cols="40" placeholder="Leave a comment for driver..." [(ngModel)]="data.comment" name="driverComment"></textarea>
+    <div class="buttondiv">
+      <button class="redBtn" (click)="onCloseDialog()">Skip</button>
+      <button class="greenBtn" (click)="onConfirmDriver()" [mat-dialog-close]="data" cdkFocusInitial>Confirm</button>
+    </div>
+  </form>
+</div>

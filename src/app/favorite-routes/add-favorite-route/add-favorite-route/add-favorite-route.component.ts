@@ -1,27 +1,19 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {FormBuilder, Validators, FormControl, FormGroup, FormArray} from '@angular/forms';
-import {DriverService} from "../service/driver/driver.service";
 import {Router} from "@angular/router";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {Driver} from "../model/Driver";
-import {DriverDocument} from "../model/DriverDocument";
-import {Vehicle} from "../model/Vehicle";
-import {VehicleService} from "../service/vehicle/vehicle.service";
-import {DocumentService} from "../service/document/document.service";
 import * as L from "leaflet";
 import {LatLng, LatLngBounds} from "leaflet";
-import {MapService} from "../service/map/map.service";
-import { RideService } from '../service/ride/ride.service';
-import { Ride } from '../model/Ride';
-import { TimeScale } from 'chart.js';
-import { StorageService } from '../service/storage/storage.service';
+import { MapService } from 'src/app/service/map/map.service';
+import { Ride } from 'src/app/model/Ride';
+import { StorageService } from 'src/app/service/storage/storage.service';
+import {FavoriteRouteSend } from '../../favorite-routes/favorite-routes.component';
+import { FavoriteRoutesService } from 'src/app/service/favorite-routes/favorite-routes.service';
 
 @Component({
-  selector: 'app-order-ride',
-  templateUrl: './order-ride.component.html',
-  styleUrls: ['./order-ride.component.css'],
+  selector: 'app-add-favorite-route',
+  templateUrl: './add-favorite-route.component.html',
+  styleUrls: ['./add-favorite-route.component.css'],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
@@ -29,7 +21,7 @@ import { StorageService } from '../service/storage/storage.service';
     },
   ],
 })
-export class OrderRideComponent {
+export class AddFavoriteRouteComponent {
   dep!: LatLng;
   dest!: LatLng;
   map!: any;
@@ -41,8 +33,9 @@ export class OrderRideComponent {
  scheduleDate!: any;
  passengers!: [any];
  ride!: Ride;
+ name!: any;
 
- constructor(private _formBuilder: FormBuilder, private router: Router, private mapService: MapService, private rideService: RideService, private storageService: StorageService) {}
+ constructor(private _formBuilder: FormBuilder, private router: Router, private mapService: MapService, private storageService: StorageService, private favoriteRoutesService: FavoriteRoutesService) {}
 
 ngOnInit(): void {
 this.initMap();
@@ -63,10 +56,10 @@ this.secondFormGroup = new FormGroup({
   firstFormGroup = this._formBuilder.group({
     departure: new FormControl(),
     destination: new FormControl(),
-    date: this.currentDate,
     vehicleType: [1],
     petTransport: [true],
     babyTransport: [true],
+    favoriteName: [''],
   });
   
 
@@ -104,9 +97,6 @@ this.secondFormGroup = new FormGroup({
     //this.initLocations();
    // console.log(this.firstFormGroup.value.departure);
     //console.log(this.firstFormGroup.value.destination);
-    if (this.currentDate != this.firstFormGroup.value.date) {
-        this.scheduleDate = this.firstFormGroup.value.date + ":00.000Z";
-    }
     console.log(this.scheduleDate);
     this.baby = this.firstFormGroup.value.babyTransport;
     console.log(this.baby);
@@ -122,7 +112,8 @@ this.secondFormGroup = new FormGroup({
       this.vehicleType ="STANDARD;"
     }
     console.log(this.firstFormGroup.value.vehicleType);
-
+    this.name = this.firstFormGroup.value.favoriteName;
+    this.submit();
   }
 
   async check() {
@@ -243,10 +234,6 @@ this.secondFormGroup = new FormGroup({
   //refreshing the map
 
   
-  thirdFormGroup = this._formBuilder.group({
-    name: [''],
-    documentImage: [''],
-  });
 
 
   get passenger(): FormArray {
@@ -266,33 +253,23 @@ this.secondFormGroup = new FormGroup({
   async submit() {
     let locationSet = this.getLocations();
     let passengerSet = this.getPassengers();
-    let obj: RideRec;
-    if (this.scheduleDate == undefined) {
-      obj = {
-        "locations": locationSet,
-        "passengers": passengerSet,
-        "vehicleType": this.vehicleType,
-        "babyTransport": this.baby,
-        "petTransport": this.pet
-      };
-    } else {
-      obj = {
+    let obj: FavoriteRouteSend;
+    obj = {
         "locations": locationSet,
         "passengers": passengerSet,
         "vehicleType": this.vehicleType,
         "babyTransport": this.baby,
         "petTransport": this.pet,
-        "scheduledTime": this.scheduleDate
+        "favoriteName": this.name
       };
-    }
     console.log("obj");
     console.log(obj);
 
-    const newRide = this.rideService.createRide(obj).subscribe({
+    const newRide = this.favoriteRoutesService.createFavRide(obj).subscribe({
       next: (result) => {
         console.log(result);
-        alert("Ride successfully created!");
-        this.router.navigate(['/passenger']);
+        alert("Favorite route successfully created!");
+        this.router.navigate(['passenger/favorite-routes']);
       },
       error: (error) => {
         if (error.error.message==undefined){
@@ -341,20 +318,10 @@ this.secondFormGroup = new FormGroup({
     let passengerSet = Array();
     let passenger: PassengerEmail
     passenger = {
+      id: this.storageService.getUser().id,
       email: this.storageService.getUser().email
     }
     passengerSet.push(passenger);
-    this.passengers.forEach(element => {
-      let email = element.email.trim();
-      if (email != "") {
-        console.log(email);
-        passenger = {
-          email: email
-        }
-        passengerSet.push(passenger);
-      }
-    });
-    console.log(passengerSet);
     return passengerSet;
   }
 }
@@ -370,6 +337,7 @@ export interface RideRec {
 }
 
 export interface PassengerEmail {
+  id: number
   email: string;
 }
 
@@ -383,3 +351,5 @@ export interface Loc{
   latitude: number;
   longitude: number;
 }
+
+

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Review} from "../../../model/Review";
+import {ReviewSmall} from "../../../model/Review";
 
 @Component({
   selector: 'app-rate-driver',
@@ -22,7 +22,7 @@ export class RateDriverComponent {
   @ViewChild('driverComment') driverInput!: ElementRef;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Review, public matDialogRef: MatDialogRef<RateDriverComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ReviewSmall, public matDialogRef: MatDialogRef<RateDriverComponent>) {
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class RateDriverComponent {
   }
 
   onCloseDialog() {
-    this.ngOnDestroy();
+    this.matDialogRef.close();
   }
 
   updateSettingDriver(event: any) {

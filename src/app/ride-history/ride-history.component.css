@@ -108,3 +108,17 @@ h4{
   font-style: normal;
 }
 
+.greenBtn{
+  width: 7rem;
+  height: 2rem;
+  background-color: #BFDC36;
+  border-radius: 10%;
+  border-style: none;
+}
+.redBtn{
+  width: 7rem;
+  height: 2rem;
+  background-color: #DC7C36;
+  border-radius: 10%;
+  border-style: none;
+}

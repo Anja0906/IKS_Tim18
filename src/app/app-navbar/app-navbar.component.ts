@@ -94,6 +94,6 @@ export class AppNavbarComponent {
       });
     }
     this.storageService.clean();
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
 }

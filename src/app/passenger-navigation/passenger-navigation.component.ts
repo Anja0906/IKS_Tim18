@@ -44,4 +44,9 @@ export class PassengerNavigationComponent {
   order_ride(){
     this.router.navigate(['/passenger/order-ride']);
   }
+
+  favorites(){
+    this.router.navigate(['/passenger/favorite-routes']);
+  }
 }
+

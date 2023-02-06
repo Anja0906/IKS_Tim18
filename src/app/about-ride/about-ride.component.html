@@ -62,6 +62,7 @@
         <button type="" class="btn panic" (click)="openDialogPanic()" *ngIf="!isPassenger">PANIC!</button>
         <button type="" class="btn panic" (click)="openDialogPanic()" [disabled]="rideFinished" *ngIf="isPassenger && !rideFinished">PANIC!</button>
         <button type="" class="btn end" (click)="endRide()" *ngIf="!isPassenger">End</button>
+
         <button type="" class="btn pay" (click)="pay()" *ngIf="isPassenger && rideFinished">PAY</button>
         <button type="" class="btn rateDriver" (click)="rateDriver()" *ngIf="isPassenger && rideFinished">RATE DRIVER</button>
         <button type="" class="btn rateVehicle" (click)="rateVehicle()" *ngIf="isPassenger && rideFinished">RATE VEHICLE</button>

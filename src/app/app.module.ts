@@ -60,9 +60,14 @@ import { CurrentRideTimerComponent } from './current-ride-timer/current-ride-tim
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { RideNotificationComponent } from './pending-rides/ride-notification/ride-notification/ride-notification.component';
 import {MatSliderModule} from "@angular/material/slider";
-import { RateDriverComponent } from './rate-ride/rate-driver/rate-driver/rate-driver.component';
-import { RateVehicleComponent } from './rate-ride/rate-vehicle/rate-vehicle/rate-vehicle.component';
 import { NewRidePopupComponent } from './new-ride-popup/new-ride-popup.component';
+import { RateDriverComponent } from './reviews/rate-driver/rate-driver/rate-driver.component';
+import { RateVehicleComponent } from './reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
+import { ReviewsComponent } from './reviews/reviews/reviews.component';
+import { CommentDialogComponent } from './reviews/reviews/comment-dialog/comment-dialog/comment-dialog.component';
+import { FavoriteRoutesComponent } from './favorite-routes/favorite-routes/favorite-routes.component';
+import { AddFavoriteRouteComponent } from './favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
+import { OrderHistoryComponent } from './ride-history/order-history/order-history/order-history.component';
 
 
 @NgModule({
@@ -105,9 +110,14 @@ import { NewRidePopupComponent } from './new-ride-popup/new-ride-popup.component
     CurrentRideTimerComponent,
     PanicNotificationsComponent,
     RideNotificationComponent,
+    ReviewsComponent,
+    CommentDialogComponent,
     RateDriverComponent,
     RateVehicleComponent,
     NewRidePopupComponent,
+    FavoriteRoutesComponent,
+    AddFavoriteRouteComponent,
+    OrderHistoryComponent,
   ],
   entryComponents: [ReasonDialogComponent, NoteComponent, MessageComponent],
     imports: [

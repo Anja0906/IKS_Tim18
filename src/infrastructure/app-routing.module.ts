@@ -29,6 +29,7 @@ import { RateDriverComponent } from 'src/app/reviews/rate-driver/rate-driver/rat
 import { RateVehicleComponent } from 'src/app/reviews/rate-vehicle/rate-vehicle/rate-vehicle.component';
 import { FavoriteRoutesComponent } from 'src/app/favorite-routes/favorite-routes/favorite-routes.component';
 import { AddFavoriteRouteComponent } from 'src/app/favorite-routes/add-favorite-route/add-favorite-route/add-favorite-route.component';
+import { RideNotificationsComponent } from 'src/app/passenger-page/ride-notifications/ride-notifications.component';
 
 
 
@@ -82,7 +83,7 @@ const routes: Routes = [
       { path: 'rate-driver', component: RateDriverComponent},
       { path: 'rate-vehicle', component: RateVehicleComponent},
       { path:'reviews/:id',component: ReviewsComponent},
-      { path:'',component: RideNotificationComponent},
+      { path:'',component: RideNotificationsComponent},
       { path:'favorite-routes',component: FavoriteRoutesComponent},
       { path:'add-fav-route',component: AddFavoriteRouteComponent},
     ],

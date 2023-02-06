@@ -90,33 +90,35 @@ export class RideHistoryComponent implements OnInit{
     }
   }
 
+  someDate!: any;
   orderRide(obj: RideRec) {
+    let ride: RideRec;
     //let obj: RideRec;
     const dialogRef = this.dialog.open(OrderHistoryComponent, {
-      data: obj,
+      data: {obj: obj, date:this.someDate},
       panelClass: 'my-dialog-container-class',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result.scheduledTime);
-    let ride: RideRec;
-    if (result.scheduleDate == undefined) {
-      ride = {
-        "locations": obj.locations,
-        "passengers": obj.passengers,
-        "vehicleType": obj.vehicleType,
-        "babyTransport": obj.babyTransport,
-        "petTransport": obj.petTransport
-      };
-    } else {
-      ride = {
-        "locations": obj.locations,
-        "passengers": obj.passengers,
-        "vehicleType": obj.vehicleType,
-        "babyTransport": obj.babyTransport,
-        "petTransport": obj.petTransport,
-        "scheduledTime": result.scheduledTime
-      };
-    }
+      if (result!=undefined) {
+        if (result.date!=undefined) {
+          ride = {
+            "locations": obj.locations,
+            "passengers": obj.passengers,
+            "vehicleType": obj.vehicleType,
+            "babyTransport": obj.babyTransport,
+            "petTransport": obj.petTransport,
+            "scheduledTime": result.scheduledTime + ":00.000Z"
+          };
+        } else {
+          ride = {
+            "locations": obj.locations,
+            "passengers": obj.passengers,
+            "vehicleType": obj.vehicleType,
+            "babyTransport": obj.babyTransport,
+            "petTransport": obj.petTransport
+          };
+        }
+      
     console.log(ride);
     const newRide = this.rideService.createRide(ride).subscribe({
       next: (result) => {
@@ -133,9 +135,10 @@ export class RideHistoryComponent implements OnInit{
       },
     });
     console.log(newRide);
+  } 
     });
-  }
 
+  }
 
 }
 export interface RideHistoryComponent {

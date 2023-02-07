@@ -20,6 +20,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import * as SockJS from "sockjs-client";
 import * as Stomp from "stompjs";
 import {Howl} from "howler";
+import {Review} from "../reviews/reviews/reviews.component";
 
 export interface IRideFormGroup extends FormGroup {
   value: Ride;
@@ -159,19 +160,17 @@ export class AboutRideComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!Number.isNaN(result.rating) && result.comment != undefined ) {
+
         obj = {
           "rating": parseInt(result.rating),
           "comment": result.comment
         }
         this.review = createReview(result.rating, result.comment);
-        const rep = this.reviewService.addDriverReview(this.ride.id, obj)
+        const rep = this.reviewService.addDriverReview(this.ride.id, this.review)
         .subscribe(data => {
-          console.log(data);
       }, error => {
-        console.log(error);
       }
       );
-        console.log(rep);
       }
     });
   }
@@ -189,7 +188,7 @@ export class AboutRideComponent implements OnInit{
           "comment": result.comment
         }
         this.review = createReview(result.rating, result.comment);
-        const rep = this.reviewService.addVehicleReview(this.ride.id, obj)
+        const rep = this.reviewService.addVehicleReview(this.ride.id, this.review)
         .subscribe(data => {
           console.log(data);
       }, error => {

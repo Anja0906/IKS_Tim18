@@ -11,11 +11,11 @@ export class ReportsService {
 
   constructor(private http: HttpClient) { }
 
-  getReportsForUser(id: number, request: { size: string; from: string | null; page: string; to: any }): Observable<Report> {
+  getReportsForUser(id: number, request: { size: string; from: string | null; page: string; to: string | null }): Observable<Report> {
     return this.http.get<Report>(environment.apiHost + `api/reports/${id}/user?page=`+request['page']+'&size='+request['size']+'&from='+request['from']+'&to='+request['to']);
   }
 
-  getReportsForAdmin(request: { size: string; from: string | null; page: string; to: any }): Observable<Report> {
+  getReportsForAdmin(request: { size: string; from: string | null; page: string; to: string | null }): Observable<Report> {
     return this.http.get<Report>(environment.apiHost + `api/reports/all?page=`+request['page']+'&size='+request['size']+'&from='+request['from']+'&to='+request['to']);
   }
 }

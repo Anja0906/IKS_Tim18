@@ -72,7 +72,6 @@ export class MyProfileInfoComponent implements OnInit {
     }) as IChangePassword;
   }
 
-  //submitting the form and updating user on the backend side
   update() {
     if (this.form.valid) {
       const loggedUser = this.storageService.getUser();
@@ -86,15 +85,13 @@ export class MyProfileInfoComponent implements OnInit {
         });
         this.userService
           .updateDriver(loggedUser.id, this.form.value)
-          .subscribe((res: any) => {
-            console.log(res);
+          .subscribe(() => {
             this.router.navigate([this])
           });
       }else {
         this.userService
           .updateUser(loggedUser.id, this.form.value)
-          .subscribe((res: any) => {
-            console.log(res);
+          .subscribe(() => {
             this.router.navigate([this])
           });
       }

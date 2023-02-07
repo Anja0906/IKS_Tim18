@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../../model/User";
 import {Panic} from "../../panics/panics.component";
+import {Ride} from "../../model/Ride";
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class PanicService {
   constructor(private http: HttpClient) {
   }
 
-  panics: any[] = [];
+  panics: Panic[] = [];
 
 
-  getAll(request: { page?: string; size?: string }): Observable<any[]> {
-    return this.http.get<any[]>(environment.apiHost + 'api/panic?page=' + request['page'] + '&size=' + request['size']);
+  getAll(request: { page?: string; size?: string }): Observable<{totalCount:number, results:Panic[]}> {
+    return this.http.get<{totalCount:number, results:Panic[]}>(environment.apiHost + 'api/panic?page=' + request['page'] + '&size=' + request['size']);
   }
 
   public getPanic(panicId: number): Observable<Panic> {

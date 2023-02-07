@@ -1,14 +1,10 @@
 import {
-  Component,
-  ComponentFactoryResolver,
+  Component, ElementRef,
   EventEmitter,
   Output,
-  QueryList,
-  TemplateRef, ViewChild,
-  ViewChildren
+  TemplateRef, ViewChild
 } from '@angular/core';
-import {AdminPageComponent} from "../admin-page/admin-page.component";
-import {RegisterDriverComponent} from "../register-driver/register-driver.component";
+
 import {Router} from "@angular/router";
 
 @Component({
@@ -17,15 +13,15 @@ import {Router} from "@angular/router";
   styleUrls: ['./admins-navigation.component.css']
 })
 export class AdminsNavigationComponent {
-  @ViewChild('newDriver') newDriver!: TemplateRef<any>;
-  @ViewChild('aboutDrivers') aboutDrivers!: TemplateRef<any>;
-  @ViewChild('charts') charts!: TemplateRef<any>;
-  @ViewChild('profileInfos') profileInfos!: TemplateRef<any>;
-  @ViewChild('usersBlocking') usersBlocking!: TemplateRef<any>;
-  @ViewChild('panic') panicNotifications!: TemplateRef<any>;
-  @ViewChild('request') driverSChanges!: TemplateRef<any>;
-  @ViewChild('rideHistory') rideHistory!: TemplateRef<any>;
-  @Output() templateChange = new EventEmitter<TemplateRef<any>>();
+  @ViewChild('newDriver') newDriver!: ElementRef;
+  @ViewChild('aboutDrivers') aboutDrivers!: ElementRef;
+  @ViewChild('charts') charts!: ElementRef;
+  @ViewChild('profileInfos') profileInfos!: ElementRef;
+  @ViewChild('usersBlocking') usersBlocking!: ElementRef;
+  @ViewChild('panic') panicNotifications!: ElementRef;
+  @ViewChild('request') driverSChanges!: ElementRef;
+  @ViewChild('rideHistory') rideHistory!: ElementRef;
+  @Output() templateChange = new EventEmitter<ElementRef>();
   constructor(private router: Router) {
   }
 

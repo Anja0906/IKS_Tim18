@@ -8,8 +8,5 @@ import {Component, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core
 export class AdminPageComponent {
   @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
 
-  renderTemplate(template: TemplateRef<any>) {
-    this.container.clear();
-    this.container.createEmbeddedView(template);
-  }
+
 }

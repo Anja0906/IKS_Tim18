@@ -16,7 +16,6 @@ import {VehiclesForMap} from "../model/VehiclesForMap";
   styleUrls: ['./app-map.component.css']
 })
 export class AppMapComponent implements AfterViewInit, OnInit {
-  //za showForm flag je neophodno u zavisnosti od korisnika promeniti da li se forma prikazuje ili ne
   showForm = true;
   map!: any;
   flag!: boolean;
@@ -184,7 +183,7 @@ export class AppMapComponent implements AfterViewInit, OnInit {
   }
 
   //drawing a route
-  route(r1: any, r2: any): void {
+  route(r1: LatLng, r2: LatLng): void {
     L.Routing.control({
       waypoints: [
         r1, r2

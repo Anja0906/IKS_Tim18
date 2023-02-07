@@ -15,6 +15,7 @@ export class AboutDrversComponent implements OnInit {
   totalElements: number = 0;
   searchTerm = '';
   term = '';
+  driver!: Driver;
 
   createDriverForm = new FormGroup({
     profilePicture: new FormControl(),
@@ -36,10 +37,16 @@ export class AboutDrversComponent implements OnInit {
 
   add() {
     if (this.createDriverForm.valid) {
+      this.driver.profilePicture = this.createDriverForm.value.profilePicture;
+      this.driver.name = this.createDriverForm.value.name;
+      this.driver.surname = this.createDriverForm.value.surname;
+      this.driver.telephoneNumber = this.createDriverForm.value.telephoneNumber;
+      this.driver.address = this.createDriverForm.value.address;
+      this.driver.email = this.createDriverForm.value.email;
+      this.driver.password = this.createDriverForm.value.password;
       this.driverService
-        .add(this.createDriverForm.value)
-        .subscribe((res: any) => {
-          console.log(res);
+        .add(this.driver)
+        .subscribe(() => {
           this.router.navigate(['']);
         });
     }
@@ -48,9 +55,7 @@ export class AboutDrversComponent implements OnInit {
   private getDrivers(request: { page?: string; size?: string; }) {
     this.driverService.getAll(request)
       .subscribe(data => {
-          // @ts-ignore
           this.drivers = data['results'];
-          // @ts-ignore
           this.totalElements = data['totalCount'];
         }
         , error => {
@@ -59,14 +64,6 @@ export class AboutDrversComponent implements OnInit {
       );
   }
 
-  nextPage(event: PageEvent) {
-    const request = {};
-    // @ts-ignore
-    request['page'] = event.pageIndex.toString();
-    // @ts-ignore
-    request['size'] = event.pageSize.toString();
-    this.getDrivers(request);
-  }
 
   public onCardClick(driver: Driver){
     this.router.navigate(['/admin/about-driver', driver.id ]);

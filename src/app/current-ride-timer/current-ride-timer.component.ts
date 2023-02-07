@@ -1,5 +1,5 @@
 import { Component, Input,  OnInit } from '@angular/core';
-import { map, timer, takeWhile, finalize } from 'rxjs';
+import {map, timer, takeWhile, finalize, Observable} from 'rxjs';
 import millisecondsToSeconds from 'date-fns/millisecondsToSeconds'
 import differenceInSeconds from 'date-fns/differenceInSeconds'
 import {ActivatedRoute, Router} from "@angular/router";
@@ -16,19 +16,18 @@ import {Howl} from "howler";
   styleUrls: ['./current-ride-timer.component.css']
 })
 export class CurrentRideTimerComponent {
-  id!:any;
+  id!:number;
   ride!: Ride;
   now = new Date();
-  differenceSec = 5;
   seconds = 0;
   untilRide=0;
   diff1!: number;
-  timeRemaining!: any;
+  timeRemaining!: Observable<number>;
   smallTime = false;
   bigTime = true;
   isStartBtnDisabled: boolean= true;
   isWithdrawBtnDisabled: boolean = false;
-  
+
 
   constructor(private route: ActivatedRoute, private rideService: RideService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar) {}
 
@@ -44,8 +43,8 @@ export class CurrentRideTimerComponent {
         let strStartTime = this.ride.startTime;
 
         const [dateValues, timeValues] = strStartTime.split(' ');
-        console.log(dateValues); 
-        console.log(timeValues); 
+        console.log(dateValues);
+        console.log(timeValues);
 
         const [year, month, day] = dateValues.split('-');
         const [important, _] = timeValues.split('.');
@@ -73,15 +72,15 @@ export class CurrentRideTimerComponent {
     });
   }
 
-  
+
   timer() {
     console.log('hej');
   this.timeRemaining = timer(0, 1000).pipe(
-    map(n => this.seconds <= 3600 ? 
-      (this.seconds - n) * 1000 
-      : 
+    map(n => this.seconds <= 3600 ?
+      (this.seconds - n) * 1000
+      :
       (this.seconds - n - 3600) * 1000),
-    takeWhile(n => n >= 0), 
+    takeWhile(n => n >= 0),
     finalize(() => {
       this.isStartBtnDisabled = false;
       this.isWithdrawBtnDisabled = true;
@@ -90,7 +89,7 @@ export class CurrentRideTimerComponent {
   }
 
   anotherTimer() {
-    timer(0, 5000).subscribe(() => { 
+    timer(0, 5000).subscribe(() => {
       this.openNotification("Close");
       this.untilRide-=5;
     });

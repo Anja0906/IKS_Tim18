@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {DriverService} from "../service/driver/driver.service";
 import {Router} from "@angular/router";
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
@@ -49,24 +49,22 @@ export class RegisterDriverComponent implements OnInit {
     babyTransport: false,
     petTransport: false
   }
-  //inicijalizacija polja u form group
   firstFormGroup = this._formBuilder.group({
-    profilePicture: [''],
-    name: [''],
-    surname: [''],
-    // telephoneNumber: ['', Validators.pattern("/[0-9\\+\\-\\ ]/")],
-    telephoneNumber: [''],
-    address: [''],
-    // email: ['', Validators.pattern("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")],
-    email: [''],
-    // password: ['', Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]")],
-    password: [''],
+    profilePicture: new FormControl(),
+    name: new FormControl(),
+    licence: new FormControl(),
+    surname: new FormControl(),
+    vehicleRegistration: new FormControl(),
+    telephoneNumber: new FormControl(),
+    address: new FormControl(),
+    email: new FormControl(),
+    password: new FormControl(),
   });
   secondFormGroup = this._formBuilder.group({
-    vehicleType: [1],
-    model: [''],
-    licenseNumber: ['', Validators.max(7)],
-    passengerSeats: [0],
+    vehicleType: new FormControl(),
+    model: new FormControl(),
+    licenseNumber: new FormControl(),
+    passengerSeats: new FormControl(),
     petTransport: [true],
     babyTransport: [true],
   });
@@ -93,7 +91,14 @@ export class RegisterDriverComponent implements OnInit {
   //zahtev za dodavanje novog vozaca
   async addDriver() : Promise<Driver> {
     return new Promise((resolve, reject) => {
-      this.driverService.add(this.firstFormGroup.value).subscribe({
+      this.driver.profilePicture = this.firstFormGroup.value.profilePicture;
+      this.driver.name = this.firstFormGroup.value.name;
+      this.driver.surname = this.firstFormGroup.value.surname;
+      this.driver.telephoneNumber = this.firstFormGroup.value.telephoneNumber;
+      this.driver.address = this.firstFormGroup.value.address;
+      this.driver.email = this.firstFormGroup.value.email;
+      this.driver.password = this.firstFormGroup.value.password;
+      this.driverService.add(this.driver).subscribe({
         next: (result) => {
           console.log(result);
           resolve(result);
@@ -109,7 +114,11 @@ export class RegisterDriverComponent implements OnInit {
   //zahtev za dodavanje novog vozila
   async addVehicle() : Promise<Vehicle> {
     return new Promise((resolve, reject) => {
-      this.vehicleService.add(this.secondFormGroup.value, this.driver.id).subscribe({
+      this.vehicle.vehicleType = this.secondFormGroup.value.vehicleType;
+      this.vehicle.licenseNumber = this.secondFormGroup.value.licenseNumber;
+      this.vehicle.passengerSeats = this.secondFormGroup.value.passengerSeats;
+
+      this.vehicleService.add(this.vehicle, this.driver.id).subscribe({
         next: (result) => {
           console.log(result);
           resolve(result);

@@ -10,6 +10,7 @@ import {DriverService} from "../service/driver/driver.service";
 import { MatDialog } from '@angular/material/dialog';
 import { RideRec } from '../order-ride/order-ride.component';
 import { OrderHistoryComponent } from './order-history/order-history/order-history.component';
+import {User} from "../model/User";
 
 @Component({
   selector: 'app-ride-history',
@@ -17,13 +18,13 @@ import { OrderHistoryComponent } from './order-history/order-history/order-histo
   styleUrls: ['./ride-history.component.css']
 })
 export class RideHistoryComponent implements OnInit{
-  userId: any;
+  userId!: number;
   displayedColumns: string[] = ['id', 'startTime', 'endTime', 'totalCost', 'estimatedTime'];
   dataSource!: MatTableDataSource<Ride>;
   rides: Ride[] = [];
   totalElements: number = 0;
-  @ViewChild(MatPaginator) paginator!: any;
-  @ViewChild(MatSort) sort!: any;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
 
@@ -81,8 +82,7 @@ export class RideHistoryComponent implements OnInit{
 
   }
 
-  viewReviews(obj: any) {
-    //console.log(obj.id);
+  viewReviews(obj: User) {
     if (this.storageService.getUser().roles.includes("ROLE_ADMIN")) {
       this.router.navigate(['admin/reviews', obj.id]);
     } else {
@@ -90,7 +90,7 @@ export class RideHistoryComponent implements OnInit{
     }
   }
 
-  someDate!: any;
+  someDate!: string;
   orderRide(obj: RideRec) {
     let ride: RideRec;
     //let obj: RideRec;
@@ -118,11 +118,9 @@ export class RideHistoryComponent implements OnInit{
             "petTransport": obj.petTransport
           };
         }
-      
-    console.log(ride);
+
     const newRide = this.rideService.createRide(ride).subscribe({
       next: (result) => {
-        console.log(result);
         alert("Ride successfully created!");
         this.router.navigate(['/passenger']);
       },
@@ -134,8 +132,7 @@ export class RideHistoryComponent implements OnInit{
         }
       },
     });
-    console.log(newRide);
-  } 
+  }
     });
 
   }

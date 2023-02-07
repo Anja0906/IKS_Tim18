@@ -47,21 +47,7 @@ export class ReviewsComponent implements OnInit{
         let columns: string[] = ['id', 'type', 'rating', 'comment', 'add-review'];
         this.displayedColumns = columns;
       }
-      /*
-      this.rideService.getRidesForUser(this.id)
-          .subscribe(data => {
-              this.rides = data['results'];
-              this.dataSource = new MatTableDataSource<Review>(this.rides);
-              this.totalElements = data['totalCount'];
-              console.log(this.rides);
-              this.dataSource.paginator = this.paginator;
-              this.dataSource.sort = this.sort;
-            }, error =>
-            {
-              console.log(error.error.message);
-            }
-          );
-          */
+
       this.reviewService.getAllReviews(this.ride_id)
       .subscribe(data => {
         this.results = data;
@@ -118,7 +104,7 @@ export class ReviewsComponent implements OnInit{
     }
   }
 
-  
+
   rating!: number;
   comment!: string;
   rateDriver() {
@@ -199,7 +185,7 @@ export interface Review {
   type: string;
   passenger_id: number;
 }
- 
+
 
 export interface ReviewRec {
   id: number;

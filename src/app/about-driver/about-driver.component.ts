@@ -41,7 +41,7 @@ export class AboutDriverComponent {
   vehicle!:Vehicle;
   documents!:DriverDocument[];
   showTemplate = false;
-  id: any;
+  id!: number;
   ride!: Ride;
   form!: IRideFormGroup
   reason!: Reason ;

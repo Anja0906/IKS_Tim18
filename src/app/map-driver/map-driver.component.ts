@@ -19,7 +19,6 @@ import {StorageService} from "../service/storage/storage.service";
 export class MapDriverComponent implements AfterViewInit, OnInit {
   showForm = true;
   map!: any;
-  result!: any;
   dep!: LatLng;
   dest!: LatLng;
   ride!: Ride;
@@ -86,7 +85,7 @@ export class MapDriverComponent implements AfterViewInit, OnInit {
     tiles.addTo(this.map);
   }
 
-  route(r1: any, r2: any): void {
+  route(r1: LatLng, r2: LatLng): void {
     L.Routing.control({
       waypoints: [
         r1, r2

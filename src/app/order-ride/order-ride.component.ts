@@ -17,6 +17,7 @@ import { RideService } from '../service/ride/ride.service';
 import { Ride } from '../model/Ride';
 import { TimeScale } from 'chart.js';
 import { StorageService } from '../service/storage/storage.service';
+import {a} from "chart.js/dist/chunks/helpers.core";
 
 @Component({
   selector: 'app-order-ride',
@@ -58,7 +59,7 @@ this.secondFormGroup = new FormGroup({
 
   secondFormGroup!: FormGroup;
 
-  
+
   //inicijalizacija polja u form group
   firstFormGroup = this._formBuilder.group({
     departure: new FormControl(),
@@ -68,7 +69,7 @@ this.secondFormGroup = new FormGroup({
     petTransport: [true],
     babyTransport: [true],
   });
-  
+
 
 
   secondClick() {
@@ -100,10 +101,6 @@ this.secondFormGroup = new FormGroup({
 
 
   firstClick() {
-    console.log("click");
-    //this.initLocations();
-   // console.log(this.firstFormGroup.value.departure);
-    //console.log(this.firstFormGroup.value.destination);
     if (this.currentDate != this.firstFormGroup.value.date) {
         this.scheduleDate = this.firstFormGroup.value.date + ":00.000Z";
     }
@@ -242,7 +239,7 @@ this.secondFormGroup = new FormGroup({
 
   //refreshing the map
 
-  
+
   thirdFormGroup = this._formBuilder.group({
     name: [''],
     documentImage: [''],
@@ -285,8 +282,6 @@ this.secondFormGroup = new FormGroup({
         "scheduledTime": this.scheduleDate
       };
     }
-    console.log("obj");
-    console.log(obj);
 
     const newRide = this.rideService.createRide(obj).subscribe({
       next: (result) => {

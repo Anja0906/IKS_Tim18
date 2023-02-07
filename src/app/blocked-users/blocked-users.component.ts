@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {NoteComponent} from "./note/note.component";
 import {MessageComponent} from "./messages/messages/messages.component";
 import {Note} from "../model/Note";
+import {User} from "../model/User";
 
 @Component({
   selector: 'app-blocked-users',
@@ -17,7 +18,7 @@ export class BlockedUsersComponent {
   notes: Note[] = [];
   users: UserSimple[] = [];
   totalElements: number = 0;
-  result: any;
+  result!: User[];
   searchTerm = '';
   term = '';
 
@@ -31,9 +32,7 @@ export class BlockedUsersComponent {
   private getUsers(request: { page?: string; size?: string; }) {
     this.userService.getAll(request)
       .subscribe(data => {
-          // @ts-ignore
           this.users = data['results'];
-          // @ts-ignore
           this.totalElements = data['totalCount'];
         }
         , error => {
@@ -46,7 +45,6 @@ export class BlockedUsersComponent {
   private getNotes(id:number) {
     this.userService.getMessages(id, { page: '0', size: '10' }).subscribe(
       (data) => {
-        // @ts-ignore
         this.notes = data['results'];
       },
       (error) => {
@@ -55,22 +53,13 @@ export class BlockedUsersComponent {
     );
   }
 
-  //changing page
-  nextPage(event: PageEvent) {
-    const request = {};
-    // @ts-ignore
-    request['page'] = event.pageIndex.toString();
-    // @ts-ignore
-    request['size'] = event.pageSize.toString();
-    this.getUsers(request);
-  }
+
 
   //blocking user
   block(id: number){
     this.userService
       .block(id)
-      .subscribe((res: any) => {
-        console.log(res);
+      .subscribe(() => {
         this.refreshPage();
       });
   }
@@ -79,8 +68,7 @@ export class BlockedUsersComponent {
   unblock(id: number){
     this.userService
       .unblock(id)
-      .subscribe((res: any) => {
-        console.log(res);
+      .subscribe(() => {
         this.refreshPage();
       });
   }

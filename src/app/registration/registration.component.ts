@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import { Router } from '@angular/router';
+import {Route, Router} from '@angular/router';
 import { UserService } from 'src/app/user.service';
 
 import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
+import {User} from "../model/User";
 
 @Component({
   selector: 'app-registration',
@@ -14,18 +15,18 @@ import { StorageService } from '../service/storage/storage.service';
 export class RegistrationComponent implements OnInit {
   registerUserForm!:FormGroup;
   submitted = false;
-  form: any = {
-    firstName: null,
-    picture: null,
-    email: null,
-    lastName: null,
-    address: null,
-    telephoneNumber: null,
-    password: null
+  form: { profilePicture: string; password: string; address: string; telephoneNumber: string; surname: string; name: string; email: string } = {
+    name: "",
+    profilePicture: "",
+    email: "",
+    surname: "",
+    address: "",
+    telephoneNumber: "",
+    password: ""
   };
   errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService,private route:Router) {}
 
   ngOnInit() {
     this.registerUserForm = this.formBuilder.group({
@@ -35,15 +36,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    const { firstName, picture, email, lastName, address, telephoneNumber, password } = this.form;
-    this.authService.signUpPassenger(firstName, picture, email, lastName, address, telephoneNumber, password).subscribe({
+
+    this.authService.signUpPassenger(this.form.name, this.form.profilePicture, this.form.email, this.form.surname,
+      this.form.address, this.form.telephoneNumber, this.form.password).subscribe({
       next: data => {
-        console.log("hi");
-        //this.storageService.saveUser(data);
-
         alert("successful");
-
-        //this.reloadPage();
+        this.route.navigate(['']);
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -53,5 +51,5 @@ export class RegistrationComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
-  
+
 }

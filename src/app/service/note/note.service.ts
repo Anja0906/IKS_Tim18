@@ -15,7 +15,6 @@ export class NoteService {
       message: message
     };
     this.http.post(environment.apiHost+`api/user/${id}/note`, note).subscribe(response => {
-      console.log(response);
     });
   }
 }

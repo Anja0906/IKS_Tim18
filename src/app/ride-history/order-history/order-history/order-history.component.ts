@@ -10,7 +10,6 @@ import {FormBuilder, Validators, FormControl, FormGroup, FormArray} from '@angul
 })
 export class OrderHistoryComponent {
 
-  //@ViewChild('date') date!: ElementRef;
   currentDate = new Date().toISOString().slice(0, -8);
   getData: boolean=false;
 

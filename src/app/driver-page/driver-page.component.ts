@@ -21,13 +21,15 @@ import {Reason} from "../model/Reason";
 })
 export class DriverPageComponent {
   private serverUrl = environment.apiHost + 'socket'
-  private stompClient: any;
+  private stompClient: Stomp.Client;
   form!: FormGroup;
   ride!: Ride;
   reason:Reason = {reason:""};
 
   isLoaded: boolean = false;
   constructor(private dialog: MatDialog, private storageService: StorageService,private rideService:RideService) {
+    let ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
   }
 
   ngOnInit() {
@@ -35,10 +37,9 @@ export class DriverPageComponent {
   }
 
   initializeWebSocketConnection() {
-    let ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    let that = this;
 
+
+    let that = this;
     this.stompClient.connect({}, function () {
       that.isLoaded = true;
       that.openGlobalSocket()

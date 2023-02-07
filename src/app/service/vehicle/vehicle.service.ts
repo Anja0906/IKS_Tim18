@@ -10,9 +10,9 @@ import {Vehicle} from "../../model/Vehicle";
 })
 export class VehicleService {
   constructor(private http: HttpClient) { }
-  add(vehicle: any, driverId:number): Observable<Vehicle> {
+  add(vehicle: Vehicle, driverId:number): Observable<Vehicle> {
     vehicle.currentLocation = {
-      address: "sdfksdlfk",
+      address: "",
       latitude: 45.5454,
       longitude: 19.4545
     }

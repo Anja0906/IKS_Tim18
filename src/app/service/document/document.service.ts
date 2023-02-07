@@ -9,7 +9,7 @@ import {DriverDocument} from "../../model/DriverDocument";
 })
 export class DocumentService {
   constructor(private http: HttpClient) { }
-  add(document: any, driverId:number): Observable<DriverDocument> {
+  add(document: DriverDocument, driverId:number): Observable<DriverDocument> {
     return this.http.post<DriverDocument>(environment.apiHost + 'api/driver/' + driverId + '/documents', document);
   }
 }

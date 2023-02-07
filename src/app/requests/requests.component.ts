@@ -35,10 +35,7 @@ export class RequestsComponent implements OnInit{
   }
 
   accept(user:User) {
-    this.userService
-      .updateUser(user.id, user)
-      .subscribe((res: any) => {
-        console.log(res);
+    this.userService.updateUser(user.id, user).subscribe(() => {
       });
     console.log(user);
     this.deleteRequest(user);
@@ -53,10 +50,7 @@ export class RequestsComponent implements OnInit{
   }
 
   decline(user:User) {
-    this.requestService
-      .deleteReq(user.id)
-      .subscribe((res: any) => {
-        console.log(res);
+    this.requestService.deleteReq(user.id).subscribe(() => {
       });
     this.deleteRequest(user);
   }

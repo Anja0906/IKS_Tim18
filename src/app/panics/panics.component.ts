@@ -25,13 +25,10 @@ export class PanicsComponent {
     this.getPanics({ page: "0", size: "10" });
   }
 
-  //getting all panic notifications from the backend side
   private getPanics(request: { page?: string; size?: string; }) {
     this.panicService.getAll(request)
       .subscribe(data => {
-          // @ts-ignore
           this.panics = data['results'];
-          // @ts-ignore
           this.totalElements = data['totalCount'];
         }
         , error => {
@@ -53,18 +50,6 @@ export class PanicsComponent {
     });
   }
 
-
-
-
-  //changing page
-  nextPage(event: PageEvent) {
-    const request = {};
-    // @ts-ignore
-    request['page'] = event.pageIndex.toString();
-    // @ts-ignore
-    request['size'] = event.pageSize.toString();
-    this.getPanics(request);
-  }
 
   openDialog(obj: any) {
     let dialogRef = this.dialog.open(ReasonDialogComponent, {

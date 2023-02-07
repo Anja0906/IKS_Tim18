@@ -14,37 +14,24 @@ export class UserService {
   ngOnInit(): void {}
 
 
-  getAll(request: { page?: string; size?: string }): Observable<any[]> {
-    return this.http.get<any[]>(environment.apiHost + 'api/user?page=' + request['page'] + '&size=' + request['size']);
+  getAll(request: { page?: string; size?: string }): Observable<{totalCount:number, results:User[]}> {
+    return this.http.get<{totalCount:number, results:User[]}>(environment.apiHost + 'api/user?page=' + request['page'] + '&size=' + request['size']);
   }
 
-  getMessages(id:number, request: { page?: string; size?: string }): Observable<any[]> {
-    return this.http.get<any[]>(environment.apiHost + `api/user/${id}/note?page=` + request['page'] + '&size=' + request['size']);
+  getMessages(id:number, request: { page?: string; size?: string }): Observable<{totalCount:number, results:Note[]}> {
+    return this.http.get<{totalCount:number, results:Note[]}>(environment.apiHost + `api/user/${id}/note?page=` + request['page'] + '&size=' + request['size']);
   }
 
   public getUser(userId: number): Observable<User> {
     return this.http.get<User>(`${this.apiServerUrl}api/user/${userId}`);
   }
 
-  public addUser(user: any): Observable<any> {
-    const options: any = {
-      responseType: 'text',
-    };
-    return this.http.post<string>(`${this.apiServerUrl}api/user/add`, user, options);
-
+  public updateUser(id: number, user: User): Observable<void> {
+    return this.http.put<void>(`${this.apiServerUrl}api/user/${id}`, user);
   }
 
-  public updateUser(id: number, user: User) {
-    return this.http.put<User>(`${this.apiServerUrl}api/user/${id}`, user);
-  }
-
-  public updateDriver(id: number, user: User) {
-    return this.http.post<User>(`${this.apiServerUrl}api/request/${id}`, user);
-  }
-
-
-  public deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/user/delete/${userId}`);
+  public updateDriver(id: number, user: User): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}api/request/${id}`, user);
   }
 
   unblock(id: number) {

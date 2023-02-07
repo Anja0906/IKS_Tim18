@@ -1,6 +1,6 @@
 <div class="bg-modal">
   <div class="modal-content">
-    <button type="button" [routerLink]="['..']" class="close">+</button> 
+    <button type="button" [routerLink]="['..']" class="close">+</button>
     <!--<div class="form-container">-->
       <h2>My profile</h2>
       <form
@@ -22,7 +22,7 @@
                 type="text"
                 class="form-control"
                 name="firstName"
-                [(ngModel)]="form.firstName"
+                [(ngModel)]="form.name"
                 required
                 minlength="3"
                 maxlength="20"
@@ -66,7 +66,7 @@
                 type="text"
                 class="form-control"
                 name="lastName"
-                [(ngModel)]="form.lastName"
+                [(ngModel)]="form.surname"
                 required
                 minlength="3"
                 maxlength="20"
@@ -140,7 +140,7 @@
           <div class="col">
             <div class="form-group">
               <input id="password"
-                type="text"
+                type="password"
                 class="form-control"
                 name="password"
                 [(ngModel)]="form.password"

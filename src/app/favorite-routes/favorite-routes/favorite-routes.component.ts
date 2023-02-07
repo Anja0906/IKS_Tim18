@@ -1,6 +1,5 @@
 import {Component, Output} from '@angular/core';
 import {Router} from "@angular/router";
-import {PageEvent} from "@angular/material/paginator";
 import { FavoriteRoutesService } from 'src/app/service/favorite-routes/favorite-routes.service';
 import { OrderHistoryComponent } from 'src/app/ride-history/order-history/order-history/order-history.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,8 +14,10 @@ import { RideService } from 'src/app/service/ride/ride.service';
 export class FavoriteRoutesComponent {
 
   @Output() route!:FavoriteRouteReceive;
-  routes: FavoriteRouteReceive[] = [];
+  routes!: FavoriteRouteReceive[];
   totalElements: number = 0;
+  someDate!: any;
+
 
 
   constructor(private router: Router, private favoriteRoutesService: FavoriteRoutesService, private dialog: MatDialog, private rideService: RideService) {}
@@ -29,9 +30,7 @@ export class FavoriteRoutesComponent {
   private getFavRoutes() {
     this.favoriteRoutesService.getAll()
       .subscribe(data => {
-          // @ts-ignore
           this.routes = data;
-          console.log(data);
         }
         , error => {
           console.log(error.error.message);
@@ -42,7 +41,6 @@ export class FavoriteRoutesComponent {
   deleteRoute(id: number) {
     this.favoriteRoutesService.deleteFavRide(id)
       .subscribe(data => {
-          // @ts-ignore
           alert("Successful");
           this.getFavRoutes();
         }
@@ -52,10 +50,8 @@ export class FavoriteRoutesComponent {
       );
   }
 
-  someDate!: any;
   order(obj: FavoriteRouteReceive) {
     let ride: RideRec;
-    //let obj: RideRec;
     const dialogRef = this.dialog.open(OrderHistoryComponent, {
       data: {obj: obj, date:this.someDate},
       panelClass: 'my-dialog-container-class',
@@ -80,25 +76,25 @@ export class FavoriteRoutesComponent {
             "petTransport": obj.petTransport
           };
         }
-      
-      
-    console.log(ride);
-    const newRide = this.rideService.createRide(ride).subscribe({
-      next: (result) => {
-        console.log(result);
-        alert("Ride successfully created!");
-        this.router.navigate(['/passenger']);
-      },
-      error: (error) => {
-        if (error.error.message==undefined){
-          alert(error.error);
-        } else {
-          alert(error.error.message);
-        }
-      },
-    });
-    console.log(newRide);
-  }
+
+
+        console.log(ride);
+        const newRide = this.rideService.createRide(ride).subscribe({
+          next: (result) => {
+            console.log(result);
+            alert("Ride successfully created!");
+            this.router.navigate(['/passenger']);
+          },
+          error: (error) => {
+            if (error.error.message==undefined){
+              alert(error.error);
+            } else {
+              alert(error.error.message);
+            }
+          },
+        });
+        console.log(newRide);
+      }
     });
   }
 
@@ -147,4 +143,3 @@ export interface Loc{
   latitude: number;
   longitude: number;
 }
-

@@ -39,16 +39,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const { email, password } = this.form;
-    /*
-    this.submitted = true;
-    if (this.loginForm.invalid) {
-      return;
-    }
-    alert("Successful");
-    */
+
     this.authService.login(email, password).subscribe({
       next: data => {
-        console.log("hi");
         this.storageService.saveUser(data);
 
         console.log("successful login");
@@ -56,7 +49,6 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         this.name = this.storageService.getUser().details;
-        console.log(this.roles);
         if (this.roles.includes("ROLE_ADMIN")) {
             this.loginRouter.navigate(['/admin']);
         }

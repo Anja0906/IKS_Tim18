@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
 
 import {Router} from '@angular/router';
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -12,35 +13,35 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!:FormGroup;
-  submitted = false;
-  form: any = {
-    email: null,
-    password: null
-  };
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private loginRouter: Router) {}
+
+  hasError: boolean = false;
+  valid : boolean = false;
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
   isLoggedIn = false;
   isLoginFailed = false;
+  submitted = false;
   errorMessage = '';
   roles: string[] = [];
   name: string[] = [];
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService, private loginRouter: Router) {}
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email:["", Validators.required]
-    })
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-      this.name = this.storageService.getUser().details;
-    }
-  }
-
   onSubmit() {
-    const { email, password } = this.form;
+    let loginVal = {
+      username: this.loginForm.value.email?.toString(),
+      password: this.loginForm.value.password?.toString(),
+    };
 
-    this.authService.login(email, password).subscribe({
+
+    if (this.loginForm.valid) {
+      this.valid = true;
+      let email = loginVal?.username;
+      let password = loginVal?.password;
+
+    // @ts-ignore
+      this.authService.login(email, password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
 
@@ -50,14 +51,14 @@ export class LoginComponent implements OnInit {
         this.roles = this.storageService.getUser().roles;
         this.name = this.storageService.getUser().details;
         if (this.roles.includes("ROLE_ADMIN")) {
-            this.loginRouter.navigate(['/admin']);
+          this.loginRouter.navigate(['/admin']);
         }
         if (this.roles.includes("ROLE_DRIVER")) {
           this.loginRouter.navigate(['/driver']);
         }
         if (this.roles.includes("ROLE_PASSENGER")) {
           this.loginRouter.navigate(['/passenger']);
-      }
+        }
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -65,8 +66,13 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  }
 
-  reloadPage(): void {
-    window.location.reload();
+  ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      this.roles = this.storageService.getUser().roles;
+      this.name = this.storageService.getUser().details;
+    }
   }
  }

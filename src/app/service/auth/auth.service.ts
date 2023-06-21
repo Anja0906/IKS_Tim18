@@ -32,7 +32,8 @@ export class AuthService {
     return this.http.post(AUTH_API + 'logout', { }, httpOptions);
   }
 
-  signUpPassenger(name: string, profilePicture: string, email: string, surname: string, address: string, telephoneNumber: string, password: string): Observable<any> {
+  signUpPassenger(name: string, profilePicture: string, email: string, surname: string,
+                  address: string, telephoneNumber: string, password: string): Observable<any> {
     return this.http.post(
       AUTH_API + 'signupPassenger',
       {
@@ -42,5 +43,6 @@ export class AuthService {
     )
     ;
   }
+
 
 }

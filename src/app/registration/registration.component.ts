@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {Route, Router} from '@angular/router';
-import { UserService } from 'src/app/user.service';
+import {Router} from '@angular/router';
 
 import { AuthService } from '../service/auth/auth.service';
 import { StorageService } from '../service/storage/storage.service';
-import {User} from "../model/User";
 
 @Component({
   selector: 'app-registration',
@@ -13,43 +11,58 @@ import {User} from "../model/User";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  registerUserForm!:FormGroup;
   submitted = false;
-  form: { profilePicture: string; password: string; address: string; telephoneNumber: string; surname: string; name: string; email: string } = {
-    name: "",
-    profilePicture: "",
-    email: "",
-    surname: "",
-    address: "",
-    telephoneNumber: "",
-    password: ""
-  };
+  form = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    profilePicture: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    surname: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    telephoneNumber: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
+  hasError: boolean = false;
+  valid : boolean = false;
   errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private storageService: StorageService,private route:Router) {}
 
   ngOnInit() {
-    this.registerUserForm = this.formBuilder.group({
-      email:["", Validators.required],
-      password:["", Validators.required]
-    })
   }
 
   onSubmit() {
-
-    this.authService.signUpPassenger(this.form.name, this.form.profilePicture, this.form.email, this.form.surname,
-      this.form.address, this.form.telephoneNumber, this.form.password).subscribe({
-      next: data => {
-        alert("successful");
-        this.route.navigate(['']);
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-      }
-    });
-  }
-  reloadPage(): void {
-    window.location.reload();
+    let registerVal = {
+      name: this.form.value.name?.toString(),
+      profilePicture: this.form.value.profilePicture?.toString(),
+      email: this.form.value.email?.toString(),
+      surname: this.form.value.surname?.toString(),
+      address: this.form.value.address?.toString(),
+      telephoneNumber: this.form.value.telephoneNumber?.toString(),
+      password: this.form.value.password?.toString()
+    };
+    if (this.form.valid){
+      this.valid = true;
+      let name = registerVal?.name;
+      let profilePicture = registerVal?.profilePicture;
+      let email = registerVal?.email;
+      let surname = registerVal?.surname;
+      let address = registerVal?.address;
+      let telephoneNumber = registerVal?.telephoneNumber;
+      let password = registerVal?.password;
+      console.log(registerVal);
+      // @ts-ignore
+      this.authService.signUpPassenger(name, profilePicture,
+        email, surname, address,
+        telephoneNumber, password).subscribe({
+        next: data => {
+          alert("successful");
+          this.route.navigate(['']);
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
+        }
+      });
+    }
   }
 
 }

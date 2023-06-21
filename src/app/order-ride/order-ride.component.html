@@ -14,50 +14,50 @@
         <div class="row">
           <div class="col">
             <div class="row">
-              <input type="text" name="departure" formControlName="departure" placeholder="Departure"/>
+              <input type="text" name="departure" id="departure" formControlName="departure" placeholder="Departure"/>
             </div>
             <div class="row">
-              <input type="text" name="destination" formControlName="destination" placeholder="Destination"/>
+              <input type="text" name="destination" id="destination" formControlName="destination" placeholder="Destination"/>
             </div>
-            
+
             <div class="row">
-              <button mat-button type="button" class="btn redBtn2 text-uppercase wide-btn" (click)="locations()">Show on map</button>
+              <button mat-button type="button" id="initLocation" class="btn redBtn2 text-uppercase wide-btn" (click)="locations()">Show on map</button>
             </div>
-          
+
             <div class="row">
-              <input type="datetime-local" name="date" formControlName="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{9}Z"/>
+              <input type="datetime-local" name="date" id="time" formControlName="date" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{9}Z"/>
             </div>
           </div>
           <div class="col">
             <div class="row">
-              <mat-radio-group formControlName="vehicleType">
-                <mat-radio-button [value]="0">
+              <mat-radio-group formControlName="vehicleType" id="radioGroup">
+                <mat-radio-button [value]="0" id="option0">
                   <img src="assets/car.png" class="imgRadio" alt="Option 1">
                 </mat-radio-button>
-                <mat-radio-button [value]="1">
+                <mat-radio-button [value]="1" id="option1">
                   <img src="assets/limousine.png" class="imgRadio" alt="Option 2">
                 </mat-radio-button>
-                <mat-radio-button [value]="2">
+                <mat-radio-button [value]="2" id="option2">
                   <img src="assets/van.png" class="imgRadio" alt="Option 3">
                 </mat-radio-button>
               </mat-radio-group>
             </div>
             <div class="row">
-              <mat-slide-toggle class="mySlide" formControlName="petTransport">
+              <mat-slide-toggle class="mySlide" formControlName="petTransport" id="petTransport">
                 <span>
                   Pet transport
                 </span>
               </mat-slide-toggle>
-              <mat-slide-toggle class="mySlide" formControlName="babyTransport">
+              <mat-slide-toggle class="mySlide" formControlName="babyTransport" id="babyTransport">
                 <span>
                   Baby transport
                 </span>
-              </mat-slide-toggle>  
+              </mat-slide-toggle>
             </div>
           </div>
         </div>
         <div class="parent">
-          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="firstClick()"
+          <button mat-button id="next1" type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="firstClick()"
           >Next</button>
         </div>
       </form>
@@ -72,25 +72,25 @@
             [formGroupName]="i"
           >
             <h3 class="whiteText">passenger {{i + 1}}</h3>
-            <input id="email" class="form-control" type="email" formControlName="email" placeholder="email"/>
+            <input id="passengerInput" class="form-control" type="email" formControlName="email" placeholder="email"/>
           </div>
         </div>
-      
-        <button class="add-btn" (click)="addPassenger()">+</button>
+
+        <button class="add-btn" id="add" (click)="addPassenger()">+</button>
         <div class="parent">
-          <button mat-button type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="secondClick()">Next</button>
+          <button mat-button id="next2" type="submit" class="btn greenBtn text-uppercase wide-btn" matStepperNext (click)="secondClick()">Next</button>
           <button mat-button class="redBtn" matStepperNext>Skip</button>
         </div>
       </form>
     </mat-step>
- 
+
     <mat-step>
       <ng-template matStepLabel>Done</ng-template>
       <div class="parent">
         <div class="submitPart">
           <h3 class="h3Beige">You are done now</h3>
           <button mat-button class="redBtn" (click)="stepper.reset()">Reset</button>
-          <button mat-button class="greenBtn" (click)="submit()">Submit</button>
+          <button mat-button id="next3" class="greenBtn" (click)="submit()">Submit</button>
         </div>
       </div>
     </mat-step>

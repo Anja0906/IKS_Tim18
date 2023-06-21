@@ -20,7 +20,7 @@
       </div>
       <button [routerLink]="['change_password']" type="button" class="forget_password">Forgot password?</button>
       <div class="form-group">
-        <button class="btn greenBtn text-uppercase wide-btn" >Log in</button>
+        <button class="btn greenBtn text-uppercase wide-btn" id="submit-login">Log in</button>
       </div>
       <div class="form-group">
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">Login failed</div>
